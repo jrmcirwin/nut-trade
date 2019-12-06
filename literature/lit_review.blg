@@ -1,0 +1,46 @@
+This is BibTeX, Version 0.99d (TeX Live 2017/Debian)
+Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
+The top-level auxiliary file: lit_review.aux
+The style file: ieeetr.bst
+Database file #1: Anemia.bib
+You've used 19 entries,
+            1876 wiz_defined-function locations,
+            602 strings with 7990 characters,
+and the built_in function-call counts, 6142 in all, are:
+= -- 643
+> -- 231
+< -- 0
++ -- 85
+- -- 66
+* -- 460
+:= -- 844
+add.period$ -- 18
+call.type$ -- 19
+change.case$ -- 20
+chr.to.int$ -- 0
+cite$ -- 19
+duplicate$ -- 290
+empty$ -- 536
+format.name$ -- 66
+if$ -- 1493
+int.to.chr$ -- 0
+int.to.str$ -- 19
+missing$ -- 16
+newline$ -- 60
+num.names$ -- 17
+pop$ -- 32
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 246
+stack$ -- 0
+substring$ -- 531
+swap$ -- 148
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 0
+while$ -- 65
+width$ -- 21
+write$ -- 196
