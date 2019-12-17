@@ -12,7 +12,7 @@
 \maketitle
 
 \section{Introduction}
-I will explore the effect of commodity price shocks during pregnancy on infant anemia. Anemia has a strong inter-generational component. Iron is passed from mother to fetus, but cannot be transmitted through breast-milk. Thus, anemia early in life is largely determined by maternal bio-availability of iron\footnote{And certain other micronutrients.} during pregnancy. Female anemia is a major problem around the world, and is a self-reinforcing cycle. \par
+I will explore the effect of commodity price shocks during pregnancy on infant anemia. Anemia has a strong inter-generational component. Iron is passed from mother to fetus, but cannot be transmitted through breast-milk. Thus, anemia early in life is largely determined by maternal bio-availability of iron\footnote{And certain other micro-nutrients.} during pregnancy. Female anemia is a major problem around the world, and is a self-reinforcing cycle. \par
 
 Commodity prices are volatile, more volatile than those of manufactured goods. Spikes in world food prices have caused discontent and food-insecurity around the world, as in the 2007-08 world food price crisis. As agriculture becomes more commercialized, households become more dependent on world markets for food. This has increased the exposure of households to market volatility, while insulating households from the effects of local shocks like weather. Being credit-constrained, sudden increases in the price of food may necessitate a decrease in consumption and lead to acute malnutrition. Increases in world food price may even cause famine, as in Bengal in 1943. Recent news coverage has focused on market-based food insecurity, which comes from volatile real income combined with credit constraints. Increase reliance on market goods may increase the average income of a household, but also make it more variable. Whether these households are better off is ambiguous, as is whether vulnerable members within the family, like women, are better off.
 \par
@@ -37,15 +37,24 @@ Playing Alexander to this Gordian knot, I will assert a reduced form relationshi
 Even with these simplifying assumptions, we must heap structure onto the ``world price" in order to put it on the right side of a regression. Food is not a particular commodity, it is a class of commodities. Thus, any talk of food prices must refer to an index. How shall we construct such an index? I will focus on three issues:
 \begin{itemize}
 	\item Iron content varies widely over foodstuffs. If we are most interested in anemia, rather than a more general notion of nutrition, then we might construct an index in which the price of each food is weighted by its iron-richness (e.g. meat with a heavier weight than rice).
-	\item The effect of increases in food prices differ across regions because of both production and consumption patterns. If a region is a net-exporter of maize, then an increase in the price of maize will lead to a proportionate increase in real income in terms of other goods. On the demand side, if a household does not consume a certain product (e.g. beef for Hindus) then an increase in the price of that good should have no, or little, effect. Thus, one could create weights at the region or household level (depending on the richness of data) which capture the production and consumption importance of each good.
-	\item The effect of an increase in price is nonlinear. The effect of a price increase on food consumption is different from that of a decrease because of credit-constraints. A large increase in price may push the household against its borrowing constraint, where a small increase would not.
+	\item The effect of increases in food prices differ across regions because of both production and consumption patterns. If a region is a net-exporter of maize, then an increase in the price of maize will lead to a proportionate increase in real income in terms of other goods. On the demand side, if a household does not consume a certain product (e.g. beef for Hindus) then an increase in the price of that good should have no, or little, effect. Thus, one could create weights at the region or household level (depending on the richness 
 \end{itemize}
 
+\section{Credit Constraints}
+Access to credit would allow households to smooth consumption across periods of high and low prices. Food consumption would still have negative relationship with price, as households substitute between goods, but there would be no reason to believe that price \emph{increases} have a different effect than \emph{decreases}. If households had access to credit, then the level of price, rather than the volatility would be the key determinant of nutrition. \par
+
+However, it is widely known that households in both the developed and developing world do not have access to credit. In this case, the effect of a decrease in price will be different than that of an increase in price. For low prices, real income is great and the household can decide whether to spend that real income or save it for a future period. For high prices, however, the household cannot borrow money in order to maintain their standard of living, meaning it must fall. \par
+
+A credit constraint need not bind all the time. Instead, it will only kick-in when the price reaches a certain level. Therefore, on the individual household level, we would expect to see a relatively flat relationship between food price and anemia until a certain threshold where the credit constraint binds and anemia increases swiftly.
+The threshold at which the credit constraint binds will differ across households. Aggregating would result in a more gradual relationship, but the effect of price would still be increasing in price.
 \section{Setting}
-I plan to explore the relationship of world food prices and anemia in West Africa,a region which has undergone transformation in the last 30 years, being re-oriented into commercial, plantation agriculture. I may end up applying this framework to a larger sample and explore variation across world regions.
+I plan to explore the relationship of world food prices and anemia in West Africa, a region which has undergone transformation in the last 30 years, being re-oriented into commercial, plantation agriculture. I may end up applying this framework to a larger sample and explore variation across world regions.
 
 \section{Data}
 I plan to use the DHS survey, which contains information on location, anemia and many other household and geographic variables.
+
+\section{First Steps}
+I have acquired the anemia and price data for Senegal. The only prices I have are sorghum, millet and rice. I will weight these by their iron content and create a single price index. I will then divide the price into 50 bins. Each infant will have a treatment assigned to them as the number of months in-utero which they were exposed to each bin. 
 
 
 \end{document}
