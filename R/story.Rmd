@@ -22,21 +22,26 @@ load("~/Anemia/Anemia/data/index.Rdata")
 
 # Introduction
 
-I will explore the effect of the 2008 spike in world food prices on the health <object></object>f children who were in-utero during the period. Existing studies explore the effect of this crisis on child anthropometric measures like height-for-weight. I explore the effect of this crisis on infant and child hemoglobin in Senegal 2-4 years post-crisis using a fetal origins approach. I also explore how the effect of the shock differs across Senegal, with the hypothesis that areas more closely integrated into the world market were more strongly affected by the price shock. The chain of reasoning goes between world prices in-utero and hemoglobin later in life goes as follows: 
+I will explore the effect of the 2008 spike in world food prices on the health of children who were in-utero during the period. Existing studies explore the effect of this crisis on child anthropometric measures like height-for-weight. I explore the effect of this crisis on infant and child hemoglobin in Senegal 2-4 years post-crisis using a fetal origins approach. I also explore how the effect of the shock differs across Senegal, with the hypothesis that areas more closely integrated into the world market were more strongly affected by the price shock. The chain of reasoning goes between world prices in-utero and hemoglobin later in life goes as follows: 
 
 1. An increase in the world price of food leads to an increase in local prices in Senegal;
 2. which causes food consumption to decrease in quality and/or quantity;
 3. which causes iron intake to fall for pregnant women;
 4. which reduces fetal iron stores;
-5. leading to reduced hemoglobin as an infant and child. 
+5. leading to reduced hemoglobin as an infant and child.
 
-Let's examine each of these links.
 
-## 1. World Price and Local Price
+## The 2008 World Food Price Spike
+In early 2008 world food prices increased dramatically. This increase caused a decline in food purchasing power for much of the world, and resulted in riots and unrest in low to medium income countries around the world, including Senegal. The increase was sudden, occuring in a number of months, and prices declined quickly, though they did not return to pre-2008 levels. 
+```{r prices time-series,fig.height = 6, fig.width = 10, fig.align = "center"}
+load("~/Anemia/Anemia/data/world_prices.Rdata")
+ggplot(prices, aes(x=ID,y= Price, group = Good, color = Good))+geom_path()+geom_point() + labs(title = "World Prices of Major Foodstuffs", x ="Month: Jan 2000 = 0", y= "Index: Jan 2000 = 1")
 
-### The Pattern of World Price
-As Senegal imports much of its food supply, world prices play an important role in determining local food prices. However, this role is mediated by transportation costs. Senegal lacks a significant rail network, thus imported foodstuffs must be transported from ports to the hinterland via truck. The main staples of Senegal rice, maize, sorghum, millet and wheat. All but wheat are produced domestically. Over half of the consumed rice, about a third of the maize, a small amount of sorghum, and no millet is imported. All of the wheat is imported. 
-The staple foods in Senegal are rice, maize, sorghum, wheat and millet. Millet is neither imported nor exported from senegal, so I used only the first four for the index. To construct a world price index that is relevant for anemia in Senegal, used two weights. One, the amount of consumption of a particular staple in Senegal in 2008, and two, the iron per 100 grams of that staple. Then I took a weighted average of the three prices. The final weights were 0.39 0.13 0.18 0.30 for rice, maize, sorghum and wheat respectively. 
+```
+
+As Senegal imports much of its food supply, world prices play an important role in determining local food prices. The main staples of Senegal are rice, maize, sorghum, millet and wheat. Over half of the consumed rice, about a third of the maize, a small amount of sorghum, and no millet is imported. All of the wheat is imported. As millet is not imported or exported from Senegal, I do not include it in my analysis.
+
+To construct a world price index that is relevant for anemia in Senegal, used two weights. One, the amount of consumption of a particular staple in Senegal in 2008, and two, the iron per 100 grams of that staple. Then I took a weighted average of the three prices. The final weights were 0.39 0.13 0.18 0.30 for rice, maize, sorghum and wheat respectively. 
 
 I originally intended to quantify the general effect of food prices during gestation on infant and child anemia. However, because prices are a distribution over the nine months, there are no obvious, simple ways to incorporate the time path of prices into the right hand side of a regression. Moreover, the variation is prices is dominated by a six-month window in 2008, making an event-study ideal.
 
@@ -48,7 +53,7 @@ ggplot(x, aes(x=Time, y= index))+ geom_path()+geom_point() + geom_vline(xinterce
 
 ```
 
-The time-path of the index can be roughly categorized into three regimes and a boundary case. The 2005-2008 regime involved low food prices. Then there is a 7-month boundary period, with a noticiable spike, consituting the 2008 World food price crisis. Then there is a regime of volatile, high prices from late 2008 to mid-2013. From 2013 onwards prices decrease and then fluctuate at relatively low levels. The 2008 crisis dominates the graphs.
+The time-path of the index can be roughly categorized into three regimes and a boundary case. The 2005-2008 regime involved low food prices. Then there is a 7-month boundary period, with a noticiable spike, consituting the 2008 World food price crisis. Then there is a regime of volatile, high prices from late 2008 to mid-2013. From 2013 onwards prices decrease and then fluctuate at relatively low levels.
 
 ### World Price, Local Price and Transportation Costs
 
@@ -121,16 +126,16 @@ ggplot() + coord_equal()+ theme_map()+
 rm(map)
 ```
   
-Given that timing of passthrough is complex, I take the sum of response over five months. This should encompass the full reaction to a price change. There is regional heterogeneity in strength of response of local prices to world price, with areas close to Dakar reacting the most strongly, followed by the secondary ports of Saint Louis and Zguinchor.
+Though local price response to world price is slow, 5 months should encompass the full reaction to a price change. No lags beyond 5 were statistically significant. We see that there is regional heterogeneity in strength of response of local prices to world price, with areas close to Dakar reacting the most strongly, followed by the secondary port of Zguinchor. I will use this response value as a measure of city-integration to the world market.
 
 For each village in the DHS, we can assign the nearest city as the local price response value. Then, I will take the distance between the village and the city. 
 
 ## 2. Price and Consumption
 As price increases there is a substitution effect and income effect which lead to lower consumption. Given that we are studying staple cereals, we would expect the income to be more important. As known dating back to Engels, poor families spend a greater share of income on food than rich families, and the income effect will decrease with household wealth. 
 
-Several papers have looked at the effect of the 2008 price shock on food consumption in sub-Saharan Africa. In Burkina Faso, which neighbors Senegal, the price shock lead to decreased ammounts and diversity of food. This is consistent with a model of quality and quantity, where quantity decreases or quality changes or both go down in order to accomodate the shock. As iron, unlike calories, is a function of both food quality and quantity, the link between food prices and iron consumption seems firm. There are a host of interesting issues surrounding intra-household allocation and gender, but I will not treat those in this paper.
+Several papers have looked at the effect of the 2008 price shock on food consumption in sub-Saharan Africa. Iron, unlike calories, is a function of both food quality and quantity. As prices increase, the household must either reduce quantity or change the type of food they are consuming. In Burkina Faso, which neighbors Senegal, the 2008 price shock lead to decreased amounts and diversity of food. We are particularly interested in child-bearing age female iron consumption. There are a host of other issues surrounding intra-household allocation and gender, but I will not treat those in this paper.
 
-Given a price shock, households will try to smooth consumption across time. This will attenuate the effect of price on consumption. However, households in Senegal, like those in the rest of the world, are credit constrained. Thus, we would expect a nonlinear effect of price on consumption, with greater increases in price having disproprtionately greater effect on consumption. As savings, and therefore ability to smooth in a credit-constrained world, are a stock, prices in previous months will also affect the ability to smooth consumption. If prices have been high for several months, then a household is less likely to be able to smooth consumption given another month of high prices.
+Given a price shock, households will try to smooth consumption across time, attenuating the effect of price on consumption. However, households in Senegal, like those in the rest of the world, are credit constrained. Thus, we would expect a nonlinear effect of price on consumption, with greater increases in price having disproprtionately greater effect on consumption. As savings, and therefore ability to smooth in a credit-constrained world, are a stock, prices in previous months will also affect the ability to smooth consumption. If prices have been high for several months, then a household is less likely to be able to smooth consumption given another month of high prices.
 
 ## 3-5. Iron and Anemia in Mother and Child
 
@@ -155,15 +160,13 @@ In order to account for age, I will use a z-score approach analogous to how chil
 
 # Assigning Exposure
 
-I will pursue an event-study approach to explore the connection between the 2008 food price spike and child hemoglobin in the 2010 and 2012 DHS surveys. The key factor is then how to define those who are exposed to the shock, and those who are not. The food crisis period can be seen intuitively in the index graph. There are only seven months out of 200 which have an index value greater than two and they all fall together from March-September 2008. This is our "crisis" period.
-
-To try to account for intensity of exposure, I will create a weighted exposure measue. Exposure will be the sum of months in-utero during the 2008 crisis weighted by the price index during each month. For anyone born before March 2008, or conceived after September 2008, the exposure measure will be zero. 
+I will pursue an event-study approach to explore the connection between the 2008 food price spike and child hemoglobin in the 2010 and 2012 DHS surveys. The food price spike, though rapid, is not instantaneous, so there is no obvious way to assign exposure. I will take all those in-utero between February and September 2008 to be exposed. The degree of exposure will be the sum of months in-utero during the crisis period, weighted by the price index. For anyone born before March 2008, or conceived after September 2008, the exposure measure will be zero. 
 
 ```{r exposure,fig.height = 6, fig.width = 10, fig.align = "center"}
 load("~/Anemia/Anemia/data/index.Rdata")
 x$Time <- x$Time - 1200
 ggplot(x, aes(x=Time, y= index))+ geom_path()+geom_point() +
-  annotate("rect", xmin = 99, xmax = 105, ymin = 0, ymax = Inf,color="Orange",alpha = .2) +labs(title = "Exposure Assignment", x ="Month: Jan 2000 = 0", y= "Index: Jan 2000 = 1")
+  annotate("rect", xmin = 98, xmax = 105, ymin = 0, ymax = Inf,color="Orange",alpha = .2) +labs(title = "Exposure Assignment", x ="Month: Jan 2000 = 0", y= "Index: Jan 2000 = 1")
 ```
 
 # Concerns
@@ -182,8 +185,6 @@ I propose that there will be a negative relationship between in-utero exposure t
 * Local price response in the nearest city (exacerbating)
 * Transportation costs to the nearest city (protective, conditional on city price response)
 * Wealth (protective)
-
-I also predict that exposure during the third trimester will have a greater effect than exposure in the first or second. By breaking up effects by trimester, we can also explore the extent to which the effect on hemoglobin lags behind world prices. If this is the case, then the third trimester may not matter, as these children were not exposed to the delayed shock. 
 
 Regression, where $H_i$ is the hemoglobin-for-age of individual $i$, $\Delta_c$ is the response of city price to world price in the city closest to individual $i$, $\tau_i$ is the distance from the village to the city, and $W_i$ is the wealth of the household of individual $i$.
 $$ H_i = \beta_1 Exp_i + \beta_2 (1-\Delta_c )+  \beta_3 W_i + \delta_1Exp_i*(1-\Delta_c) + \delta_2Exp_i*W_i + \delta_3Exp_i*(1-\Delta_c)*\tau_i$$
