@@ -58,7 +58,7 @@ Using a fetal origins approach opens a wider range of evidence, as data from 2-4
 Moreover, the increased variation from the fetal origins approach allows me to test for spatial heterogeneity in the effect of the crisis. This will allow me to provide econometric evidence towards the discussion being held in adjacent fields about market integration and food sovereignty. Previous work has emphasized a rural-urban divide, with the urban poor suffering from increased food prices, and the rural poor minimally affected [@dimovaGlobalFoodCrisis2013; @barrettMeasuringFoodInsecurity2010; @ruelFoodFuelFinancial2009]. While it is true that rural-dwellers are more likely to be net food-sellers, this hypothesis overlooks the broad class of rural poor who are net food-consumers. I will be able to test both this rural-urban hypothesis, and my own distance hypothesis.
 
 
-## Senegal: a sketch
+## The Economy of Senegal: Food and Trade
 
 Senegal is a small, poor economy on the west coast of Africa, with a population of 16 million and a GDP per capita of $3,675 (PPP). The climate is Sahelian, with a rainy season. Dakar is the port and economic hub. The coastal areas practice horticulture and fishing, while the hinterlands close to Dakar engage in commercial groundnut production for export. The river basins in the north and south are farmed for rice, while millet, sorghum and maize are the staples in drier areas. See the FEWS Livelihood Zone Map below:
 
@@ -96,7 +96,7 @@ ggplot(prices, aes(x=Date, y= log(real_index)-6.25))+ geom_path()+geom_point() +
 ```
 
 
-### World Price, Local Price and Transportation Costs
+## World Price, Local Price and Transportation Costs
 
 The effect of world price on local price will depend on transportation costs and local supply [@minotTransmissionWorldFood2010]. Consider a simple model. $P_a$ is the price in autarky and is determined via local supply and demand. Because Senegal is an small-open-economy (SOE), trade provides an infinitely elastic supply curve at price $P_w +t$, the world price plus transportation costs. Given an increase in the world price of food, there are three cases for how the local price will respond:
 
@@ -151,9 +151,9 @@ However, this approach assumes that the timing of price is irrelevant. Given tha
 
 Because of this complexity, and the fact that the 2008 crisis dominates variation over the period of study, I will instead concentrate on a single period of unusually high prices. I will construct the proper control group based on knowledge about the biological process of hemoglobin formation. Doing this will also allow me to speak directly to a substantial literature which is interested in effects of the 2008 crisis.
 
-The 2008 crisis forms a contiguous 7-month period in which the price index is greater than at any other point in the 20 year span. I will take all those in-utero during this period, March and September 2008, to be exposed.[^3] The degree of exposure will be the sum of months in-utero during the crisis period, weighted by the price index. For anyone born before March 2008, or conceived after September 2008, the in-utero exposure will be zero. For someone born in November 2008, the exposure measure would be 1, as they were in-utero for the entirety of the crisis period.
+The 2008 crisis forms a contiguous 7-month period in which the price index is greater than at any other point in the 20 year span. I will take all those in-utero during this period, March and September 2008, to be exposed.[^5] The degree of exposure will be the sum of months in-utero during the crisis period, weighted by the price index. For anyone born before March 2008, or conceived after September 2008, the in-utero exposure will be zero. For someone born in November 2008, the exposure measure would be 1, as they were in-utero for the entirety of the crisis period.
 
-[^3]: February 2008 might also be considered part of the crisis, but I allow one month for world prices to transmit to Senegal.
+[^5]: February 2008 might also be considered part of the crisis, but I allow one month for world prices to transmit to Senegal.
 
 ```{r exposure,fig.height = 6, fig.width = 10, fig.align = "center"}
 load("~/Anemia/Anemia/data/index.Rdata")
@@ -165,9 +165,9 @@ ggplot(prices, aes(x=Time, y= log(real_index)-6.25))+ geom_path()+geom_point() +
 While world prices are exogenous to the economy of Senegal, they are a time series, meaning that they could be confounded with time trends. For example, if we simply ran a regression on the whole period, with a dummy for exposure to the 2008 crisis, the dummy would surely be negative, simply because anemia has decreased over the course of the period, as Senegal has gotten richer. I see two paths around the time problem:
 
 1. The control approach. Add a polynomial (or some other control) for time, in order to account for the trend. In this case, I would use the full dataset, including children born from 2001 to 2016. Hypothetically, I could control for a whole host of factors, including weather, season and even cluster or household-fixed effects, though none of these should be correlated with shock exposure. 
-2. The zoom-in approach. Discard most of the data, and focus on those born just before the shock, conceived just after the shock, and exposed to the shock. By narrowing in on a particular window, the time trend should be minimized. [^4]
+2. The zoom-in approach. Discard most of the data, and focus on those born just before the shock, conceived just after the shock, and exposed to the shock. By narrowing in on a particular window, the time trend should be minimized. [^6]
 
-[^4]: This would be similar to the approach of Arndt et. al. (2016). They compare different quarters of the 2008-2009 period with propensity matching. I see no reason to do propensity matching with my data, as the confounding factor of interest is time. Other confounders should be orthogonal to date of birth within a given survey.
+[^6]: This would be similar to the approach of Arndt et. al. (2016). They compare different quarters of the 2008-2009 period with propensity matching. I see no reason to do propensity matching with my data, as the confounding factor of interest is time. Other confounders should be orthogonal to date of birth within a given survey.
 
 
 # Variables
