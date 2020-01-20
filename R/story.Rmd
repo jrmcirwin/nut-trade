@@ -80,7 +80,7 @@ load("~/Anemia/Anemia/data/consumption.Rdata")
    labs(title= "Senegal Import of Staples", y= "Kg per-person per-year")
  ggplot(food) +
    geom_path(aes(x=Year,y=Imports/Consumption,group=Staple,color=Staple)) + 
-   labs(title= "Senegal Import-share of Staples", y= "Kg per-person per-year")
+   labs(title= "Senegal Import-share of Staples", y= "Imports/Consumption")
 
 ```
 We see that in 2008, when prices increased dramatically, consumption of millet and sorghum increased while that of rice decreased. This might reflect some substitution away from high-priced, imported goods. It would indicate some reserve capacity for local food production.
