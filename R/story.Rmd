@@ -9,38 +9,46 @@ biblio-style: "apalike"
 nocite: | 
   [@hossainMoralEconomyGlobal2014],[@senIngredientsFamineAnalysis1981]
 ---	
+<style type = "text/css">
+h1.title {
+
+	text-align: center;
+}
+</style>
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = F)
 ```
 
 ```{r cars, include=F}
-x<-1
 rm(list = ls(all.names = TRUE))
 p <-c("ggplot2","dplyr","readr","tidyr","RColorBrewer")
 lapply(p, library, character.only =T)
 rm(p)
-load("~/Anemia/Anemia/data/cohort.Rdata")
-load("~/Anemia/Anemia/data/index.Rdata")
+load("~/Research/Anemia/Anemia/data/cohort.Rdata")
+load("~/Research/Anemia/Anemia/data/index.Rdata")
 ```	
 
+---
 #Summary
 
 I will explore the effect of the 2008 world food price crisis on the health of Senegalese children who were in-utero at the time. I predict that the 2008 crisis had a negative impact on fetal health, and that its effect was diminishing with distance from Dakar, the port and economic hub of Senegal. Conceptually, I will compare the hemoglobin of children born just before or conceived just after the crisis, to those who were exposed in-utero. 
 
 While previous work has explored the effect of the 2008 crisis on child health, mine will be the first to use a fetal origins approach, which allows data collected several years after the crisis to be used in analysis. With this increased variation, I will test the hypothesis that the crisis had a stronger effect in areas more closely connected to the world market (e.g. Dakar) than in more isolated areas. 
 
+---
+
 # Introduction
 After an extended period of low and stable food prices, in early 2008 world food prices increased dramatically. The causes are debated, but include American agriculture policy as well as financial speculation [@rossetFoodSovereigntyContemporary2008]. The prices of both rice and wheat doubled in fewer than 6 months, while the prices of other staples increased as well. This increase lead to riots and unrest in low to medium-income countries around the world, including Senegal.
 ```{r prices time-series,fig.height = 6, fig.width = 10, fig.align = "center"}
-load("~/Anemia/Anemia/data/world_prices.Rdata")
+load("~/Research/Anemia/Anemia/data/world_prices.Rdata")
 ggplot(prices, aes(x=ID,y= Price, group = Good, color = Good))+geom_path() + labs(title = "World Prices of Major Foodstuffs", x ="Month: Jan 2000 = 0", y= "Nominal Prices: Jan 2000 = 1")
 
 ```
 The world price spike is apparent in retail prices in Senegal. Here I plot the retail price of rice in Dakar. Rice prices follow a similar pattern to the world price, with a delay, shifted upwards by transportation costs and retail markup.
 
 ```{r  dakar time-series,fig.height = 4, fig.width = 9, fig.align = "center"}
-load("~/Anemia/Anemia/data/price_time_series.Rdata")
+load("~/Research/Anemia/Anemia/data/price_time_series.Rdata")
 ggplot(filter(prices, City=="World"|City=="Dakar"), aes(x=DATE, y=Price, group = City, color= City))+geom_path()+labs(title = "World and Dakar Prices of Rice: 2007-2020", x ="Time", y= "Price: USD/kg")
 ```
 
@@ -49,7 +57,7 @@ The 2008 crisis drew attention from the fields of peasant studies, nutrition, an
 [^1]: See @cohenFoodPriceCrisis2010; @hadleyHouseholdCapacitiesVulnerabilities2011; @martin-prevel2008FoodPrice2012; @minotTransmissionWorldFood2010; @ruelFoodFuelFinancial2009; @wodonRisingFoodPrices2008; @vonbraunFoodCrisisIsn2008; @barrettMeasuringFoodInsecurity2010.
 
 
-As emphasized by Sen (1980), food security depends on the combination of level and volatility of food entitlements. From the simplest model of comparative advantage, we know that trade will induce specialization. This specialization will increase average incomes, but the effect of specialization and trade on volatility is unresolved [@giovanniTradeOpennessVolatility2009; @burgessCanOpennessMitigate2010]. The 2008 crisis represents an extreme example of the risk of how volatility on the world market affects small-open economies (SOE's).
+As emphasized by Sen (1980), food security depends on the combination of level and volatility of food entitlements. From the simplest model of comparative advantage, we know that trade will induce specialization. This specialization will increase average incomes, but the effect of specialization and trade on volatility is unresolved [@giovanniTradeOpennessVolatility2009; @burgessCanOpennessMitigate2010]. 
 
 Existing studies in economics explore the effect of the 2008 crisis on health and welfare [@arndtEffectsFoodPrice2016a; @dimovaGlobalFoodCrisis2013a]. Dimova et. al. estimate welfare elasticity with respect to price in Cote d'Ivoire during the crisis and argue that the majority of rural dwellers actually benefited from the shock, while urban dwellers suffered. Arndt et. al. take a more similar approach to mine, looking at the effect of high food prices on child weight-for-height. The authors find that weight-for-height was negatively correlated with food price increases, but study is limited by its dataset, which relies on direct observation during and after the crisis.
 
@@ -57,6 +65,7 @@ Using a fetal origins approach opens a wider range of evidence, as data from 2-4
 
 Moreover, the increased variation from the fetal origins approach allows me to test for spatial heterogeneity in the effect of the crisis. This will allow me to provide econometric evidence towards the discussion being held in adjacent fields about market integration and food sovereignty. Previous work has emphasized a rural-urban divide, with the urban poor suffering from increased food prices, and the rural poor minimally affected [@dimovaGlobalFoodCrisis2013; @barrettMeasuringFoodInsecurity2010; @ruelFoodFuelFinancial2009]. While it is true that rural-dwellers are more likely to be net food-sellers, this hypothesis overlooks the broad class of rural poor who are net food-consumers. I will be able to test both this rural-urban hypothesis, and my own distance hypothesis.
 
+---
 
 ## The Economy of Senegal: Food and Trade
 
@@ -69,7 +78,7 @@ Senegal is a small, poor economy on the west coast of Africa, with a population 
 Although agriculture is the primary means of livelihood for 69% of the population, imports make up a large part of the food supply. The main staples are rice, maize, sorghum, wheat and millet. As seen in the graph below, foods which are mainly imported, like wheat and rice, have increased in importance in Senegal over the past thirty years, while locally produced staples millet and sorghum have declined in per-capita consumption.
 
 ```{r consumption graphs,fig.height = 6, fig.width = 10, fig.align = "center"}
-load("~/Anemia/Anemia/data/consumption.Rdata")
+load("~/Research/Anemia/Anemia/data/consumption.Rdata")
 
  ggplot(food) +
    geom_path(aes(x=Year,y=Consumption,group=Staple,color=Staple)) + 
@@ -85,16 +94,17 @@ load("~/Anemia/Anemia/data/consumption.Rdata")
 ```
 We see that in 2008, when prices increased dramatically, consumption of millet and sorghum increased while that of rice decreased. This might reflect some substitution away from high-priced, imported goods. It would indicate some reserve capacity for local food production.
 
-To construct a world price index that is relevant for anemia in Senegal, I use two weights. One, the amount of consumption of a particular staple in Senegal in 2008, and two, the iron per 100 grams of that staple.[^2]  I took the weighted average of the commodity prices in real USD, and multiplied by the CFA-USD exchange rate in order to get prices in terms of local currency. I plot the index in log-terms below, so that proportional changes can be read off easily.
+To construct a world price index that is relevant for anemia in Senegal, I use two weights. One, the amount of consumption of a particular staple in Senegal in 2008, and two, the iron per 100 grams of that staple.[^2]  I took the weighted average of the commodity prices in real USD, and multiplied by the CFA-USD exchange rate in order to get prices in terms of local currency. I plot the index in log-terms below, so that proportional changes can be easily read.
 
 [^2]: The final weights were 0.39 0.13 0.18 0.30 for rice, maize, sorghum and wheat respectively. I exclude millet from the study because it has not been imported or exported since the early 1990's.
 
 ```{r pressure, fig.height = 6, fig.width = 10, fig.align = "center"}
-load("~/Anemia/Anemia/data/index.Rdata")
+load("~/Research/Anemia/Anemia/data/index.Rdata")
 ggplot(prices, aes(x=Date, y= log(real_index)-6.25))+ geom_path()+geom_point() + geom_vline(xintercept = 100)+labs(title = "World Price Index", x ="Time", y= "Log of Real Index")
 
 ```
 
+---
 
 ## World Price, Local Price and Transportation Costs
 
@@ -106,6 +116,8 @@ The effect of world price on local price will depend on transportation costs and
 
 Transportation costs also change the relative price of commodities faced by producers, affecting investment. Transportation costs make  commercial, export-oriented production less profitable relative to local, subsistence production. Thus, we should also expect food-producing capacity to increase with transportation costs. Greater food-producing capacity would shift the local supply curve outward, making the world price less likely to bind.
 
+---
+
 # Price and Consumption
 As price increases there are substitution and income effects which lead to lower consumption. Given that the 2008 price increase affected all of the major, imported staples, I would expect the substitution effect to be relatively small.[^3] As poor families spend a greater share of income on food than rich families, the income effect, and therefore total impact of the spike, should decrease with household wealth. 
 
@@ -114,6 +126,8 @@ As price increases there are substitution and income effects which lead to lower
  Iron, unlike calories, is a function of both food quality and quantity. As prices increase, the household must either reduce quantity or change the type of food they are consuming. In Burkina Faso, which neighbors Senegal, the 2008 price shock lead to decreased amounts and diversity of food [@martin-prevel2008FoodPrice2012]. As I am particularly interested in female iron consumption, gender inequality looms large. While there are a host of issues surrounding intra-household allocation and gender, I will not treat those in this paper. Instead, I will assume that female iron consumption decreases with prices in a similar way as household iron consumption. 
 
 Given a price shock, households will try to smooth consumption across time, attenuating the effect of price on consumption. However, most households, especially the poor, are credit constrained. Thus, we would expect a nonlinear effect of price on consumption, with large increases in price having disproportionately large effect on consumption. As savings, and therefore ability to smooth in a credit-constrained world, are a stock, prices in previous months will also affect the ability to smooth consumption. If prices have been high for several months, then a household is less likely to be able to smooth consumption given another month of high prices. 
+
+---
 
 # Iron and Anemia in Mother and Child
 
@@ -126,6 +140,8 @@ Infants, on the other hand, need relatively little iron, given that they develop
 [^4]: Note that this all relies on women breastfeeding their children. In Senegal, breastfeeding is overwhelmingly common during the first six months, with very little cessation before the child reaches a year old.
 
 Maternal anemia then has a direct effect on infant anemia, as the fetus cannot make adequate stores to last the breast-feeding period. Unless remedied through increased iron consumption, anemia will remain as the infant grows into a child. During menarche, iron requirements increase for girls, and many become anemic. Thus an anemic mother begets anemic child who becomes an anemic woman who begets an anemic child. This inter-generational aspect of anemia is well appreciated by the WHO and is recognized as an important issue at the nexus of public health, nutrition and female empowerment.
+
+---
 
 # Data
 
@@ -143,6 +159,8 @@ ggplot(dhs) + geom_smooth(aes(x= as.numeric(age),y=hemoglobin, color = survey))+
 
 In order to account for age, I will use a z-score approach analogous to how child height and weight is treated by the DHS. We are interested in the 2008 price shock. The only surveys which provide information on the shock are 2010 and 2012, so I use the other 5 surveys (2005, 2014-17) to make z-scores for the surveys of interest. Taking the mean and standard deviation by age, I then normalize hemoglobin by age.
 
+---
+
 # Methodology
 
 One potential route would be to regress child hemoglobin on world prices during gestation. This approach is complicated by the fact that prices during gestation are a distribution, not a value. The relationship between monthly price and hemoglobin will likely be non-linear, as households are able to smooth small price changes, but not large increases. We could capture this non-linear relationship using a "bin" approach. First we would discretize the problem, breaking up price into $n$ bins. Then we would count the number of months each child spent in each price-bin over the course of gestation. 
@@ -156,7 +174,7 @@ The 2008 crisis forms a contiguous 7-month period in which the price index is gr
 [^5]: February 2008 might also be considered part of the crisis, but I allow one month for world prices to transmit to Senegal.
 
 ```{r exposure,fig.height = 6, fig.width = 10, fig.align = "center"}
-load("~/Anemia/Anemia/data/index.Rdata")
+load("~/Research/Anemia/Anemia/data/index.Rdata")
 
 ggplot(prices, aes(x=Time, y= log(real_index)-6.25))+ geom_path()+geom_point() +
   annotate("rect", xmin = 52, xmax = 58, ymin = -0.125, ymax = Inf,color="Orange",alpha = .2) +labs(title = "Exposure Assignment", x ="Month: Nov 2003 = 0", y= "Index in log-terms (real)")
@@ -169,6 +187,7 @@ While world prices are exogenous to the economy of Senegal, they are a time seri
 
 [^6]: This would be similar to the approach of Arndt et. al. (2016). They compare different quarters of the 2008-2009 period with propensity matching. I see no reason to do propensity matching with my data, as the confounding factor of interest is time. Other confounders should be orthogonal to date of birth within a given survey.
 
+---
 
 # Variables
 
@@ -180,6 +199,8 @@ Drawing on the sections above, I will use several variables for my analysis:
 
 The effect of distance will be flexible for the Casamance region, which although physically close to Dakar, is separated by The Gambia. 
 
+---
+
 # Hypotheses
 
 I propose that there will be a negative relationship between in-utero exposure to the 2008 food price spike and child hemoglobin in 2010 and 2012. The relationship of world price and hemoglobin will be mediated by:
@@ -187,10 +208,14 @@ I propose that there will be a negative relationship between in-utero exposure t
 * Distance to Dakar (protective); and,
 * Wealth (protective)
 
+---
+
 # Discussion
 
 Because of the fetal origins approach, where we implicitly compare those in-utero and those already born, we can safely infer that any estimated effect reflects a change in in-utero health conditions. However, the crisis was more than just an increase in prices. During the crisis there were protests, unrest and a change in the type of agricultural production, with an increase in staples like millet and sorghum. Thus, we cannot rule out that the estimated effect of the crisis has more to do with the general characteristics of the period than with prices *per se*.
 
 Similarly, distance-to-Dakar should be considered as a general proxy for integration to the world market. Distance will capture a broad set of socio-economic conditions. We would expect areas further from Dakar to be poorer, have less education and have more subsistence agriculture relative to commercial agriculture. Thus, the estimated effect will not be of transportation costs alone, but rather the combination general set of characteristics associated with being further from Dakar. In order to better understand the results, I will explore the relationship of distance-to-Dakar with other covariates.
+
+---
 
 # References
