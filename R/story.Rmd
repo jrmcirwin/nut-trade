@@ -9,12 +9,7 @@ biblio-style: "apalike"
 nocite: | 
   [@hossainMoralEconomyGlobal2014],[@senIngredientsFamineAnalysis1981]
 ---	
-<style type = "text/css">
-h1.title {
 
-	text-align: center;
-}
-</style>
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = F)
@@ -29,14 +24,14 @@ load("~/Research/Anemia/Anemia/data/cohort.Rdata")
 load("~/Research/Anemia/Anemia/data/index.Rdata")
 ```	
 
----
-#Summary
+	
+# Summary
 
 I will explore the effect of the 2008 world food price crisis on the health of Senegalese children who were in-utero at the time. I predict that the 2008 crisis had a negative impact on fetal health, and that its effect was diminishing with distance from Dakar, the port and economic hub of Senegal. Conceptually, I will compare the hemoglobin of children born just before or conceived just after the crisis, to those who were exposed in-utero. 
 
 While previous work has explored the effect of the 2008 crisis on child health, mine will be the first to use a fetal origins approach, which allows data collected several years after the crisis to be used in analysis. With this increased variation, I will test the hypothesis that the crisis had a stronger effect in areas more closely connected to the world market (e.g. Dakar) than in more isolated areas. 
 
----
+
 
 # Introduction
 After an extended period of low and stable food prices, in early 2008 world food prices increased dramatically. The causes are debated, but include American agriculture policy as well as financial speculation [@rossetFoodSovereigntyContemporary2008]. The prices of both rice and wheat doubled in fewer than 6 months, while the prices of other staples increased as well. This increase lead to riots and unrest in low to medium-income countries around the world, including Senegal.
@@ -137,7 +132,7 @@ Iron is important for both maternal and fetal health. For the mother, anemia mak
 
 Infants, on the other hand, need relatively little iron, given that they developed sufficient stores in-utero. Breast-milk contains very little iron, around 0.1 mg per gram (USDA). As illustration, consider that a typical infant would consume less than 700 grams of breast milk a day in the first six months [@nevilleStudiesHumanLactation1988], meaning a total iron intake of around 54 mg over the first six months. This is trivial compared to the 1,000 mg needed during pregnancy. Moreover, as long as the woman is breastfeeding, the absence of menstruation will reduce her iron loss rate, increasing her stores. Thus, iron-stores in infants should be relatively insensitive to maternal health during the first six months of life.[^4]
 
-[^4]: Note that this all relies on women breastfeeding their children. In Senegal, breastfeeding is overwhelmingly common during the first six months, with very little cessation before the child reaches a year old.
+[^4]: Note that this all relies on women breastfeeding their children. In Senegal, breastfeeding is overwhelmingly common during the first six months, with very little cessation before the child reaches a year old [@maneEarlyBreastfeedingCessation2006].
 
 Maternal anemia then has a direct effect on infant anemia, as the fetus cannot make adequate stores to last the breast-feeding period. Unless remedied through increased iron consumption, anemia will remain as the infant grows into a child. During menarche, iron requirements increase for girls, and many become anemic. Thus an anemic mother begets anemic child who becomes an anemic woman who begets an anemic child. This inter-generational aspect of anemia is well appreciated by the WHO and is recognized as an important issue at the nexus of public health, nutrition and female empowerment.
 
@@ -149,9 +144,11 @@ The DHS measures the hemoglobin of infants and children from age 6 months to 5 y
 
 At birth, the infant has a large amount of fetal hemoglobin which must be broken down and replaced by adult hemoglobin. In general, hemoglobin levels decrease from birth until 6 months to 2 years, then they begin to increase again. We see such a pattern in the DHS data.
 
-```{r cohort time, echo=FALSE} 
+```{r cohort time, fig.height = 6, fig.width = 10, fig.align = "center"} 
 
-ggplot(dhs) + geom_smooth(aes(x= Time,y=hemoglobin, color = survey))+geom_hline(aes(yintercept=100))+labs(title = "Hemoglobin conditional on DOB by DHS Survey", x ="Birth Month: Jan 2000 = 0", y= "Hemoglobin: g/l")
+ggplot(dhs) + geom_smooth(aes(x= Time-1200,y=hemoglobin, color = survey))+geom_hline(aes(yintercept=100))+
+annotate("rect", xmin = 99, xmax = 105, ymin = 85 , ymax = Inf,color="Orange",alpha = .2)+
+labs(title = "Hemoglobin conditional on DOB by DHS Survey", x ="Birth Month: Jan 2000 = 0", y= "Hemoglobin: g/l")
 ggplot(dhs) + geom_smooth(aes(x= as.numeric(age),y=hemoglobin, color = survey))+geom_hline(aes(yintercept=100))+ labs(title = "Hemoglobin conditional on Age by DHS Survey", x ="Age of child in Months", y= "Hemoglobin: g/l")
 ```
 
