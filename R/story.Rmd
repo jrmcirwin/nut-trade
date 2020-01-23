@@ -3,7 +3,7 @@
 title: 'Anemia in Senegal: The 2008 World Food Price Crisis'
 author: "Jesse McDevitt-Irwin"
 date: 
-output: html_document
+output: pdf_document
 bibliography: ["/home/friend/github/nut-trade/literature/Anemia.bib"]
 biblio-style: "apalike"
 nocite: | 
@@ -142,7 +142,7 @@ Maternal anemia then has a direct effect on infant anemia, as the fetus cannot m
 
 The DHS measures the hemoglobin of infants and children from age 6 months to 5 years. There are two DHS surveys of Senegal, 2010 and 2012, which include children in-utero during the 2008 crisis. The DHS data includes location and households characteristics.
 
-At birth, the infant has a large amount of fetal hemoglobin which must be broken down and replaced by adult hemoglobin. In general, hemoglobin levels decrease from birth until 6 months to 2 years, then they begin to increase again. We see such a pattern in the DHS data.
+At birth, the infant has a large amount of fetal hemoglobin which must be broken down and replaced by adult hemoglobin. In general, hemoglobin levels decrease from birth until 6 months to 2 years, then they begin to increase again. We see such a pattern in the DHS data, which I plot below. The yellow window indicates the 2008 crisis.
 
 ```{r cohort time, fig.height = 6, fig.width = 10, fig.align = "center"} 
 
