@@ -33,7 +33,7 @@ load("~/Research/Anemia/Anemia/data/index.Rdata")
 
 # Introduction
 
-In this project, I connect two disparate issue in global nutrition, the 2008 food price crisis and anemia, hoping that each can shed light on the other. The 2008 food price crisis was a concentrated period of reduced availability of nutrition for poor women around the world. For those who were in-utero during the crisis, how then did this affect anemia in childhood. Was the effect of the crisis detectable 2 years later? 4 years later? Both the causes of anemia and the consequences of the 2008 crisis have been explored extensively by researchers. I am, to my knowledge, the first to connect the two. 
+In this project, I explore the connection between two disparate issue in global nutrition, the 2008 food price crisis and anemia, hoping that each can shed light on the other. The 2008 food price crisis was a concentrated period of reduced availability of nutrition for poor women around the world. For those who were in-utero during the crisis, how then did this affect anemia in childhood. Was the effect of the crisis detectable 2 years later? 4 years later? Both the causes of anemia and the consequences of the 2008 crisis have been explored extensively by researchers. I am, to my knowledge, the first to connect the two. 
 
 ## 2008 World Food Price Crisis
 After an extended period of low and stable food prices, in early 2008 world food prices increased dramatically. The causes are debated, but include American agriculture policy as well as financial speculation [@rossetFoodSovereigntyContemporary2008]. The prices of both rice and wheat doubled in fewer than 6 months, while the prices of other staples increased as well. This increase lead to riots and unrest in low to medium-income countries around the world, including Senegal.
@@ -56,7 +56,7 @@ The 2008 crisis drew attention from the fields of peasant studies, nutrition, an
 
 As emphasized by Sen (1980), food security depends on the combination of level and volatility of food entitlements. From the simplest model of comparative advantage, we know that trade will induce specialization. This specialization will increase average incomes, but the effect of specialization and trade on volatility is unresolved [@giovanniTradeOpennessVolatility2009; @burgessCanOpennessMitigate2010]. 
 
-Existing studies in economics explore the effect of the 2008 crisis on health and welfare [@arndtEffectsFoodPrice2016a; @dimovaGlobalFoodCrisis2013a]. Dimova et. al. estimate welfare elasticity with respect to price in Cote d'Ivoire during the crisis and argue that the majority of rural dwellers actually benefited from the shock, while urban dwellers suffered. Arndt et. al. take a more similar approach to mine, looking at the effect of high food prices on child weight-for-height. The authors find that weight-for-height was negatively correlated with food price increases, but study is limited by its dataset, which relies on direct observation during and after the crisis.
+Existing studies in economics explore the effect of the 2008 crisis on health and welfare [@arndtEffectsFoodPrice2016a; @dimovaGlobalFoodCrisis2013]. Dimova et. al. estimate welfare elasticity with respect to price in Cote d'Ivoire during the crisis and argue that the majority of rural dwellers actually benefited from the shock, while urban dwellers suffered. Arndt et. al. take a more similar approach to mine, looking at the effect of high food prices on child weight-for-height. The authors find that weight-for-height was negatively correlated with food price increases, but study is limited by its dataset, which relies on direct observation during and after the crisis.
 
 Using a fetal origins approach opens a wider range of evidence, as data from 2-4 years post-crisis can be used. Having a broader sample allows me to disentangle the effect of the crisis from seasonal fluctuations, unlike Arndt et. al. (2016). By looking at hemoglobin, I gain improved sensitivity relative to weight-for-height, as hemoglobin is sensitive to both quality and quantity of food, unlike weight-for-height. Relative to Dimova et. al., my approach measures the direct effect of the 2008 crisis on maternal and fetal health, rather than a synthetic measure of welfare.
 
@@ -167,7 +167,9 @@ The DHS measures the hemoglobin of infants and children from age 6 months to 5 y
 |Urban | 2010       |   0.0928    |   2.25   | 974 |
 |Urban | 2012        |  0.0658     |  2.59 | 1573 |
 
+
 [^5]: Driving distance to Dakar in terms of hundreds of kilometers.
+
 
 ## Hemoglobin
 
@@ -227,7 +229,8 @@ dhs <- dhs %>% filter(survey==2010|survey==2012)
 dhs <- droplevels(dhs)
 dhs <- dhs %>% filter(!is.na(dist_dakar))
 
-ggplot(dhs)+geom_density(aes(x=wealth,color = urban:survey))+ labs(title= "Wealth Distribution across Surveys", x= "Wealth", y="Density")+theme(legend.title=element_blank())+scale_fill_discrete(labels = c("2010 Rural","2012 Rural","2010 Urban","2012 Urban"))
+ggplot(dhs)+geom_density(aes(x=wealth,color = urban:survey))+ labs(title= "Wealth Distribution across Surveys", x= "Wealth", y="Density")+
+scale_color_brewer(palette="Set1",labels = c("2010 Rural","2012 Rural","2010 Urban","2012 Urban"))
 ```
 
 ```{r dist_wealth,message=FALSE, fig.height=6, fig.width=10, fig.align = "center"}
@@ -295,7 +298,7 @@ where $H_i$ is hemoglobin-for-age, $Exp_i$ is the number of months in-utero duri
 
 $$H_i = \alpha_0 + \beta Exp_i + \delta Exp_i*Dist_i + \alpha_1MOB + \alpha_2MOB^2 + \rho Exp_i*Wealth + \alpha_3 Dist_i + \alpha_4 Wealth$$
 
-This regression is run separately for each survey year, and for urban and rural households. My hypotheses are that $\beta <0$, $\delta > 0$ and $\rho > 0$. 
+This regression is run separately for each survey year, and for urban and rural households. My hypotheses are that $\beta <0$, $\delta > 0$ and $\rho > 0$.
 
 
 # Results
@@ -353,20 +356,20 @@ load("~/Research/Anemia/Anemia/data/regression_table.Rdata")
 
 ```
 
-Now we have a large, significant effect of the crisis. However, with many interaction terms, interpretation depends on the underlying distribution of the covariates. The estimate on exposure above is for someone with $wealth=0$ and living in Dakar. As Dakar is the wealthiest part of the country, only a very small fraction of the sample will be expected to have such an effect. For interpretation, I calculate the predicted effect of the 2008 crisis given the coefficients estimated above, given each individual's values of wealth and distance-to-Dakar.
+Now we have a large, significant effect of the crisis. However, with many interaction terms, interpretation depends on the underlying distribution of the covariates. The estimate on exposure above is for someone with $wealth=0$ and living in Dakar. As Dakar is the wealthiest part of the country, only a very small fraction of the sample will be expected to have such an effect. For interpretation, I calculate the predicted effect of the 2008 crisis given the coefficients estimated above, given each individual's values of wealth and distance-to-Dakar. As we move to the right along the x-axis, the individuals are becoming wealthier and live further from Dakar. Those at the far left of the distribution are the poorest and closest to Dakar.
 
 
 ```{r effect distribution, fig.height = 6, fig.width = 10, fig.align = "center", caption = "Distribution of Effects"}
 load("~/Research/Anemia/Anemia/data/effect_data.Rdata")
-ggplot(eff)+geom_density(aes(x=effect,color=survey:urban))+scale_fill_discrete(labels = c("2010 Rural","2012 Rural","2010 Urban","2012 Urban"))+
+ggplot(eff)+geom_density(aes(x=effect,color=survey:urban))+scale_color_brewer(palette="Set1",labels = c("2010 Rural","2012 Rural","2010 Urban","2012 Urban"))+
 labs(title ="PDF of Predicted Effects in terms of Hemoglobin-for-Age", x = "Effect", y = "Density")
 
-ggplot(eff)+stat_ecdf(aes(x=effect,color=survey:urban))+scale_fill_discrete(labels = c("2010 Rural","2012 Rural","2010 Urban","2012 Urban"))+
+ggplot(eff)+stat_ecdf(aes(x=effect,color=survey:urban))+scale_color_brewer(palette="Set1",labels = c("2010 Rural","2012 Rural","2010 Urban","2012 Urban"))+
 labs(title ="CDF of Predicted Effects in terms of Hemoglobin-for-Age", x = "Effect", y = "Cumulative Probability")
 
 ```
 
-The implied effects for the urban 2010 population are large. For the urban-poor, the effect ranges from -1 to -.5 standard deviations. The standard deviation of hemoglobin by age in Senegal is around 14 g/L. To understand the magnitude of this shocks, consider a 10 g/L shock to hemoglobin. If every child had was exposed to such a shock, rates of anemia would be expected to increase from ~60% to ~85%. Of course, children from rural households, and wealthy urban households did not experience such a shock, but the figure is illustrative in understanding the magnitude of the impact on the urban poor.
+The implied effects for the urban 2010 population are large. For the urban-poor, the effect ranges from -1 to -.5 standard deviations. The standard deviation of hemoglobin by age in Senegal is around 14 g/L. To understand the magnitude of this shocks, consider a 10 g/L shock to hemoglobin. If every child had was exposed to such a shock, rates of anemia would be expected to increase from ~60% to ~85%, as shown in the figure below.
 
 ```{r hemo disteff,fig.height = 6, fig.width = 10, fig.align = "center"}
 #load("~/Research/Anemia/Anemia/data/cohort.Rdata")
@@ -375,7 +378,7 @@ labs(title = "CDF of Hemoglobin", x = "Hemoglobin: g/L", y ="Cumulative Probabil
 
 ```
 
-As an illustration, consider a typical poor household (10th percentile of the wealth distribution within Dakar) of Dakar. The expected effect would be ~-14 g/L of hemoglobin. For a child not to be driven into anemia after such a shock, they would have to have initial hemoglobin of 120 g/L, the 90th percentile of the overall distribution of hemoglobin in Senegal. 
+ Of course, children from rural households, and wealthy urban households did not experience such a shock, but the figure is illustrative in understanding the magnitude of the impact on the urban poor. As a further illustration, consider a typical poor household (10th percentile of the wealth distribution within Dakar) of Dakar. The expected effect would be ~-14 g/L of hemoglobin. For a child not to be driven into anemia after such a shock, they would have to have initial hemoglobin of 120 g/L, the 90th percentile of the overall distribution of hemoglobin in Senegal. 
 
 In 2012, the results are attenuated, and the urban rural difference has become almost unnoticeable. The attenuation is expected because hemoglobin reflects iron stocks. The stocks will be affected by various other shocks over time, masking the signal from the 2008 shock. 
 
@@ -394,7 +397,7 @@ The regression above does not allows for spatial heterogeity of response, except
 $$H_i = \alpha_0 + \beta Exp_i + \delta Exp_i*Region + \alpha_1MOB + \alpha_2MOB^2$$
 I report the predicted effect of exposure in each region.
 
-```{r 2010effectmap, fig.height = 6, fig.width = 10, fig.align = "center"}
+```{r 2010effectmap}
 load("~/Research/Anemia/Anemia/data/effect_map.Rdata")
 
 ggplot(data = map) + coord_equal()+
