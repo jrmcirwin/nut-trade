@@ -1,0 +1,68 @@
+Lead-lag
+```{r lead result,results = "asis",messages = FALSE}
+load("~/Research/Anemia/Anemia/data/lead_regression_table.Rdata")
+x
+
+```
+
+Quantile regressions
+
+abstract: "I explore the effect of the 2008 world food price crisis on fetal nutrition in Senegal using data on infant and child hemoglobin from 2010-2012.  While previous work has explored the effect of the 2008 crisis on child health, mine is the first to use a fetal origins approach, which allows data collected several years after the crisis to be used in analysis. With this broader variation, I am able to test simultaneously test two hypotheses about the distribution of effect: (1) that urban dwellers were more affected than rural-dwellers, and (2) that the effect of the crisis diminished with distance to Dakar, the port and economic hub of Senegal. I find consistent evidence in support of the urban hypothesis, and weak evidence for the distance-to-Dakar hypothesis. The strongest effect was experienced by the urban-poor of Dakar. In accordance with the biological mechanism, there is significant attenuation of effect from 2010 to 2012, indicating that in-utero shocks to iron-stores may be hard to detect later in life."
+
+
+Selection
+
+
+# Heat Maps
+```{r heat maps}
+library("ggvoronoi")
+load("~/Research/Anemia/Anemia/data/heatmap.Rdata")
+x <- map_data("world2","senegal")
+x$long <- x$long - 360
+ggplot(data=filter(env,YEAR==2010|YEAR==2012), aes(x=LONGNUM, y=LATNUM)) +geom_voronoi(outline=x)+ geom_point(aes(color=URBAN))
+  geom_voronoi(outline=x)
+
+ggplot(data=filter(env,YEAR!=2005&YEAR!=2014), aes(x=LONGNUM, y=LATNUM)) + 
+  geom_voronoi(aes(fill=food), outline=x)+scale_fill_viridis_c(option="magma", direction=1) 
+ggplot(data=filter(env,YEAR!=2005&YEAR!=2014), aes(x=LONGNUM, y=LATNUM)) + 
+  geom_voronoi(aes(fill=export), outline=x)+scale_fill_viridis_c(option="magma", direction=1) 
+
+ggplot(data=env, aes(x=LONGNUM, y=LATNUM)) + 
+  geom_voronoi(aes(fill=wealth), outline=x)+scale_fill_viridis_c(option="magma", direction=1) 
+ggplot(data=filter(env,YEAR!=2005&YEAR!=2014), aes(x=LONGNUM, y=LATNUM)) + 
+  geom_voronoi(aes(fill=land), outline=x)+scale_fill_viridis_c(option="magma", direction=1) 
+```
+
+
+ggplot(data=filter(cluster, urban==1), aes(x=LONGNUM, y=LATNUM)) + ggvoronoi::geom_voronoi(outline = x)+
+  geom_point(aes(color=effect))+scale_color_viridis_c(option="magma", direction=-1) +
+  labs(title = "Model-Predicted effect of Exposure by DHS Cluster: Urban Clusters", x= "Longitude",y = "Latitude", fill = "Effect")
+
+ggplot(data=filter(cluster, urban==0), aes(x=LONGNUM, y=LATNUM)) + ggvoronoi::geom_voronoi(outline = x)+
+  geom_point(aes(color=effect))+scale_color_viridis_c(option="magma", direction=-1) +
+  labs(title = "Model-Predicted effect of Exposure by DHS Cluster: Rural Clusters", x= "Longitude",y = "Latitude", fill = "Effect")
+
+
+
+
+With regards to the 2008 food price crisis, I hope to speak to the following questions:
+
+1. Was there a detectable effect of the crisis in Senegal?
+2. How did this effect depend on household wealth and connectivity to the world market?
+3. Did the crisis have a different effect for urban and rural households?
+
+There has been much research on the 2008 crisis (I review it later). However, reserachers have largely been unable to test these simple hypotheses because of the lack of suitable data. Previous approaches have used child health contemporaneous to the crisis. Due to the biological mechanisms of iron accumulation, hemoglobin levels should be more sensitive to nutritional insults in-utero than post-birth, facilitating a fetal-origins approach which allows data collected 2-4 years later to be used in analysis.
+
+The goal of this paper is two use two issues in contemporary food-policy and nutrition in order to shed light on one another. They are anemia and food prices.
+
+Anemia affect over 1 billion people around the world, and is responsible for more than a million deaths a year. Anemia has many causes, but the most common is micro-nutrient deficiency. Anemia depends on the quality and quantity of food that a person has access to. The consequences of anemia are numerous and serious. In adults, anemia causes fatigue and blindness. Anemia in adults is estimated to result in lost GDP of over 4% a year in south Asian and SSA. [@hortonEconomicsIronDeficiency2003].
+
+In infants, iron-deficiency impairs motor and cognitive development. This is a critical period, and the damage caused by iron-deficiency in infancy cannot be undone. Anemia is particularly a problem for women, because of menstration. Even more so, it is a problem for pregnant women, who require a great deal of iron to build the fetus and placenta, and lose a great deal of blood during childbirth. Anemia is a problem of female empowerment and discrimination against women.
+
+Moreover, the discrimination against women contributes negatively to the health of everyone in society. Anemia is an excellent example of what Amartya Sen called "The Hidden Costs of Gender Inequality" [@osmaniHiddenPenaltiesGender2003c]. The malnutrition of women leads to anemia. This anemia prevents them from passing on the infants the required iron (more on this later). Thus, an anemic woman begets an anemic child who becomes an anemic woman. The intergenerational aspect of anemia is well-recognized, and it is a major concern at the nexus of gender inequality and development.
+
+The second issue is food prices. High food prices mean less food for purchasers around the world, but they also mean higher incomes for those who sell food. The effect of increased food prices on the well-being of poor people is thus debated, and depends on the context. How food prices relate to nutrition is also unclear.
+
+The two issues will shed light on eachother. Looking at anemia data will give us a response variable on which we can test the effect of food prices on nutrition in developing countries. Using food prices will allow me to characterize the intergenerational importance of iron-consumption on a broad scale. It will allow us to start understanding the magnitude of importance of the fetal period on hemoglobin in the real world.
+
+More specifically, I will look at the effect of a specific period of high prices, and how this affected fetal nutri

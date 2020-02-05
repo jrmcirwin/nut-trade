@@ -1,0 +1,12 @@
+base
+ggplot2
+dplyr
+readr
+tidyr
+RColorBrewer
+viridisLite
+viridis
+texreg
+ggvoronoi
+SparseM
+quantreg
