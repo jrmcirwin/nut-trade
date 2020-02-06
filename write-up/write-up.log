@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2020.2.1)  5 FEB 2020 18:04
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2020.2.1)  6 FEB 2020 16:35
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -616,171 +616,169 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-<write-up_files/figure-latex/prices time-series-1.pdf, id=88, 722.7pt x 433.62p
+<write-up_files/figure-latex/prices time-series-1.pdf, id=92, 722.7pt x 433.62p
 t>
 File: write-up_files/figure-latex/prices time-series-1.pdf Graphic file (type p
 df)
 <use write-up_files/figure-latex/prices time-series-1.pdf>
 Package pdftex.def Info: write-up_files/figure-latex/prices time-series-1.pdf  
-used on input line 135.
+used on input line 157.
 (pdftex.def)             Requested size: 469.76045pt x 281.85628pt.
 [1
 
 {/home/friend/.TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-<write-up_files/figure-latex/dakar time-series-1.pdf, id=100, 650.43pt x 289.08
+<write-up_files/figure-latex/dakar time-series-1.pdf, id=104, 650.43pt x 289.08
 pt>
 File: write-up_files/figure-latex/dakar time-series-1.pdf Graphic file (type pd
 f)
 <use write-up_files/figure-latex/dakar time-series-1.pdf>
 Package pdftex.def Info: write-up_files/figure-latex/dakar time-series-1.pdf  u
-sed on input line 142.
+sed on input line 164.
 (pdftex.def)             Requested size: 469.76817pt x 208.78584pt.
 LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 1
-46.
+68.
 (/home/friend/.TinyTeX/texmf-dist/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OML+lmm on input line 1
-46.
+68.
 (/home/friend/.TinyTeX/texmf-dist/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 
-146.
+168.
 (/home/friend/.TinyTeX/texmf-dist/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 
-146.
+168.
 (/home/friend/.TinyTeX/texmf-dist/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 146.
+(Font)              <10> on input line 168.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 146.
+(Font)              <7> on input line 168.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 146.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 146
+(Font)              <5> on input line 168.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 168
 .
 (/home/friend/.TinyTeX/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 146
+LaTeX Font Info:    Trying to load font information for U+msb on input line 168
 .
 (/home/friend/.TinyTeX/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 148.
+(Font)              <8> on input line 170.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 148.
+(Font)              <6> on input line 170.
 [2 <./write-up_files/figure-latex/prices time-series-1.pdf> <./write-up_files/f
 igure-latex/dakar time-series-1.pdf>]
-</home/friend/Téléchargements/sen_fews-1.png, id=120, 3412.75pt x 2208.25pt>
+</home/friend/Téléchargements/sen_fews-1.png, id=124, 3412.75pt x 2208.25pt>
 File: /home/friend/Téléchargements/sen_fews-1.png Graphic file (type png)
 <use /home/friend/Téléchargements/sen_fews-1.png>
 Package pdftex.def Info: /home/friend/Téléchargements/sen_fews-1.png  used on
- input line 208.
+ input line 231.
 (pdftex.def)             Requested size: 352.28267pt x 227.9476pt.
 [3]
-<write-up_files/figure-latex/consumption graphs-1.pdf, id=125, 722.7pt x 433.62
+<write-up_files/figure-latex/consumption graphs-1.pdf, id=129, 722.7pt x 433.62
 pt>
 File: write-up_files/figure-latex/consumption graphs-1.pdf Graphic file (type p
 df)
 <use write-up_files/figure-latex/consumption graphs-1.pdf>
 Package pdftex.def Info: write-up_files/figure-latex/consumption graphs-1.pdf  
-used on input line 223.
+used on input line 246.
 (pdftex.def)             Requested size: 469.76045pt x 281.85628pt.
-<write-up_files/figure-latex/consumption graphs-2.pdf, id=126, 722.7pt x 433.62
+<write-up_files/figure-latex/consumption graphs-2.pdf, id=130, 722.7pt x 433.62
 pt>
 File: write-up_files/figure-latex/consumption graphs-2.pdf Graphic file (type p
 df)
 <use write-up_files/figure-latex/consumption graphs-2.pdf>
 Package pdftex.def Info: write-up_files/figure-latex/consumption graphs-2.pdf  
-used on input line 225.
+used on input line 248.
 (pdftex.def)             Requested size: 469.76045pt x 281.85628pt.
 [4pdfTeX warning (ext4): destination with the same identifier (name{figure.1}) 
 has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.225 ...-latex/consumption graphs-2} \end{center}
+l.248 ...-latex/consumption graphs-2} \end{center}
                                                    </home/friend/Téléchargeme
 nts/sen_fews-1.png> <./write-up_files/figure-latex/consumption graphs-1.pdf>]
-<write-up_files/figure-latex/consumption graphs-3.pdf, id=138, 722.7pt x 433.62
+<write-up_files/figure-latex/consumption graphs-3.pdf, id=142, 722.7pt x 433.62
 pt>
 File: write-up_files/figure-latex/consumption graphs-3.pdf Graphic file (type p
 df)
 <use write-up_files/figure-latex/consumption graphs-3.pdf>
 Package pdftex.def Info: write-up_files/figure-latex/consumption graphs-3.pdf  
-used on input line 227.
+used on input line 250.
 (pdftex.def)             Requested size: 469.76045pt x 281.85628pt.
 [5 <./write-up_files/figure-latex/consumption graphs-2.pdf> <./write-up_files/f
 igure-latex/consumption graphs-3.pdf>]
-<write-up_files/figure-latex/pressure-1.pdf, id=154, 722.7pt x 433.62pt>
+<write-up_files/figure-latex/pressure-1.pdf, id=158, 722.7pt x 433.62pt>
 File: write-up_files/figure-latex/pressure-1.pdf Graphic file (type pdf)
 <use write-up_files/figure-latex/pressure-1.pdf>
 Package pdftex.def Info: write-up_files/figure-latex/pressure-1.pdf  used on in
-put line 245.
+put line 268.
 (pdftex.def)             Requested size: 469.76045pt x 281.85628pt.
 [6 <./write-up_files/figure-latex/pressure-1.pdf>] [7]
-Overfull \vbox (1.91403pt too high) has occurred while \output is active []
-
-[8]
-<write-up_files/figure-latex/cohort time-1.pdf, id=197, 722.7pt x 433.62pt>
+<write-up_files/figure-latex/cohort time-1.pdf, id=192, 722.7pt x 433.62pt>
 File: write-up_files/figure-latex/cohort time-1.pdf Graphic file (type pdf)
 <use write-up_files/figure-latex/cohort time-1.pdf>
 Package pdftex.def Info: write-up_files/figure-latex/cohort time-1.pdf  used on
- input line 451.
+ input line 457.
 (pdftex.def)             Requested size: 469.76045pt x 281.85628pt.
-<write-up_files/figure-latex/cohort time-2.pdf, id=198, 722.7pt x 433.62pt>
+[8]
+<write-up_files/figure-latex/cohort time-2.pdf, id=202, 722.7pt x 433.62pt>
 File: write-up_files/figure-latex/cohort time-2.pdf Graphic file (type pdf)
 <use write-up_files/figure-latex/cohort time-2.pdf>
 Package pdftex.def Info: write-up_files/figure-latex/cohort time-2.pdf  used on
- input line 453.
+ input line 459.
 (pdftex.def)             Requested size: 469.76045pt x 281.85628pt.
-[9 <./write-up_files/figure-latex/cohort time-1.pdf>]
-<write-up_files/figure-latex/hemo dist-1.pdf, id=212, 722.7pt x 433.62pt>
+[9 <./write-up_files/figure-latex/cohort time-1.pdf> <./write-up_files/figure-l
+atex/cohort time-2.pdf>]
+<write-up_files/figure-latex/hemo dist-1.pdf, id=224, 722.7pt x 433.62pt>
 File: write-up_files/figure-latex/hemo dist-1.pdf Graphic file (type pdf)
 <use write-up_files/figure-latex/hemo dist-1.pdf>
 Package pdftex.def Info: write-up_files/figure-latex/hemo dist-1.pdf  used on i
-nput line 464.
+nput line 470.
 (pdftex.def)             Requested size: 469.76045pt x 281.85628pt.
-[10 <./write-up_files/figure-latex/cohort time-2.pdf> <./write-up_files/figure-
-latex/hemo dist-1.pdf>]
-<write-up_files/figure-latex/hemfa-1.pdf, id=230, 722.7pt x 433.62pt>
+<write-up_files/figure-latex/hemfa-1.pdf, id=225, 722.7pt x 433.62pt>
 File: write-up_files/figure-latex/hemfa-1.pdf Graphic file (type pdf)
 <use write-up_files/figure-latex/hemfa-1.pdf>
 Package pdftex.def Info: write-up_files/figure-latex/hemfa-1.pdf  used on input
- line 473.
+ line 479.
 (pdftex.def)             Requested size: 469.76045pt x 281.85628pt.
-<write-up_files/figure-latex/clusters-1.pdf, id=231, 722.7pt x 433.62pt>
+[10 <./write-up_files/figure-latex/hemo dist-1.pdf>]
+<write-up_files/figure-latex/clusters-1.pdf, id=235, 722.7pt x 433.62pt>
 File: write-up_files/figure-latex/clusters-1.pdf Graphic file (type pdf)
 <use write-up_files/figure-latex/clusters-1.pdf>
 Package pdftex.def Info: write-up_files/figure-latex/clusters-1.pdf  used on in
-put line 498.
+put line 503.
 (pdftex.def)             Requested size: 469.76045pt x 281.85628pt.
 [11 <./write-up_files/figure-latex/hemfa-1.pdf>]
-<write-up_files/figure-latex/wealth-1.pdf, id=244, 722.7pt x 433.62pt>
+<write-up_files/figure-latex/wealth-1.pdf, id=248, 722.7pt x 433.62pt>
 File: write-up_files/figure-latex/wealth-1.pdf Graphic file (type pdf)
 <use write-up_files/figure-latex/wealth-1.pdf>
 Package pdftex.def Info: write-up_files/figure-latex/wealth-1.pdf  used on inpu
-t line 505.
-(pdftex.def)             Requested size: 469.76045pt x 281.85628pt.
-<write-up_files/figure-latex/dist_wealth-1.pdf, id=245, 722.7pt x 433.62pt>
-File: write-up_files/figure-latex/dist_wealth-1.pdf Graphic file (type pdf)
-<use write-up_files/figure-latex/dist_wealth-1.pdf>
-Package pdftex.def Info: write-up_files/figure-latex/dist_wealth-1.pdf  used on
- input line 507.
+t line 510.
 (pdftex.def)             Requested size: 469.76045pt x 281.85628pt.
 [12 <./write-up_files/figure-latex/clusters-1.pdf> <./write-up_files/figure-lat
 ex/wealth-1.pdf>]
-<write-up_files/figure-latex/exposure-1.pdf, id=260, 722.7pt x 433.62pt>
+<write-up_files/figure-latex/dist_wealth-1.pdf, id=263, 722.7pt x 433.62pt>
+File: write-up_files/figure-latex/dist_wealth-1.pdf Graphic file (type pdf)
+<use write-up_files/figure-latex/dist_wealth-1.pdf>
+Package pdftex.def Info: write-up_files/figure-latex/dist_wealth-1.pdf  used on
+ input line 516.
+(pdftex.def)             Requested size: 469.76045pt x 281.85628pt.
+<write-up_files/figure-latex/exposure-1.pdf, id=264, 722.7pt x 433.62pt>
 File: write-up_files/figure-latex/exposure-1.pdf Graphic file (type pdf)
 <use write-up_files/figure-latex/exposure-1.pdf>
 Package pdftex.def Info: write-up_files/figure-latex/exposure-1.pdf  used on in
-put line 521.
+put line 530.
 (pdftex.def)             Requested size: 469.76045pt x 281.85628pt.
 [13 <./write-up_files/figure-latex/dist_wealth-1.pdf>] [14pdfTeX warning (ext4)
 : destination with the same identifier (name{table.3}) has been already used, d
@@ -788,26 +786,27 @@ uplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.582 
-       <./write-up_files/figure-latex/exposure-1.pdf>]
-<write-up_files/figure-latex/birth-1.pdf, id=294, 722.7pt x 433.62pt>
+l.585   T
+         he median hemoglobin-for-age by birth-quarter. <./write-up_files/figur
+e-latex/exposure-1.pdf>]
+<write-up_files/figure-latex/birth-1.pdf, id=297, 722.7pt x 433.62pt>
 File: write-up_files/figure-latex/birth-1.pdf Graphic file (type pdf)
 <use write-up_files/figure-latex/birth-1.pdf>
 Package pdftex.def Info: write-up_files/figure-latex/birth-1.pdf  used on input
- line 611.
+ line 626.
 (pdftex.def)             Requested size: 469.76045pt x 281.85628pt.
 [15]
-<write-up_files/figure-latex/birth-2.pdf, id=301, 722.7pt x 433.62pt>
+<write-up_files/figure-latex/birth-2.pdf, id=306, 722.7pt x 433.62pt>
 File: write-up_files/figure-latex/birth-2.pdf Graphic file (type pdf)
 <use write-up_files/figure-latex/birth-2.pdf>
 Package pdftex.def Info: write-up_files/figure-latex/birth-2.pdf  used on input
- line 613.
+ line 628.
 (pdftex.def)             Requested size: 469.76045pt x 281.85628pt.
-<write-up_files/figure-latex/birth-3.pdf, id=302, 722.7pt x 433.62pt>
+<write-up_files/figure-latex/birth-3.pdf, id=307, 722.7pt x 433.62pt>
 File: write-up_files/figure-latex/birth-3.pdf Graphic file (type pdf)
 <use write-up_files/figure-latex/birth-3.pdf>
 Package pdftex.def Info: write-up_files/figure-latex/birth-3.pdf  used on input
- line 615.
+ line 630.
 (pdftex.def)             Requested size: 469.76045pt x 281.85628pt.
 [16 <./write-up_files/figure-latex/birth-1.pdf> <./write-up_files/figure-latex/
 birth-2.pdf>] [17pdfTeX warning (ext4): destination with the same identifier (n
@@ -815,61 +814,61 @@ ame{table.4}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.690 
+l.706 
        <./write-up_files/figure-latex/birth-3.pdf>]
-<write-up_files/figure-latex/effect distribution-1.pdf, id=337, 722.7pt x 433.6
+<write-up_files/figure-latex/effect distribution-1.pdf, id=341, 722.7pt x 433.6
 2pt>
 File: write-up_files/figure-latex/effect distribution-1.pdf Graphic file (type 
 pdf)
 <use write-up_files/figure-latex/effect distribution-1.pdf>
 Package pdftex.def Info: write-up_files/figure-latex/effect distribution-1.pdf 
- used on input line 703.
+ used on input line 721.
 (pdftex.def)             Requested size: 469.76045pt x 281.85628pt.
-<write-up_files/figure-latex/effect distribution-2.pdf, id=338, 722.7pt x 433.6
+<write-up_files/figure-latex/effect distribution-2.pdf, id=342, 722.7pt x 433.6
 2pt>
 File: write-up_files/figure-latex/effect distribution-2.pdf Graphic file (type 
 pdf)
 <use write-up_files/figure-latex/effect distribution-2.pdf>
 Package pdftex.def Info: write-up_files/figure-latex/effect distribution-2.pdf 
- used on input line 705.
+ used on input line 723.
 (pdftex.def)             Requested size: 469.76045pt x 281.85628pt.
 [18pdfTeX warning (ext4): destination with the same identifier (name{table.5}) 
 has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.705 ...latex/effect distribution-2} \end{center}
+l.723 ...latex/effect distribution-2} \end{center}
                                                    <./write-up_files/figure-lat
 ex/effect distribution-1.pdf>]
-<write-up_files/figure-latex/hemo disteff-1.pdf, id=349, 722.7pt x 433.62pt>
+<write-up_files/figure-latex/hemo disteff-1.pdf, id=353, 722.7pt x 433.62pt>
 File: write-up_files/figure-latex/hemo disteff-1.pdf Graphic file (type pdf)
 <use write-up_files/figure-latex/hemo disteff-1.pdf>
 Package pdftex.def Info: write-up_files/figure-latex/hemo disteff-1.pdf  used o
-n input line 715.
+n input line 733.
 (pdftex.def)             Requested size: 469.76045pt x 281.85628pt.
 [19 <./write-up_files/figure-latex/effect distribution-2.pdf>]
-<write-up_files/figure-latex/predicted effect map-1.pdf, id=360, 722.7pt x 433.
+<write-up_files/figure-latex/predicted effect map-1.pdf, id=364, 722.7pt x 433.
 62pt>
 File: write-up_files/figure-latex/predicted effect map-1.pdf Graphic file (type
  pdf)
 <use write-up_files/figure-latex/predicted effect map-1.pdf>
 Package pdftex.def Info: write-up_files/figure-latex/predicted effect map-1.pdf
-  used on input line 740.
+  used on input line 763.
 (pdftex.def)             Requested size: 469.76045pt x 281.85628pt.
 [20 <./write-up_files/figure-latex/hemo disteff-1.pdf>]
-<write-up_files/figure-latex/2010effectmap-1.pdf, id=370, 469.755pt x 325.215pt
+<write-up_files/figure-latex/2010effectmap-1.pdf, id=374, 469.755pt x 325.215pt
 >
 File: write-up_files/figure-latex/2010effectmap-1.pdf Graphic file (type pdf)
 <use write-up_files/figure-latex/2010effectmap-1.pdf>
 Package pdftex.def Info: write-up_files/figure-latex/2010effectmap-1.pdf  used 
-on input line 755.
+on input line 778.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
 [21 <./write-up_files/figure-latex/predicted effect map-1.pdf>]
-<write-up_files/figure-latex/effect map-1.pdf, id=381, 1806.75pt x 1300.86pt>
+<write-up_files/figure-latex/effect map-1.pdf, id=385, 1806.75pt x 1300.86pt>
 File: write-up_files/figure-latex/effect map-1.pdf Graphic file (type pdf)
 <use write-up_files/figure-latex/effect map-1.pdf>
 Package pdftex.def Info: write-up_files/figure-latex/effect map-1.pdf  used on 
-input line 762.
+input line 785.
 (pdftex.def)             Requested size: 469.74393pt x 338.21562pt.
 [22 <./write-up_files/figure-latex/2010effectmap-1.pdf>] [23 <./write-up_files/
 figure-latex/effect map-1.pdf>] [24] [25] [26] [27pdfTeX warning (ext4): destin
@@ -878,22 +877,22 @@ ation with the same identifier (name{table.6}) has been already used, duplicate
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.1105 
+l.1145 
        ]
-<write-up_files/figure-latex/quantiles-1.pdf, id=448, 469.755pt x 325.215pt>
+<write-up_files/figure-latex/quantiles-1.pdf, id=454, 469.755pt x 325.215pt>
 File: write-up_files/figure-latex/quantiles-1.pdf Graphic file (type pdf)
 <use write-up_files/figure-latex/quantiles-1.pdf>
 Package pdftex.def Info: write-up_files/figure-latex/quantiles-1.pdf  used on i
-nput line 1142.
+nput line 1182.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
-<write-up_files/figure-latex/quantiles-2.pdf, id=449, 469.755pt x 325.215pt>
+<write-up_files/figure-latex/quantiles-2.pdf, id=455, 469.755pt x 325.215pt>
 File: write-up_files/figure-latex/quantiles-2.pdf Graphic file (type pdf)
 <use write-up_files/figure-latex/quantiles-2.pdf>
 Package pdftex.def Info: write-up_files/figure-latex/quantiles-2.pdf  used on i
-nput line 1143.
+nput line 1183.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 1142--1144
+Underfull \hbox (badness 10000) in paragraph at lines 1182--1184
 [][]
  []
 
@@ -902,78 +901,78 @@ has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.1144 
+l.1184 
        pdfTeX warning (ext4): destination with the same identifier (name{table.
 8}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.1144 
+l.1184 
        ] [29 <./write-up_files/figure-latex/quantiles-1.pdf>]
-<write-up_files/figure-latex/heat maps-1.pdf, id=466, 469.755pt x 325.215pt>
+<write-up_files/figure-latex/heat maps-1.pdf, id=472, 469.755pt x 325.215pt>
 File: write-up_files/figure-latex/heat maps-1.pdf Graphic file (type pdf)
 <use write-up_files/figure-latex/heat maps-1.pdf>
 Package pdftex.def Info: write-up_files/figure-latex/heat maps-1.pdf  used on i
-nput line 1154.
+nput line 1194.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
-<write-up_files/figure-latex/heat maps-2.pdf, id=467, 469.755pt x 325.215pt>
+<write-up_files/figure-latex/heat maps-2.pdf, id=473, 469.755pt x 325.215pt>
 File: write-up_files/figure-latex/heat maps-2.pdf Graphic file (type pdf)
 <use write-up_files/figure-latex/heat maps-2.pdf>
 Package pdftex.def Info: write-up_files/figure-latex/heat maps-2.pdf  used on i
-nput line 1155.
+nput line 1195.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
-<write-up_files/figure-latex/heat maps-3.pdf, id=468, 469.755pt x 325.215pt>
+<write-up_files/figure-latex/heat maps-3.pdf, id=474, 469.755pt x 325.215pt>
 File: write-up_files/figure-latex/heat maps-3.pdf Graphic file (type pdf)
 <use write-up_files/figure-latex/heat maps-3.pdf>
 Package pdftex.def Info: write-up_files/figure-latex/heat maps-3.pdf  used on i
-nput line 1156.
+nput line 1196.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
-<write-up_files/figure-latex/heat maps-4.pdf, id=469, 469.755pt x 325.215pt>
+<write-up_files/figure-latex/heat maps-4.pdf, id=475, 469.755pt x 325.215pt>
 File: write-up_files/figure-latex/heat maps-4.pdf Graphic file (type pdf)
 <use write-up_files/figure-latex/heat maps-4.pdf>
 Package pdftex.def Info: write-up_files/figure-latex/heat maps-4.pdf  used on i
-nput line 1157.
+nput line 1197.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 1154--1158
+Underfull \hbox (badness 10000) in paragraph at lines 1194--1198
 [][]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1154--1158
+Underfull \hbox (badness 10000) in paragraph at lines 1194--1198
 []
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1154--1158
+Underfull \hbox (badness 10000) in paragraph at lines 1194--1198
 []
  []
 
 [30 <./write-up_files/figure-latex/quantiles-2.pdf>] [31 <./write-up_files/figu
 re-latex/heat maps-1.pdf>] [32 <./write-up_files/figure-latex/heat maps-2.pdf>]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1160.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1200.
 [33 <./write-up_files/figure-latex/heat maps-3.pdf>] [34 <./write-up_files/figu
 re-latex/heat maps-4.pdf>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1160.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1200.
 (./write-up.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1160.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1160.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1200.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1200.
 
 Package rerunfilecheck Info: File `write-up.out' has not changed.
-(rerunfilecheck)             Checksum: 659D1759964D8D9F41259CB4B52D98EB;3591.
+(rerunfilecheck)             Checksum: DBAA2DDC42E637D022FA0F10C7E27532;3812.
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1160.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1200.
  ) 
 Here is how much of TeX's memory you used:
- 11042 strings out of 494081
- 161803 string characters out of 6172347
- 222885 words of memory out of 5000000
- 14837 multiletter control sequences out of 15000+600000
+ 11047 strings out of 494081
+ 161921 string characters out of 6172347
+ 223062 words of memory out of 5000000
+ 14839 multiletter control sequences out of 15000+600000
  66166 words of font info for 54 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 33i,11n,34p,524b,383s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 33i,11n,34p,524b,404s stack positions out of 5000i,500n,10000p,200000b,80000s
 pdfTeX warning (dest): name{Hfootnote.5} has been referenced but does not exi
 st, replaced by a fixed one
 
@@ -994,10 +993,10 @@ e1/public/lm/lmri10.pfb></home/friend/.TinyTeX/texmf-dist/fonts/type1/public/lm
 /lmri12.pfb></home/friend/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy10.pfb>
 </home/friend/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy5.pfb></home/friend
 /.TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy7.pfb>
-Output written on write-up.pdf (34 pages, 2711530 bytes).
+Output written on write-up.pdf (34 pages, 2715462 bytes).
 PDF statistics:
- 603 PDF objects out of 1000 (max. 8388607)
- 480 compressed objects within 5 object streams
- 106 named destinations out of 1000 (max. 500000)
- 319 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 611 PDF objects out of 1000 (max. 8388607)
+ 488 compressed objects within 5 object streams
+ 109 named destinations out of 1000 (max. 500000)
+ 327 words of extra memory for PDF output out of 10000 (max. 10000000)
 

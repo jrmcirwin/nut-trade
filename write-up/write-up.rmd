@@ -1,6 +1,6 @@
 
 ---
-title: 'Anemia in Senegal: The 2008 World Food Price Crisis'
+title: 'Anemia in Senegal: The Effect of the 2008 World Food Price Crisis'
 header-includes:
 - \usepackage{graphicx}
 - \usepackage{calc}
@@ -8,13 +8,13 @@ header-includes:
 author: "Jesse McDevitt-Irwin"
 output: pdf_document
 keep_tex: TRUE
-bibliography: ["/home/friend/github/nut-trade/literature/Anemia.bib"]
+bibliography: ["/home/friend/bibtex/references.bib"]
 biblio-style: "apalike"
 nocite: | 
   [@hossainMoralEconomyGlobal2014],[@senIngredientsFamineAnalysis1981]
 abstract: "I explore the effect of the 2008 world food price crisis on the health of Senegalese children who were in-utero at the time. While previous work has explored the effect of the 2008 crisis on child health, mine is the first to use a fetal origins approach, which allows data collected several years after the crisis to be used in analysis. Conceptually, I compare the hemoglobin of children born just before or conceived just after the crisis, to those who were exposed in-utero.
 
-I find that the 2008 crisis had a negative impact on fetal health in urban areas, and that its effect was diminishing with distance from Dakar, the port and economic hub of Senegal. I also find that the effect of exposure in-utero is apparent in 2010 but not in 2012, indicating dissipation over time. Because iron is a critical nutrient in early-life development, this dissipation masks an important difference in health."
+I find suggestive evidence that the 2008 crisis had a negative impact on fetal health in urban areas, and that its effect was diminishing with distance from Dakar, the port and economic hub of Senegal. I also find that the effect of exposure in-utero is apparent in 2010 but not in 2012, suggesting dissipation over time. Because iron is a critical nutrient in early-life development, this dissipation masks an important negative shock to health."
 ---	
 
 
@@ -33,7 +33,11 @@ load("~/Research/Anemia/Anemia/data/index.Rdata")
 
 # Introduction
 
-In this project, I explore the connection between two disparate issue in global nutrition, the 2008 food price crisis and anemia, hoping that each can shed light on the other. The 2008 food price crisis was a concentrated period of reduced availability of nutrition for poor women around the world. For those who were in-utero during the crisis, how then did this affect anemia in childhood. Was the effect of the crisis detectable 2 years later? 4 years later? Both the causes of anemia and the consequences of the 2008 crisis have been explored extensively by researchers. I am, to my knowledge, the first to connect the two. 
+This project explores the effect of the 2008 world food price crisis on infant anemia in Senegal. Anemia is characterized by low levels of hemoglobin in the blood and can be caused by deficiencies in iron, folate and other micro-nutrients. By WHO estimates, 1.62 billion people around the world suffer from anemia. The vast majority are poor women. Most cases of anemia are caused by iron-deficiency due to malnutrition. In children, anemia impairs cognitive and motor development. In adults, anemia causes fatigue and for pregnant women it increases the probability of death during childbirth. Anemia is estimated to cause nearly one million deaths per year.  [@worldbankAnemiaGlance]
+
+Maternal anemia has a direct effect on infant anemia. Unless remedied through increased iron consumption, anemia will remain as the infant grows into a child. During menarche, iron requirements increase for girls, and many become anemic. Thus an anemic mother begets anemic child who becomes an anemic woman who begets an anemic child. This inter-generational aspect of anemia is well appreciated by the WHO and is recognized as an important issue at the nexus of public health, nutrition and female empowerment.
+
+Anemia is a major public health concern. I use the unforeseen and intense increase of world food prices in 2008 as an lense into the intergenerational effects of anemia. As food prices increased in 2008, how did this affect female, and therefore fetal, nutrition? By looking at childhood hemoglobin data in Senegal 2-4 years after the crisis, I am able to both quantify the effect of the 2008 crisis, and examine the effect of in-utero shocks on anemia in childhood. Both the causes of anemia and the consequences of the 2008 crisis have been explored extensively by researchers. I am, to my knowledge, the first to connect the two. 
 
 ## 2008 World Food Price Crisis
 After an extended period of low and stable food prices, in early 2008 world food prices increased dramatically. The causes are debated, but include American agriculture policy as well as financial speculation [@rossetFoodSovereigntyContemporary2008]. The prices of both rice and wheat doubled in fewer than 6 months, while the prices of other staples increased as well. This increase lead to riots and unrest in low to medium-income countries around the world, including Senegal.
@@ -54,11 +58,11 @@ The 2008 crisis drew attention from the fields of peasant studies, nutrition, an
 [^1]: See @cohenFoodPriceCrisis2010; @hadleyHouseholdCapacitiesVulnerabilities2011; @martin-prevel2008FoodPrice2012; @minotTransmissionWorldFood2010; @ruelFoodFuelFinancial2009; @wodonRisingFoodPrices2008; @vonbraunFoodCrisisIsn2008; @barrettMeasuringFoodInsecurity2010.
 
 
-As emphasized by Sen (1980), food security depends on the combination of level and volatility of food entitlements. From the simplest model of comparative advantage, we know that trade will induce specialization. This specialization will increase average incomes, but the effect of specialization and trade on volatility is unresolved [@giovanniTradeOpennessVolatility2009; @burgessCanOpennessMitigate2010]. 
+As emphasized by Sen (1980), food security depends on the combination of level and volatility of food entitlements. From the simplest model of comparative advantage, we know that trade will induce specialization. This specialization will increase average incomes, but the effect of specialization and trade on volatility is unresolved [@giovanniTradeOpennessVolatility2009; @burgessCanOpennessMitigate2010]. The 2008 crisis can be thought of as an extreme case of market volatility. I then examine to what degree this volatility is transmitted into Senegal.
 
 Existing studies in economics explore the effect of the 2008 crisis on health and welfare [@arndtEffectsFoodPrice2016a; @dimovaGlobalFoodCrisis2013]. Dimova et. al. estimate welfare elasticity with respect to price in Cote d'Ivoire during the crisis and argue that the majority of rural dwellers actually benefited from the shock, while urban dwellers suffered. Arndt et. al. take a more similar approach to mine, looking at the effect of high food prices on child weight-for-height. The authors find that weight-for-height was negatively correlated with food price increases, but study is limited by its dataset, which relies on direct observation during and after the crisis.
 
-Using a fetal origins approach opens a wider range of evidence, as data from 2-4 years post-crisis can be used. Having a broader sample allows me to disentangle the effect of the crisis from seasonal fluctuations, unlike Arndt et. al. (2016). By looking at hemoglobin, I gain improved sensitivity relative to weight-for-height, as hemoglobin is sensitive to both quality and quantity of food, unlike weight-for-height. Relative to Dimova et. al., my approach measures the direct effect of the 2008 crisis on maternal and fetal health, rather than a synthetic measure of welfare.
+Using a fetal origins approach opens a wider range of evidence, as data from 2-4 years post-crisis can be used. Having a broader sample allows me to disentangle the effect of the crisis from seasonal fluctuations, unlike Arndt et. al. (2016). By looking at hemoglobin, I gain improved sensitivity relative to weight-for-height, as hemoglobin is sensitive to both quality and quantity of food. Relative to Dimova et. al., my approach measures the direct effect of the 2008 crisis on maternal and fetal health, rather than a synthetic measure of welfare.
 
 Moreover, the increased variation from the fetal origins approach allows me to test for spatial heterogeneity in the effect of the crisis. This will allow me to provide econometric evidence towards the discussion being held in adjacent fields about market integration and food sovereignty. Previous work has emphasized a rural-urban divide, with the urban poor suffering from increased food prices, and the rural poor minimally affected [@dimovaGlobalFoodCrisis2013; @barrettMeasuringFoodInsecurity2010; @ruelFoodFuelFinancial2009]. While it is true that rural-dwellers are more likely to be net food-sellers, this hypothesis overlooks the broad class of rural poor who are net food-consumers. I will be able to test both this rural-urban hypothesis, and my own distance hypothesis.
 
@@ -130,18 +134,21 @@ As price increases there are substitution and income effects which lead to lower
 
 [^3]:  One possibility is that the increase in the price of imported goods lead to increased consumption of local crops, like millet. Millet is relatively high in iron compared to rice, so this would attenuate any results I find.
 
- Iron, unlike calories, is a function of both food quality and quantity. As prices increase, the household must either reduce quantity or change the type of food they are consuming. In Burkina Faso, which neighbors Senegal, the 2008 price shock lead to decreased amounts and diversity of food [@martin-prevel2008FoodPrice2012]. As I am particularly interested in female iron consumption, gender inequality looms large. While there are a host of issues surrounding intra-household allocation and gender, I will not treat those in this paper. Instead, I will assume that female iron consumption decreases with prices in a similar way as household iron consumption. 
+Iron, unlike calories, is a function of both food quality and quantity. As prices increase, the household must either reduce quantity or change the type of food they are consuming. In Burkina Faso, which neighbors Senegal, the 2008 price shock lead to decreased amounts and diversity of food [@martin-prevel2008FoodPrice2012]. As I am particularly interested in female iron consumption, gender inequality looms large. While there are a host of issues surrounding intra-household allocation and gender, I will not treat those in this paper. Instead, I will assume that female iron consumption decreases with prices in a similar way as household iron consumption. 
 
 Given a price shock, households will try to smooth consumption across time, attenuating the effect of price on consumption. However, most households, especially the poor, are credit constrained. Thus, we would expect a nonlinear effect of price on consumption, with large increases in price having disproportionately large effect on consumption. As savings, and therefore ability to smooth in a credit-constrained world, are a stock, prices in previous months will also affect the ability to smooth consumption. If prices have been high for several months, then a household is less likely to be able to smooth consumption given another month of high prices. 
 
-
 ## 3-5. Iron and Anemia in Mother and Child
 
-Anemia is characterized by low levels of hemoglobin in the blood and can be caused by deficiencies in iron, folate and other micro-nutrients. By latest estimates, 1.2 billion people around the world suffer from iron deficiency anemia. Iron-deficiency anemia causes fatigue and impairs cognitive and motor development. Anemia is a health concern across the income spectrum, but is more prevalent among the poor. Maternal anemia then has a direct effect on infant anemia, as the fetus cannot make adequate stores to last the breast-feeding period. Unless remedied through increased iron consumption, anemia will remain as the infant grows into a child. During menarche, iron requirements increase for girls, and many become anemic. Thus an anemic mother begets anemic child who becomes an anemic woman who begets an anemic child. This inter-generational aspect of anemia is well appreciated by the WHO and is recognized as an important issue at the nexus of public health, nutrition and female empowerment.
+Hemoglobin is typically limited by iron stores in the body, which depends disease environment and the quality and quantity of food intake. In a healthy person, there are iron-stores about equal to the amount of iron in use in the person's blood. There is a small, constant loss of iron. The bio-availability of iron of an individual is a stock, while iron intake is a flow, meaning that past iron consumption will affect current iron-stores and hemoglobin levels [@camaschellaIrondeficiencyAnemia2015].
 
- Hemoglobin is typically limited by iron stores in the body. Iron availability depends on food intake, both quantity and quality. Absorption of heme-iron (animal-based) is greater than absorption of plant-based iron. In a healthy person, there are iron-stores about equal to the amount of iron in use in the person's blood. There is a small, constant loss of iron. The bio-availability of iron of an individual is a stock, while iron intake is a flow, meaning that past iron consumption will affect current availability [@camaschellaIrondeficiencyAnemia2015].
+Iron is passed from the mother to fetus, allowing the development of fetal hemoglobin, which differs from adult hemoglobin. Over the first four months of life post-birth, the infant breaks down the fetal hemoglobin and synthesizes adult hemoglobin. Little iron can be transmitted through breast-milk, so the fetus must develop sufficient stores of iron in order to make the transition from fetal to adult hemoglobin as they grow and their blood volume increases. The additional iron required for pregnancy is around 1,000 mg-- nearly half of the total iron store in a healthy, non-pregnant woman [@lactationIronNutritionPregnancy1990]. 
 
- Iron is passed from the mother to fetus, allowing the development of fetal hemoglobin, which differs from adult hemoglobin. Over the first four months of life post-birth, the infant breaks down the fetal hemoglobin and synthesizes adult hemoglobin. Little iron is transmitted through breast-milk, so the fetus must develop sufficient stores of iron in order to make the transition from fetal to adult hemoglobin as they grow and their blood volume increases. The estimated iron requirement for pregnancy is 1,000 mg-- nearly half of the total iron store in a healthy, non-pregnant woman [@lactationIronNutritionPregnancy1990]. Here I list the CDC's recommended daily intake of iron for mother and infant across different periods.
+Infants, on the other hand, need relatively little iron, given that they develop sufficient stores in-utero. Breast-milk contains very little iron, around 0.1 mg per gram (USDA). As illustration, consider that a typical infant would consume less than 700 grams of breast milk a day in the first six months [@nevilleStudiesHumanLactation1988], meaning a total iron intake of around 54 mg over the first six months. This is trivial compared to the 1,000 mg needed during pregnancy. Moreover, as long as the woman is breastfeeding, the absence of menstruation will reduce her iron loss rate, increasing her stores. Thus, during the first six months of life hemoglobin in infants should be relatively insensitive to maternal iron consumption.[^5] Here I list the CDC's recommended daily intake of iron for mother and infant across different periods.
+
+
+[^5]: Note that this all relies on women breastfeeding their children. In Senegal, breastfeeding is overwhelmingly common during the first six months, with very little cessation before the child reaches a year old [@maneEarlyBreastfeedingCessation2006].
+
 
 |  Period |  Maternal Iron Intake | Period  | Infant Iron Intake  | 
 |---|---|---|---|
@@ -150,17 +157,14 @@ Anemia is characterized by low levels of hemoglobin in the blood and can be caus
 |  Menstruation | 18 mg |   7-12 mo |  11 mg |
 |   |   | Childhood  | 7 mg  | 
 
-Infants, on the other hand, need relatively little iron, given that they develop sufficient stores in-utero. Breast-milk contains very little iron, around 0.1 mg per gram (USDA). As illustration, consider that a typical infant would consume less than 700 grams of breast milk a day in the first six months [@nevilleStudiesHumanLactation1988], meaning a total iron intake of around 54 mg over the first six months. This is trivial compared to the 1,000 mg needed during pregnancy. Moreover, as long as the woman is breastfeeding, the absence of menstruation will reduce her iron loss rate, increasing her stores. Thus, iron-stores in infants should be relatively insensitive to maternal health during the first six months of life.[^4]
+We see that iron availability is critical during the fetal period, but not during the breastfeeding period. This discontinuity in the response of infant hemoglobin to nutritional environment (very sensitive up until birth, and then insensitive) offers a fetal-origins identification strategy. Given a specific event, we can compare those who had already been born to those still in-utero.
 
-[^4]: Note that this all relies on women breastfeeding their children. In Senegal, breastfeeding is overwhelmingly common during the first six months, with very little cessation before the child reaches a year old [@maneEarlyBreastfeedingCessation2006].
-
-We see that iron availability is critical during the fetal period, but not during the breastfeeding period. This discontinuity in the response of infant hemoglobin to nutritional environment (very sensitive up until birth, and then insensitive) offers a fetal-origins identification strategy. Given a specific event, we can compare those who had just been born to those about to be born.
 
 # Data
 
-The DHS measures the hemoglobin of infants and children from age 6 months to 5 years. There are two DHS surveys of Senegal, 2010 and 2012, which include children in-utero during the 2008 crisis. The DHS data includes location and households characteristics. The variables which I will use for this study are hemoglobin, child age and month of birth, household wealth, whether a household lives in an urban *commune* and driving-distance to Dakar.
+The DHS measures the hemoglobin of infants and children age 6 months to 5 years. There are two DHS surveys of Senegal, 2010 and 2012, which include children in-utero during the 2008 crisis. The DHS data includes location and households characteristics. The variables which I will use for this study are hemoglobin, child age and month of birth, household wealth, whether a household lives in an urban *commune* and driving-distance to Dakar.
 
-| Urban | Survey | Wealth | Distance[^5] |    N |
+| Urban | Survey | Wealth | Distance[^6] |    N |
 |  --- | --- | --- | --- |    ---- | 
 |Rural | 2010      |   -0.0656  |     3.14 | 2252 |
 |Rural | 2012      |   -0.0680   |    3.01  | 3492 |
@@ -168,7 +172,7 @@ The DHS measures the hemoglobin of infants and children from age 6 months to 5 y
 |Urban | 2012        |  0.0658     |  2.59 | 1573 |
 
 
-[^5]: Driving distance to Dakar in terms of hundreds of kilometers.
+[^6]: Driving distance to Dakar in terms of hundreds of kilometers.
 
 
 ## Hemoglobin
@@ -182,7 +186,7 @@ labs(title = "Hemoglobin conditional on DOB by DHS Survey", x ="Birth Month: Jan
 ggplot(dhs) + geom_smooth(aes(x= as.numeric(age),y=hemoglobin, color = survey))+geom_hline(aes(yintercept=105))+ labs(title = "Hemoglobin conditional on Age by DHS Survey", x ="Age of child in Months", y= "Hemoglobin: g/l")
 ```
 
- Anemia is relatively rare in children, compared to in infants. Anemia resurges in girls upon menarche. The cutoff for anemia in infants and children, 105 grams per liter of blood is shown as a black, horizontal line.
+ Anemia is relatively rare in children, compared to in infants or adults. Anemia resurges in girls upon menarche. The cutoff for anemia in infants and children, 105 grams per liter of blood is shown as a black, horizontal line.
 
  Within an age group, hemoglobin follows a symmetric, uni-modal distribution. For reference, below I provide a the distribution of hemoglobin for children of age 36 months:
 
@@ -205,11 +209,11 @@ ggplot(hem_by_age, aes(x=age, y=mean_hemo)) +
     labs(title = "Hemoglobin by Age: Mean and Standard Deviation", x = "Age in Months", y = "Hemoglobin: g/L")
 ```
 
-We see that most of the population is anemic during early childhood, suggesting that maternal iron is generally insufficient for the fetus to develop the iron-stores it requires. The standard deviation of hemoglobin by age is around 14 g/L. This will be important later in interpreting results, which are reported in standard deviations.
+We see that most of the population is anemic during early childhood, suggesting that maternal iron is generally insufficient for the fetus to develop the iron-stores it requires. The standard deviation of hemoglobin by age is around 14-15 g/L. This will be important later in interpreting results, which are reported in standard deviations.
 
 ## Other Variables of Interest
 
-The DHS does not capture income, but it does measure wealth as a principle-components analysis of observed household possessions. Each DHS observation is tied to a "cluster"-- generally a village or neighborhood. These cluster are geo-located with displacement, creating neutral measurement error. I use the coordinates of each cluster to measure the driving-distance to Dakar through the OpenStreetMaps API. The DHS also records whether a household is urban or rural. This urban-rural distinction is inherited directly from the census demarcation of the country being studied. In Senegal, urban is defined on the level of the *commune* (roughly translated as township). Below I plot the distribution of DHS clusters across Senegal, colored by whether they are urban or rural. We see that urban clusters are distributed across the country.
+The DHS does not capture income, but it does measure wealth as a principle-components analysis of observed household possessions. Each DHS observation is tied to a "cluster"-- generally a village or neighborhood. These cluster are geo-located with displacement, creating neutral measurement error. I use the coordinates of each cluster to measure the driving-distance to Dakar through the OpenStreetMaps API. The DHS also records whether a household is urban or rural. This urban-rural distinction is inherited directly from the census demarcation of the country being studied. In Senegal, urban is defined on the level of the *commune* (roughly translated as township). Below I plot the distribution of DHS clusters across Senegal, colored by whether they are urban or rural.
 
 ```{r clusters, fig.height=6, fig.width=10, fig.align = "center"}
 load("~/Research/Anemia/Anemia/data/heatmap.Rdata")
@@ -233,6 +237,7 @@ ggplot(dhs)+geom_density(aes(x=wealth,color = urban:survey))+ labs(title= "Wealt
 scale_color_brewer(palette="Set1",labels = c("2010 Rural","2012 Rural","2010 Urban","2012 Urban"))
 ```
 
+Urban areas are wealthier than rural areas. We also see that for both the rural and urban populations, mean wealth is decreases as we move away from Dakar.
 ```{r dist_wealth,message=FALSE, fig.height=6, fig.width=10, fig.align = "center"}
 ## Interpreation of results: combining the regressions with distribution across senegal. calculate effect by cluster
 load("~/Research/Anemia/Anemia/data/hemforage.Rdata")
@@ -249,7 +254,7 @@ ggplot(dhs)+geom_smooth(aes(x=dist_dakar,y=wealth,color = urban))+labs(title= "W
 # Methodology
 
 
-The 2008 crisis forms a contiguous 8-month period in which the price index is greater than at any other point in the 20 year span. I will take all those in-utero during this period, February to September 2008, to be exposed. The degree of exposure will be the sum of months in-utero during the crisis period, weighted by the price index. For anyone born before March 2008, or conceived after September 2008, the in-utero exposure will be zero. For someone born in November 2008, the exposure measure would be 1, as they were in-utero for the entirety of the crisis period.
+The 2008 crisis forms a contiguous 8-month period in which the price index is greater than at any other point in the 20 year span. I will take all those in-utero during this period, February to September 2008, to be exposed. The degree of exposure will be the proportion of months of gestation which fall during the crisis period, weighted by the price index. For anyone born before March 2008, or conceived after September 2008, the in-utero exposure will be zero. For someone born in November 2008, the exposure measure would be $\frac{8}{9}$, as they were in-utero for the entirety of the crisis period.
 
 
 
@@ -262,9 +267,7 @@ ggplot(prices, aes(x=Time, y= log(real_index)-6.25))+ geom_path()+geom_point() +
 ```
 
 
-First, I check to see that exposure is balanced across other observables, using OLS. While exposure is unrelated to distance to Dakar and being urban, it is correlated with wealth. Because wealth is positively related to hemoglobin, there will be omitted variable bias in the estimation of the effect of exposure. While we can control for wealth, the correlation is still disturbing, as exposure, by logic, ought to be orthogonal to household characteristics. The correlation could be due to selective mortality which disproportionately affected poor households. Such selection would placed downward bias on my estimate of the effect of the crisis.[^6] 
-
-[^6]: I test for selection in the appendix, and find no evidence to support this hypothesis. It is difficult to rule it out completely.
+Identification relies on exposure being as good as randomly assigned. Obviously exposure is collinear with month of birth, but it should be orthogonal to any other variables. The 2008 crisis was caused by the developments in large, rich economies and can be taken as exogenous to Senegal. Exposure, being as good as random, should then be balanced across other observables. 
 
 
 ```{r balance}
@@ -283,27 +286,31 @@ texreg(list(dist,wealth,urb), digits = 4,
                      float.pos = "H")
 ```
 
+While exposure is unrelated to distance to Dakar and being urban, it is correlated with wealth. Because wealth is positively related to hemoglobin, there will be omitted variable bias in the estimation of the effect of exposure. While we can control for wealth, the correlation is still disturbing, as exposure ought to be orthogonal to household characteristics by definition. The correlation could be due to selective mortality which disproportionately affected poor households. Such selection would placed downward bias on my estimate of the effect of the crisis.[^7] 
+
+[^7]: I test for selection in the appendix, and find no evidence to support this hypothesis. It is difficult to rule it out completely.
+
 For results, I present two kinds of evidence: 
 
 1. The deviation from a quadratic time trend of the exposed cohorts, estimated separately by survey; and,
 2. The median hemoglobin-for-age by birth-quarter.
 
-I use median-regression, rather than least-squares, as it is less sensitive to heterogeneous response across the distribution.[^7] The identification hinges on exposure being orthogonal to other determinants of hemoglobin. The regression is as follows:
+I use median-regression, rather than least-squares, as it is less sensitive to heterogeneous response across the distribution.[^8]
 
-[^7]: We would expect little to no response of hemoglobin to external shocks at the high and low ends of the distribution. At the high end, those in good health are presumably insulated from price shocks by SES. At the low end, a certain level of hemoglobin is required by the body, and it cannot diminish beyond some point.
+[^8]: We would expect little to no response of hemoglobin to external shocks at the high and low ends of the distribution. At the high end, those in good health are presumably insulated from price shocks by SES. At the low end, a certain level of hemoglobin is required by the body, and it cannot diminish beyond some point without causing death.
 
 $$H_i = \alpha_0 + \beta Exp_i + \delta Exp_i*Dist_i + \alpha_1MOB + \alpha_2MOB^2$$
 
-where $H_i$ is hemoglobin-for-age, $Exp_i$ is the number of months in-utero during the crisis, $Dist_i$ is the driving time to Dakar for the cluster of individual $i$. I will also estimate a more complex relationship, in order to test the distance hypothesis next to the urban-rural hypothesis discussed above, in order to speak to the broader literature:
+where $H_i$ is hemoglobin-for-age, $Exp_i$ is the number of months in-utero during the crisis, $Dist_i$ is the driving time to Dakar for the cluster of individual $i$. I will also estimate a more complex relationship, in order to test the distance hypothesis next to the urban-rural and wealth hypotheses discussed above, in order to speak to the broader literature:
 
 $$H_i = \alpha_0 + \beta Exp_i + \delta Exp_i*Dist_i + \alpha_1MOB + \alpha_2MOB^2 + \rho Exp_i*Wealth + \alpha_3 Dist_i + \alpha_4 Wealth$$
 
-This regression is run separately for each survey year, and for urban and rural households. My hypotheses are that $\beta <0$, $\delta > 0$ and $\rho > 0$.
+This regression is run separately for each survey year, and for urban and rural households. My hypotheses are that $\delta > 0$ and $\rho > 0$. In the first regression, I expect that $\beta<0$, because distance-to-Dakar must be non-negative. However, in the second specification, The sign of $\beta$ will depend on the underlying distributions of wealth, which can be negative.
 
 
 # Results
 
-Here I plot the median hemoglobin by birth-quarter. I highlight the two quarters which are exposed to the 2008 crisis in-utero. First, I present the data for all of Senegal. A generous soul might see the expected dip during the crisis, but the result is not obvious. Second, I plot the data for Dakar. According to my predictions, this should be where the dip is most obvious. Again, if you squint and wish with all your heart, you can see the expected dip. Third, I present the data for Kolda, a region to the southeast of Dakar, relatively isolated and with significant food production. I would not expect to see much of a dip here, and no dip is evident.
+Here I plot the median hemoglobin by birth-quarter. I highlight the two quarters which are exposed to the 2008 crisis in-utero. First, I present the data for all of Senegal. If one squints, one may discern a dip. Second, I plot the data for Dakar. According to my predictions, this should be where the dip is most obvious. While certainly not obvious, there is a more apparent dip than for all of Senegal. Third, I present the data for Kolda, a region to the southeast of Dakar, relatively isolated and with significant food production. I would not expect to see much of a dip here, and no dip is evident.
 
 ```{r birth, fig.height = 6, fig.width = 10, fig.align = "center"}
 load("~/Research/Anemia/Anemia/data/birthq_graph.Rdata")
@@ -317,7 +324,7 @@ ggplot(birth)+ geom_point(aes(x = birth_q, y=kolda))+
   annotate("rect", xmin = 9, xmax =10, ymin = -1, ymax = Inf,color="Orange",alpha = .2)+
   labs(title = "Median hemoglobin by Birth Quarter: Kolda",x = "Birth Quarter: 0 = 2006", y= "Median Hemoglobin")
 ```
-This evidence is unclear. The effect of the 2008 crisis could not have been not large, in the sense of being easily discernible.
+This evidence is unclear. The effect of the 2008 crisis could not have been not uniformly large across the country, or else it would be apparent.
 
 Next I turn to regression, in order to test the hypotheses stated above. I use quantile regression evaluated at the median, bootstrapped standard errors, and all regressions include a quadratic time trend.
 
@@ -336,7 +343,7 @@ texreg::texreg(list(simp10,simp12,sv10,sv12),
 
 ```
 
-As expected from the graphs above, exposure alone does not appear to have an impact on hemoglobin. However, once we allow the effect to depend on distance-to-Dakar, the 2008 crisis appears to have a negative effect on hemoglobin in 2010 but not in 2012. The result is not significant, but it is suggestive. We see below that once we break up the sample into urban and rural groups, and allow for the effect to differ by wealth, the effect of the crisis on urban-dwellers is large and significant. Thus, the small effect we see above is the average of the large effect on the urban-poor with the small (or even positive) effect on the richer or rural part of the sample. Exposure has no effect on hemoglobin in 2012, which is consistent with the biological signal dissipating over time.
+As expected from the graphs above, exposure alone does not have an impact on hemoglobin. However, once we allow the effect to depend on distance-to-Dakar, the 2008 crisis appears to have a negative effect on hemoglobin in 2010 but not in 2012. The result is not significant, but it is suggestive. We see below that once we break up the sample into urban and rural groups, and allow for the effect to differ by wealth, the effect of the crisis on urban-dwellers is large and significant. Thus, the small effect we see above is the average of the large effect on the urban-poor with the small (or even positive) effect on the rich or rural part of the sample. Exposure has no effect on hemoglobin in 2012, which is consistent with the shock to hemoglobin dissipating over time.
 
 
 ```{r main2 result,results = "asis",messages = FALSE}
@@ -356,20 +363,20 @@ load("~/Research/Anemia/Anemia/data/regression_table.Rdata")
 
 ```
 
-Now we have a large, significant effect of the crisis. However, with many interaction terms, interpretation depends on the underlying distribution of the covariates. The estimate on exposure above is for someone with $wealth=0$ and living in Dakar. As Dakar is the wealthiest part of the country, only a very small fraction of the sample will be expected to have such an effect. For interpretation, I calculate the predicted effect of the 2008 crisis given the coefficients estimated above, given each individual's values of wealth and distance-to-Dakar. As we move to the right along the x-axis, the individuals are becoming wealthier and live further from Dakar. Those at the far left of the distribution are the poorest and closest to Dakar.
+Here we see that exposure is negatively related to hemoglobin for urban-dwellers. The effect of exposure is greater for the poor across all specifications. However, with many interaction terms, interpretation depends on the underlying distribution of the covariates. The estimate on exposure above is for someone with $wealth=0$ and living in Dakar. As Dakar is the wealthiest part of the country, only a very small fraction of the sample will be expected to have such an effect. For interpretation, I calculate the predicted effect of the 2008 crisis given the coefficients estimated above, given each individual's values of wealth and distance-to-Dakar. As we move to the right along the x-axis, the individuals are wealthier and live further from Dakar. Those at the far left of the distribution are the poorest and closest to Dakar.
 
 
 ```{r effect distribution, fig.height = 6, fig.width = 10, fig.align = "center", caption = "Distribution of Effects"}
 load("~/Research/Anemia/Anemia/data/effect_data.Rdata")
-ggplot(eff)+geom_density(aes(x=effect,color=survey:urban))+scale_color_brewer(palette="Set1",labels = c("2010 Rural","2012 Rural","2010 Urban","2012 Urban"))+
+ggplot(eff)+geom_density(aes(x=effect,color=survey:urban))+scale_color_brewer(palette="Set1",labels = c("2010 Rural","2010 Urban","2012 Rural","2012 Urban"))+
 labs(title ="PDF of Predicted Effects in terms of Hemoglobin-for-Age", x = "Effect", y = "Density")
 
-ggplot(eff)+stat_ecdf(aes(x=effect,color=survey:urban))+scale_color_brewer(palette="Set1",labels = c("2010 Rural","2012 Rural","2010 Urban","2012 Urban"))+
+ggplot(eff)+stat_ecdf(aes(x=effect,color=survey:urban))+scale_color_brewer(palette="Set1",labels = c("2010 Rural","2010 Urban","2012 Rural","2012 Urban"))+
 labs(title ="CDF of Predicted Effects in terms of Hemoglobin-for-Age", x = "Effect", y = "Cumulative Probability")
 
 ```
 
-The implied effects for the urban 2010 population are large. For the urban-poor, the effect ranges from -1 to -.5 standard deviations. The standard deviation of hemoglobin by age in Senegal is around 14 g/L. To understand the magnitude of this shocks, consider a 10 g/L shock to hemoglobin. If every child had was exposed to such a shock, rates of anemia would be expected to increase from ~60% to ~85%, as shown in the figure below.
+The implied effects for the urban 2010 population are large. For the urban-poor, the effect ranges from -1 to -.5 standard deviations in 2010. The standard deviation of hemoglobin by age in Senegal is around 14-15 g/L. To understand the magnitude of this shocks, consider a 10 g/L shock to hemoglobin. If every child had was exposed to such a shock, rates of anemia would be expected to increase from ~60% to ~85%, as shown in the figure below.
 
 ```{r hemo disteff,fig.height = 6, fig.width = 10, fig.align = "center"}
 #load("~/Research/Anemia/Anemia/data/cohort.Rdata")
@@ -380,7 +387,9 @@ labs(title = "CDF of Hemoglobin", x = "Hemoglobin: g/L", y ="Cumulative Probabil
 
  Of course, children from rural households, and wealthy urban households did not experience such a shock, but the figure is illustrative in understanding the magnitude of the impact on the urban poor. As a further illustration, consider a typical poor household (10th percentile of the wealth distribution within Dakar) of Dakar. The expected effect would be ~-14 g/L of hemoglobin. For a child not to be driven into anemia after such a shock, they would have to have initial hemoglobin of 120 g/L, the 90th percentile of the overall distribution of hemoglobin in Senegal. 
 
-In 2012, the results are attenuated, and the urban rural difference has become almost unnoticeable. The attenuation is expected because hemoglobin reflects iron stocks. The stocks will be affected by various other shocks over time, masking the signal from the 2008 shock. 
+ For the rural population, the effect of the crisis on 2010 hemoglobin is noisy but slightly positive. In 2012, the results are attenuated, and the urban rural difference has become almost unnoticeable. The attenuation is expected because hemoglobin reflects iron stocks. The stocks will be affected by various other shocks over time, masking the signal from the 2008 shock. 
+
+## Spatial Distribution of Effects
 
 To explore the spatial distribution of effects, I produce maps of the effect of the 2008 crisis across regions of Senegal. First, I use the coefficients from the 2010 estimates above to predict the effect of exposure by DHS cluster. Distance-to-Dakar is defined on the cluster level, and then I use the median wealth in each cluster to estimate the effect. I then plot the clusters, colored by the predicted effect of exposure. 
 
@@ -393,7 +402,7 @@ ggplot(data=cluster, aes(x=LONGNUM, y=LATNUM)) + ggvoronoi::geom_voronoi(aes(fil
 ```
 We see obvious islands of effect-- these are urban clusters. In general, the urban-rural effect is far greater than the distance-to-Dakar effect, as even rural clusters close to Dakar have relatively small effects. Dakar itself does not exhibit a large effect. This is because the median wealth in Dakar is the relatively great.
 
-The regression above does not allows for spatial heterogeity of response, except through distance-to-Dakar. Therefore, I run a more flexible regression, which allows the effect of exposure to vary by region:
+The regression above does not allows for spatial heterogeneity of response, except through distance-to-Dakar. Therefore, I run a more flexible regression, which allows the effect of exposure to vary by region:
 $$H_i = \alpha_0 + \beta Exp_i + \delta Exp_i*Region + \alpha_1MOB + \alpha_2MOB^2$$
 I report the predicted effect of exposure in each region.
 
@@ -406,7 +415,7 @@ ggplot(data = map) + coord_equal()+
   scale_fill_viridis(option = "magma", direction = 1) + labs(title = "Effect of 2008 crisis: 2010", x= "Longitude",y = "Latitude", fill = "Effect")
 ```
 
-We see that Dakar and its neighbor Thies are most strongly affected. We see that, as expected, the effect of the crisis is consistently strongest around Dakar. However, outside of the immediate vicinity of the capital, remoteness seems to have no effect.
+We see that Dakar and its neighbor Thiès are most strongly affected. However, outside of these two regions, remoteness seems to have no effect, indicating a nonlinear relationship of distance-to-Dakar and effect of the 2008 crisis.
 
 ```{r effect map,fig.height = 18, fig.width = 25, fig.align = "center"}
 load("~/Research/Anemia/Anemia/data/effect_map.Rdata")
@@ -421,14 +430,14 @@ ggplot(data = map) + coord_equal()+
            # The new stuff
            strip.text = element_text(size = 50))
 ```
-Here I plot the same map, but include the results for 2012 in order to compare magnitudes. We see that for many regions the effect is inconsistent across years, suggesting that these are due to noise. For Dakar and Thies, on the other hand, the effect of the crisis is consistent across years and persists into 2012.
+Here I plot the same map, but include the results for 2012 in order to compare magnitudes. We see that for many regions the effect is inconsistent across years, suggesting that these are due to noise. For Dakar and Thiès, on the other hand, the effect of the crisis is consistent across years and persists into 2012.
 
 
 # Discussion
 
 The results above provide evidence for the following hypotheses:
 
-1. The 2008 crisis had a greater impact on the maternal nutrition of urban-dwellers than rural-dwellers; (consistent evidence)
+1. The 2008 crisis had a negative impact on the maternal nutrition of urban-dwellers, but not rural-dwellers; (consistent evidence)
 2. The effect of the 2008 crisis on nutrition was greater for the poor than the rich; (consistent evidence)
 3. The effect of the 2008 crisis on child hemoglobin is discernible in 2010, but not in 2012, suggesting a dissipation of signal; (consistent evidence) 
 4. For urban dwellers, the effect of the 2008 crisis was greatest for those closest to Dakar (weak evidence).
@@ -455,6 +464,7 @@ These results are evidence that the health of poor people in poor countries depe
 
 There would seem to be a trade-off then, between vulnerability to market shocks and vulnerability to shocks from nature. Urban, well-connected populations are more vulnerable to the market, while rural, remote populations are vulnerable to nature. Here we must bring in that universal feature of social analysis: class. In either case, it is the poor who are vulnerable. Any policy which thinks of mitigating the effect of these shocks, whether they come from the market or from nature, must keep this in mind. 
 
+This is a fetal origins paper. In general, the fetal-origins literature tends to concentrate on the fetus. I would like to draw attention to the mother. Poor fetal nutrition is one and the same as poor maternal nutrition. Any discussion of infant health must consider gender inequality [@osmaniHiddenPenaltiesGender2003c]. The negative consequences of the 2008 crisis on child hemoglobin are direct evidence to the malnutrition of poor, urban women of Senegal. In order to ensure the health of a population, the health of women of childbearing age must be the focus.
 
 # References
 
