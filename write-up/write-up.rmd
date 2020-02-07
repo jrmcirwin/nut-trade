@@ -245,7 +245,7 @@ dhs <- dhs %>% filter(survey==2010|survey==2012)
 dhs <- droplevels(dhs)
 dhs <- dhs %>% filter(!is.na(dist_dakar))
 
-ggplot(dhs)+geom_smooth(aes(x=dist_dakar,y=wealth,color = urban))+labs(title= "Wealth Distribution by Distance to Dakar", x= "Distance-to-Dakar", y = "Conditional Mean of Wealth")+theme(legend.title=element_blank())+scale_fill_discrete(labels = c("Rural","Urban"))
+ggplot(dhs)+geom_smooth(aes(x=dist_dakar,y=wealth,color = urban))+labs(title= "Wealth Distribution by Distance to Dakar", x= "Distance-to-Dakar", y = "Conditional Mean of Wealth")+scale_fill_discrete(labels = c("Rural","Urban"))
 ```
 
 
