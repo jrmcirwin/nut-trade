@@ -43,6 +43,14 @@ ggplot(data=filter(cluster, urban==0), aes(x=LONGNUM, y=LATNUM)) + ggvoronoi::ge
   labs(title = "Model-Predicted effect of Exposure by DHS Cluster: Rural Clusters", x= "Longitude",y = "Latitude", fill = "Effect")
 
 
+ 1: A note on Methodology
+
+One potential route would be to regress child hemoglobin on world prices during gestation. This approach is complicated by the fact that prices during gestation are a distribution, not a value. The relationship between monthly price and hemoglobin will likely be non-linear, as households are able to smooth small price changes, but not large increases. We could capture this non-linear relationship using a "bin" approach. First we would discretize the problem, breaking up price into $n$ bins. Then we would count the number of months each child spent in each price-bin over the course of gestation. 
+
+However, this approach assumes that the timing of price is irrelevant. Given that different stages of pregnancy have very different iron requirements, the timing of price, not only the level each month, is important. Second, because of credit-constraints, a month of high prices will be harder on a household if it falls after another month of high prices than after a month of low prices. Third, because prices affect iron intake, a flow, but hemoglobin is determined by iron stocks, we would expect persistent effects over time.
+
+Because of this complexity, and the fact that the 2008 crisis dominates variation over the period of study, I will instead concentrate on a single period of unusually high prices. I will construct the proper control group based on knowledge about the biological process of hemoglobin formation. Doing this will also allow me to speak directly to a substantial literature which is interested in effects of the 2008 crisis.
+
 
 
 With regards to the 2008 food price crisis, I hope to speak to the following questions:
@@ -66,3 +74,20 @@ The second issue is food prices. High food prices mean less food for purchasers 
 The two issues will shed light on eachother. Looking at anemia data will give us a response variable on which we can test the effect of food prices on nutrition in developing countries. Using food prices will allow me to characterize the intergenerational importance of iron-consumption on a broad scale. It will allow us to start understanding the magnitude of importance of the fetal period on hemoglobin in the real world.
 
 More specifically, I will look at the effect of a specific period of high prices, and how this affected fetal nutri
+
+
+## Quantile Regression
+All of the regression reported in the main paper are median regressions. The reader might also be interested in other quantiles of the hemoglobin distribution. Here I report the combined specification from the results section, with quintiles. The noisiness of the data does not allow for any clear interpretation.
+
+```{r quantiles}
+load("~/Research/Anemia/Anemia/data/hemforage.Rdata")
+dhs <- dhs %>% filter(survey==2010|survey==2012)
+dhs <- droplevels(dhs)
+
+comb10<- quantreg::rq(hemfa~exposure*dist_dakar+poly(Time,2)+exposure*urban+exposure*wealth,tau = c(1:4)/5,data=filter(dhs,survey==2010))
+comb12<- quantreg::rq(hemfa~exposure*dist_dakar+poly(Time,2)+exposure*urban+exposure*wealth,tau = c(1:4)/5,data=filter(dhs,survey==2012))
+
+plot(summary(comb10),parm = c(2,6,7,9))
+plot(summary(comb12),parm = c(2,6,7,9))
+
+```
