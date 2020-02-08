@@ -487,11 +487,11 @@ This is a fetal origins paper. In general, the fetal-origins literature tends to
 
 # Future Research
 
-There are several obvious follow-ups to this analysis. One is a systematic exploration of heterogeneity in response to the crisis across Senegal. I could find regional production and consumption data for food commodities, and look if the behavior differed across net-sellers vs net-buyers. In order to have more disaggregated data, I could use the LSMS and analyze this net-seller question on the household level. This would be a good way to see how the crisis affected the rural populace.
+In this project, I have found the the 2008 crisis had a large, negative impact on the urban-poor of Senegal. I also find that the effect diminishes with distance-to-Dakar. The distance from a particular community to the port and capital, Dakar, is related to a host of other characteristics, such as wealth, concentration of land-ownership, and local food production capacity. An inviting avenue for future research would be the systematic exploration of these relationships, and how each of these underlying variables is related to the effect of the 2008 crisis. Previous literature has focused on the effect of an increase of food prices on households who are net-sellers vs net-buyers of food. More broadly, I could explore regional effects based on whether a particular region is a net-importer or net-exporter of food. 
 
-More simply, I could expand this analysis to include Senegal's neighbors. I have DHS surveys in 2010-2011 in Burkina Faso, Cote D'ivoire, Liberia and Guinea.
+Another route would be to expand my analysis to include Senegal's neighbors like Burkina Faso, Ghana, Cote D'ivoire, Liberia and Guinea. While I have argued that my results are internally valid for Senegal, it is an open question whether they apply more broadly. Conducting the same test over multiple countries could provide evidence for or against a stable pattern. Given that my dataset is relatively small, expanding coverage to more countries would also improve my power and allow me to test a greater number of hypotheses.
 
-Another route forward would be to explore the effects of local shocks, like drought. I would expect the pattern of effect to be inverse of the pattern I find above, except that wealth still does the same thing.
+More ambitiously, I would like to connect my research to the more general question of market integration and nutrition. As outlined above, there appears to be a trade-off between vulnerability to nature in the countryside and vulnerability to market-fluctuations in the city. In this paper, I have explored an extreme case of the latter. In future research, I hope to similarly explore the effect of drought on urban and rural populaces in order to determine the relative magnitude of each of these effects.
 
 # References
 
