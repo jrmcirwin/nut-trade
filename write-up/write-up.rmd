@@ -418,7 +418,7 @@ We see obvious islands of effect-- these are urban clusters. In general, the urb
 
 The regression above does not allows for spatial heterogeneity of response, except through distance-to-Dakar. Therefore, I run a more flexible regression, which allows the effect of exposure to vary by region:
 $$H_i = \alpha_0 + \beta Exp_i + \delta Exp_i*Region + \alpha_1MOB + \alpha_2MOB^2$$
-I report the predicted effect of exposure in each region.
+I report the predicted effect of exposure in each region. A guide to the regions of Senegal, with names and distribution of variables of interest, can be found in the Appendix.
 
 ```{r 2010effectmap}
 load("~/Research/Anemia/Anemia/data/effect_map.Rdata")
@@ -428,28 +428,6 @@ ggplot(data = map) + coord_equal()+
   geom_path(aes(x= long, y=lat,group=group), color = "white", size = .1)+
   scale_fill_viridis(option = "magma", direction = 1) + labs(title = "Effect of 2008 crisis: 2010", x= "Longitude",y = "Latitude", fill = "Effect")
 ```
-```{r guide}
-load("~/Research/Anemia/Anemia/data/effect_map.Rdata")
-CapStr <- function(y) {
-  c <- strsplit(y, " ")[[1]]
-  paste(toupper(substring(c, 1,1)), substring(c, 2),
-      sep="", collapse=" ")
-}
-map$region <- sapply(map$region, CapStr)
-ggplot(data = map) + coord_equal()+
-  geom_polygon( aes(x = long, y = lat, group=group, fill =region)) +
-  geom_path(aes(x= long, y=lat,group=group), color = "white", size = .1)+
-  labs(title = "Region Names: Senegal", x= "Longitude",y = "Latitude", fill = "Region")
-```
-
-```{r region table}
-load("~/Research/Anemia/Anemia/data/hemforage.Rdata")
-dhs$region <- sapply(dhs$region, CapStr)
-
-knitr::kable(dhs %>% group_by(region) %>% summarise(Wealth = mean(wealth),Land = mean(land,na.rm=T),Urban = mean(as.numeric(urban)-1),N = n()), digits = 2, label = "Mean variables by Region")
-```
-
-
 I do not control for urban-rural or for wealth, as I want to capture the regional effects, inclusive of differences in wealth and the proportion who are urban. We see that Dakar and its neighbor Thiès are most strongly affected, although both are relatively wealthy. Outside of these two regions, distance-to-Dakar seems to have no effect, indicating a nonlinear relationship of distance-to-Dakar and effect of the 2008 crisis.
 
 ```{r effect map,fig.height = 18, fig.width = 25, fig.align = "center"}
@@ -521,7 +499,30 @@ More ambitiously, I would like to connect my research to the more general questi
 \newpage 
 
 
-# Appendix
+# Appendix 1: A guide to Senegal's Regions
+
+```{r guide}
+load("~/Research/Anemia/Anemia/data/effect_map.Rdata")
+CapStr <- function(y) {
+  c <- strsplit(y, " ")[[1]]
+  paste(toupper(substring(c, 1,1)), substring(c, 2),
+      sep="", collapse=" ")
+}
+map$region <- sapply(map$region, CapStr)
+ggplot(data = map) + coord_equal()+
+  geom_polygon( aes(x = long, y = lat, group=group, fill =region)) +
+  geom_path(aes(x= long, y=lat,group=group), color = "white", size = .1)+
+  labs(title = "Region Names: Senegal", x= "Longitude",y = "Latitude", fill = "Region")
+```
+
+```{r region table}
+load("~/Research/Anemia/Anemia/data/hemforage.Rdata")
+dhs$region <- sapply(dhs$region, CapStr)
+
+knitr::kable(dhs %>% group_by(region) %>% summarise(Wealth = mean(wealth),Land = mean(land,na.rm=T),Urban = mean(as.numeric(urban)-1),N = n()), digits = 2, label = "Mean variables by Region")
+```
+
+# Appendix 2: Alternate Specifications
 
 Here I run several alternative specification to those reported above. Each of these was ran after running the regressions above, in response to a specific concern or question. Because I did not pre-commit to these specifications, they should be interpreted weakly. However, they do generally support my conclusions. Of particular importance in the narrow-window regression, which finds even stronger effects than my main specification.
 
@@ -633,7 +634,7 @@ load("~/Research/Anemia/Anemia/data/seasonal_regression_table.Rdata")
 
 ```
 
-# Appendix 2: More information on the spatial distribution of variables in Senegal
+# Appendix 3: More information on the spatial distribution of variables in Senegal
 
 In case the reader is interested in the distribution of agriculture and wealth across Senegal (as I was), I have included some heat-maps which depict variables at the cluster level. Below I report food production, as well as commercial agriculture (sugarcane, palm nuts and cotton).
 
