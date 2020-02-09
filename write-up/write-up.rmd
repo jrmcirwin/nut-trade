@@ -286,7 +286,7 @@ land <- lm(exposure~land,data=dhs)
 ```
 ```{r, results = "asis", echo = FALSE}
 texreg(list(dist,wealth,urb,land), digits = 4,
-                     custom.model.names = c("Distance-to-Dakar","Wealth","Urban","Land"),
+                     custom.model.names = c("Exposure","Exposure","Exposure","Exposure"),
                     omit.coef = "(poly)|(cept)",
                      custom.coef.names =c("Distance to Dakar","Wealth","Urban","Land") ,
                      caption = "Balance Test",
@@ -304,7 +304,7 @@ I use median-regression, rather than least-squares, as it is less sensitive to h
 [^8]: We would expect little to no response of hemoglobin to external shocks at the high and low ends of the distribution. At the high end, those in good health are presumably insulated from price shocks by SES. At the low end, a certain level of hemoglobin is required by the body, and it cannot diminish beyond some point without causing death.
 
 
-$$H_i = \alpha_0 + \beta Exp_i + \delta Exp_i*Dist_i + \alpha_1MOB + \alpha_2MOB^2$$
+$$H_i = \alpha_0 + \beta Exp_i + \delta Exp_i*Dist_i + \alpha_1MOB + \alpha_2MOB^2 +\alpha_3 Dist_i$$
 
 Where $H_i$ is hemoglobin-for-age, $Exp_i$ is the number of months in-utero during the crisis, $Dist_i$ is the driving time to Dakar for the cluster of individual $i$. 
 
@@ -395,7 +395,7 @@ Once broken into urban and rural groups, the effect of the crisis is noticeable 
 
 ```{r urb-rur birth, fig.align = "center"}
 load("~/Research/Anemia/Anemia/data/urban_birthq_graph.Rdata")
-ggplot(all_sen)+ geom_point(aes(x = birth_q, y=all_sen,color=urban), size = 4)+ 
+ggplot(all_sen)+ geom_point(aes(x = birth_q, y=all_sen,color=urban), size = 3)+ 
   annotate("rect", xmin = 9, xmax = 10, ymin = -Inf, ymax = Inf,color="Orange",alpha = .2)+
   labs(title = "Median hemoglobin by Birth Quarter: Urban-Rural 2010",x = "Birth Quarter: 0 = 2006", y= "Median Hemoglobin")
 
