@@ -430,7 +430,12 @@ ggplot(data = map) + coord_equal()+
 ```
 ```{r guide}
 load("~/Research/Anemia/Anemia/data/effect_map.Rdata")
-
+CapStr <- function(y) {
+  c <- strsplit(y, " ")[[1]]
+  paste(toupper(substring(c, 1,1)), substring(c, 2),
+      sep="", collapse=" ")
+}
+map$region <- sapply(map$region, CapStr)
 ggplot(data = map) + coord_equal()+
   geom_polygon( aes(x = long, y = lat, group=group, fill =region)) +
   geom_path(aes(x= long, y=lat,group=group), color = "white", size = .1)+
@@ -439,6 +444,7 @@ ggplot(data = map) + coord_equal()+
 
 ```{r region table}
 load("~/Research/Anemia/Anemia/data/hemforage.Rdata")
+dhs$region <- sapply(dhs$region, CapStr)
 
 knitr::kable(dhs %>% group_by(region) %>% summarise(Wealth = mean(wealth),Land = mean(land,na.rm=T),Urban = mean(as.numeric(urban)-1),N = n()), digits = 2, label = "Mean variables by Region")
 ```
