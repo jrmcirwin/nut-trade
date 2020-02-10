@@ -72,13 +72,12 @@ Moreover, the increased variation from the fetal origins approach allows me to t
 
 ## The Economy of Senegal: Food and Trade
 
-Senegal is a small, poor economy on the west coast of Africa, with a population of 16 million and a GDP per capita of $3,675 (PPP). The climate is Sahelian, with a rainy season starting in May. Dakar is the port and economic hub. The coastal areas practice horticulture and fishing, while the hinterlands close to Dakar engage in commercial groundnut production for export. The river basins in the north and south are farmed for rice, while millet, sorghum and maize are the staples in drier areas. Population is concentrated around Dakar, with smaller concentrations in the river basins in the north and south. See the FEWS Livelihood Zone Map below:
+Senegal is a small, poor economy on the west coast of Africa, with a population of 16 million and a GDP per capita of $3,675 (PPP). The climate is Sahelian, with a rainy season starting in May. Average annual rainfall increases on a southward gradient. Dakar is the port and economic hub. The coastal areas practice horticulture and fishing, while the hinterlands close to Dakar engage in commercial groundnut production for export. The river basins in the north and south are farmed for rice, while millet, sorghum and maize are the staples in drier areas. Population is concentrated around Dakar, with smaller concentrations in the river basins in the north and south. See the FEWS Livelihood Zone Map below:
 
 
 ```{r image-ref-for-in-text, echo = FALSE, message=FALSE,fig.height = 12, fig.width = 20, fig.align='center', fig.cap='FEWs Livelihood Maps', out.width='0.75\\linewidth', fig.pos='H'}
 knitr::include_graphics("/home/friend/Téléchargements/sen_fews-1.png")
 ```
-
 
 Although agriculture is the primary means of livelihood for 69% of the population, imports make up a large part of the food supply. The main staples are rice, maize, sorghum, wheat and millet. As seen in the graph below, foods which are mainly imported, like wheat and rice, have increased in importance in Senegal over the past thirty years, while locally produced staples millet and sorghum have declined in per-capita consumption.
 
@@ -257,12 +256,10 @@ ggplot(dhs)+geom_smooth(aes(x=dist_dakar,y=wealth,color = urban))+labs(title= "W
 Conversely, in the table above we saw that rural households tend to own their own land, unlike urban households. Land ownership might enable a household to mitigate the effects of increased food prices by producing more food themselves.
 
 
-# Methodology
+# Methods
 
 
-The 2008 crisis forms a contiguous 8-month period in which the price index is greater than at any other point in the 20 year span. I will take all those in-utero during this period, February to September 2008, to be exposed. The degree of exposure will be the proportion of months of gestation which fall during the crisis period. For anyone born before March 2008, or conceived after September 2008, the in-utero exposure will be zero. For someone born in November 2008, the exposure measure would be $\frac{8}{9}$, as they were in-utero for the entirety of the crisis period.
-
-
+The 2008 crisis forms a contiguous 8-month period in which the price index is greater than at any other point in the 20 year span. I will take all those in-utero during this period, February to September 2008, to be exposed. The degree of exposure will be the proportion of months of gestation which fall during the crisis period. For anyone born before March 2008, or conceived after September 2008, the in-utero exposure will be zero. For someone born in November 2008, the exposure measure would be $\frac{8}{9}$, as they were in-utero for the entirety of the crisis period.[^5]
 
 ```{r exposure,fig.height = 6, fig.width = 10, fig.align = "center"}
 load("~/Research/Anemia/Anemia/data/index.Rdata")
@@ -274,8 +271,11 @@ ggplot(prices, aes(x=Time, y= log(real_index)-6.25))+ geom_path()+geom_point() +
 ```
 
 
-My methodology follows that of Almond (2006) as we both analyze a cohort-level time shock. The effect should be visible in the raw data, and then this visual test is formalized with a regression characterizing deviation from a quadratic time trend. I then include additional interaction terms because I am interested in heterogeneous effects. Identification relies on exposure being as good as randomly assigned. Exposure is collinear with month of birth, but it should be orthogonal to any other variables. The 2008 crisis was caused by the developments in large, rich economies and can be taken as external to Senegal. Exposure, being as good as random, should then be balanced across other observables.
+My methodology follows that of Almond (2006) as we both analyze a cohort-level time shock. The effect should be visible in the raw data, and then this visual test is formalized with a regression characterizing deviation from a quadratic time trend. I then include additional interaction terms because I am interested in heterogeneous effects. 
 
+## Identification
+
+The 2008 crisis was caused by the developments in large, rich economies and can be taken as external to Senegal. Exposure, being as good as random, should then be balanced across other observables. If the 2008 crisis indeed forms a "natural experiment," then it ought to be unrelated to any covariates of interest, just like the treatment in a controlled experiment: i.e. $Exp_i \perp X_i$ where $X_i$ is a vector of covariates. Below we see that exposure is balanced across observables, and we fail to reject the hypothesis of $Exp_i \perp X_i$. 
 
 ```{r balance}
 library("texreg")
@@ -294,29 +294,40 @@ texreg(list(dist,wealth,urb,land), digits = 4,
                      caption = "Balance Test",
                      float.pos = "H")
 ```
-We see that exposure is balanced across observables, supporting the hypothesis that it is as good as randomly assigned.
 
+I would not, however, claim that my analysis identifies the effect of an increase in world prices. Rather, I am identifying the effect of being in-utero during a specific 8-month window, which included a price increase. Although there is no reverse causation from developments in Senegal to world prices, my results are identified purely on the basis of time. Therefore, temporal coincidence could be responsible for my results. As a simple example, suppose there was an earthquake in Senegal in February of 2008. Of course my specification could not distinguish between the earthquake and the price shock. Although the price shock is *external* to Senegal, it is not *necessarily* exogenous. Identification then relies upon an understanding of developments within Senegal, and the argument that there was nothing exceptional during the period, save for the effects of the 2008 price crisis. Below I plot the rainfall anomaly for the Sahel region from 1950-2017. We see that 2007-08 was unremarkable. We have already seen in the introduction that domestic food production was relatively high in 2008. I have yet to find any evidence of developments from *within* Senegal which would coincide with the 2008 price spike.
+
+```{r rainfall}
+x <- read_csv("/home/friend/Research/Data/Physical/sahel_rainfall.csv")
+colnames(x) <- c("Year","Rainfall","d")
+ggplot(x,aes(x= Year,y=Rainfall)) + geom_bar(stat = "identity")+ 
+annotate("rect", xmin = 2006.5, xmax = 2008.5, ymin = -Inf, ymax = Inf,color="Orange",alpha = .2)+xlim(1989,2018)+
+labs(title =  "Sahel Rainfall Anomaly by Year", y = "Rainfall Anomaly") +
+  theme(plot.title = element_text(hjust = 0.5))
+```
+
+## Specifications
 As results, I present two kinds of evidence: 
 
 1. The deviation from a quadratic time trend of the exposed cohorts, estimated separately by survey; and,
 2. The median hemoglobin-for-age by birth-quarter.
 
-I use median-regression, rather than least-squares, as it is less sensitive to heterogeneous response across the distribution.[^8] 
+I use median-regression, rather than least-squares, as it is less sensitive to heterogeneous response across the distribution.[^6] 
 
-[^8]: We would expect little to no response of hemoglobin to external shocks at the high and low ends of the distribution. At the high end, those in good health are presumably insulated from price shocks by SES. At the low end, a certain level of hemoglobin is required by the body, and it cannot diminish beyond some point without causing death.
+[^5]: We would expect little to no response of hemoglobin to external shocks at the high and low ends of the distribution. At the high end, those in good health are presumably insulated from price shocks by SES. At the low end, a certain level of hemoglobin is required by the body, and it cannot diminish beyond some point without causing death.
 
 
-$$H_i = \alpha_0 + \beta Exp_i + \delta Exp_i*Dist_i + \alpha_1MOB_i + \alpha_2MOB_i^2 +\alpha_3 Dist_i$$
+$$H_i = \alpha_0 + \beta Exp_i + \delta Exp_i*Dist_i + \alpha_1MOB + \alpha_2MOB^2 +\alpha_3 Dist_i$$
 
 Where $H_i$ is hemoglobin-for-age, $Exp_i$ is the number of months in-utero during the crisis, $Dist_i$ is the driving time to Dakar for the cluster of individual $i$. 
 
 I also estimate a more complex relationship, in order to test the distance hypothesis next to the urban-rural and wealth hypotheses discussed above:
 
-$$H_i = \alpha_0 + \beta Exp_i + \delta Exp_i*Dist_i + \alpha_1MOB_i + \alpha_2MOB_i^2 + \rho Exp_i*Wealth + \alpha_3 Dist_i + \alpha_4 Wealth$$
+$$H_i = \alpha_0 + \beta Exp_i + \delta Exp_i*Dist_i + \alpha_1MOB + \alpha_2MOB^2 + \rho Exp_i*Wealth + \alpha_3 Dist_i + \alpha_4 Wealth$$
 
-This regression is run separately for each survey year, and for urban and rural households. My hypotheses are that $\delta > 0$ and $\rho > 0$. In the first regression, I expect that $\beta<0$, because distance-to-Dakar must be non-negative. However, in the second specification, The sign of $\beta$ will depend on the underlying distributions of wealth, which can be negative.
+This regression is run separately for each survey year, and for urban and rural households. My hypotheses are that $\delta > 0$ and $\rho > 0$. In the first regression, I expect that $\beta<0$, because distance-to-Dakar must be non-negative. However, in the second specification, The sign of $\beta$ will depend on the underlying distributions of wealth, which can be negative.[^7]
 
-I do not include land-ownership in any of the regressions because it is so highly correlated with being from a rural *commune*. In future research, with a larger data-set, I would like to include land-ownership.
+
 
 # Results
 
@@ -336,9 +347,14 @@ ggplot(birth)+ geom_point(aes(x = birth_q, y=kolda), size =4)+
 ```
 This evidence is unclear. The effect of the 2008 crisis could not have been not uniformly large across the country, or else it would be apparent.
 
-Next I turn to regression, in order to test the hypotheses stated above. I use quantile regression evaluated at the median, bootstrapped standard errors, and all regressions include a quadratic time trend.[^9]
+Next I turn to regression, in order to test the hypotheses stated above. I use quantile regression evaluated at the median, bootstrapped standard errors, and all regressions include a quadratic time trend.[^8]
 
-[^9]: The results are stable with cubic and quartic time trends as well.
+[^6]: The results are stable with cubic and quartic time trends as well.
+
+
+[^7]: I do not include land-ownership in any of my analysis because it is so highly correlated with being from a rural *commune* with wealth. Once accounting for the urban-rural split, land-ownership mostly captures the wealth of a household. In future research, with a larger, more geographically diverse data-set, I would like to include land-ownership.
+
+[^8]: My assignment of exposure assumes that the effect of exposure in month 1 of gestation is the same as in month 9. As iron requirements increase over the course of gestation, I would expect exposure in the third trimester to have a greater effect than exposure in the first. I hope to explore this question in future research.
 
 
 ```{r main result,results = "asis",messages = FALSE}
@@ -397,9 +413,8 @@ Once broken into urban and rural groups, the effect of the crisis is noticeable 
 
 ```{r urb-rur birth, fig.align = "center"}
 load("~/Research/Anemia/Anemia/data/urban_birthq_graph.Rdata")
-ggplot(all_sen)+ geom_point(aes(x = birth_q, y=all_sen,color=urban), size = 3)+ 
-  annotate("rect", xmin = 9, xmax = 10, ymin = -Inf, ymax = Inf,color="Orange",alpha = .2)+
-  labs(title = "Median hemoglobin by Birth Quarter: Urban-Rural 2010",x = "Birth Quarter: 0 = 2006", y= "Median Hemoglobin")
+ggplot(all_sen)+ geom_point(aes(x = birth_q, y=all_sen,color=urban), size = 3)+
+  annotate("rect", xmin = 9, xmax = 10, ymin = -Inf, ymax = Inf,color="Orange",alpha = .2)+  labs(title = "Median hemoglobin by Birth Quarter: Urban-Rural 2010",x = "Birth Quarter: 0 = 2006", y= "Median Hemoglobin")
 
 ```
 
@@ -419,7 +434,7 @@ ggplot(data=cluster, aes(x=LONGNUM, y=LATNUM)) + ggvoronoi::geom_voronoi(aes(fil
 We see obvious islands of effect-- these are urban clusters. In general, the urban-rural effect is far greater than the distance-to-Dakar effect, as even rural clusters close to Dakar have relatively small effects. Dakar itself does not exhibit a large effect. This is because the median wealth in Dakar is the relatively great. Moreover, the specification forces the effect of distance-to-Dakar to be linear.
 
 The regression above does not allows for spatial heterogeneity of response, except through distance-to-Dakar. Therefore, I run a more flexible regression, which allows the effect of exposure to vary by region:
-$$H_i = \alpha_0 + \beta Exp_i + \delta Exp_i*Region + \alpha_1MOB_i + \alpha_2MOB_i^2$$
+$$H_i = \alpha_0 + \beta Exp_i + \delta Exp_i*Region + \alpha_1MOB + \alpha_2MOB^2$$
 I report the predicted effect of exposure in each region. A guide to the regions of Senegal, with names and distribution of variables of interest, can be found in the Appendix.
 
 ```{r 2010effectmap}
