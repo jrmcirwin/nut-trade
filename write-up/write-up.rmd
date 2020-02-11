@@ -12,7 +12,7 @@ keep_tex: TRUE
 bibliography: ["/home/friend/bibtex/references.bib"]
 biblio-style: "apalike"
 nocite: | 
-  [@hossainMoralEconomyGlobal2014],[@senIngredientsFamineAnalysis1981],[@almond1918InfluenzaPandemic2006]
+  [@hossainMoralEconomyGlobal2014],[@senIngredientsFamineAnalysis1981],[@almond1918InfluenzaPandemic2006],[@heckmanCausalParametersPolicy2000]
 abstract: "I explore the effect of the 2008 world food price crisis on the health of Senegalese children who were in-utero at the time. While previous work has looked at the effect of the 2008 crisis on child health, mine is the first to use a fetal origins approach, which allows data collected several years after the crisis to be used in analysis. I find that the 2008 crisis had a negative impact on maternal health in urban areas, and that its effect was diminishing with distance from Dakar. I also find that the effect of exposure in-utero is apparent in 2010 but not in 2012, suggesting dissipation of the effect over time. Because iron is a critical nutrient in early-life development, this dissipation masks an important negative shock to health."
 ---	
 
@@ -295,7 +295,9 @@ texreg(list(dist,wealth,urb,land), digits = 4,
                      float.pos = "H")
 ```
 
-I would not, however, claim that my analysis identifies the effect of an increase in world prices. Rather, I am identifying the effect of being in-utero during a specific 8-month window, which included a price increase. Although there is no reverse causation from developments in Senegal to world prices, my results are identified purely on the basis of time. Therefore, temporal coincidence could be responsible for my results. As a simple example, suppose there was an earthquake in Senegal in February of 2008. Of course my specification could not distinguish between the earthquake and the price shock. Although the price shock is *external* to Senegal, it is not *necessarily* exogenous. Identification then relies upon an understanding of developments within Senegal, and the argument that there was nothing exceptional during the period, save for the effects of the 2008 price crisis. Below I plot the rainfall anomaly for the Sahel region from 1950-2017. We see that 2007-08 was unremarkable. We have already seen in the introduction that domestic food production was relatively high in 2008. I have yet to find any evidence of developments from *within* Senegal which would coincide with the 2008 price spike.
+The fetal origins strategy, which relies on a biological sensitivity to iron intake determined by whether an individual was in-utero, provides a strong argument that any effect I find is due to a change in the nutrition environment of Senegal. I would not, however, claim that my analysis identifies the effect of an increase in world prices. Rather, I am identifying the effect of being in-utero during a specific 8-month window, which included a price increase. Although there is no reverse causation from developments in Senegal to world prices, my results are identified purely on the basis of time. Therefore, temporal coincidence could be responsible for my results. Although the price shock is *external* to Senegal, it is not necessarily *exogenous*, taking the distinction from Heckman (2000). 
+
+Identification relies upon an understanding of developments within Senegal, and the argument that there was nothing exceptional during the period, save for the effects of the 2008 price crisis. For example, a drought in 2007-2008 might have caused reduced food-availability during the period. Below I plot the rainfall anomaly for the Sahel region from 1950-2017. We see that 2007-08 was unremarkable. We have already seen in the introduction that domestic food production was relatively high in 2008. I have yet to find any evidence of developments from *within* Senegal which would coincide with the 2008 price spike.
 
 ```{r rainfall}
 x <- read_csv("/home/friend/Research/Data/Physical/sahel_rainfall.csv")
@@ -551,6 +553,8 @@ In the main specification, we are comparing infants exposed to the 2008 crisis i
 2. Those who are conceived after the crisis.
 
 For reasons discussed above, including breastfeeding and delayed transmission of shocks, we would expect both of these groups to also experience a negative effect of the crisis. Thus, the ideal control group is to narrow the regression to the window just around those who had just been born and those who were still in-utero. I did not do this as my main specification because it would involve throwing out much of the data set, and would reduce my power. Next I report a more narrow specification, where I have thrown out over half the data-set. The data are restricted to those who were born between April 2007 and July 2009. The while the standard errors increase, the point estimates increase in magnitude, as expected if the effect is concentrated in these groups.
+
+
 ```{r narrow result,results = "asis",messages = FALSE}
 load("~/Research/Anemia/Anemia/data/narrow_regression_table.Rdata")
 texreg::texreg(list(simp10,simp12,sv10,sv12), 
@@ -584,6 +588,19 @@ load("~/Research/Anemia/Anemia/data/narrow_regression_table.Rdata")
 ```
 
 I take this as convincing evidence of the effect of the 2008 crisis. However, it was not the specification to which I pre-committed, so I have included it in the appendix as supporting evidence, rather than as my main specification.
+
+```{r effect narrow distribution, fig.height = 6, fig.width = 10, fig.align = "center", caption = "Distribution of Effects"}
+load("~/Research/Anemia/Anemia/data/narrow_effect_data.Rdata")
+ggplot(eff)+geom_density(aes(x=effect,color=survey:urban))+scale_color_brewer(palette="Set1",labels = c("2010 Rural","2010 Urban","2012 Rural","2012 Urban"))+
+labs(title ="PDF of Predicted Effects in terms of Hemoglobin-for-Age", x = "Effect", y = "Density")
+
+ggplot(eff)+stat_ecdf(aes(x=effect,color=survey:urban))+scale_color_brewer(palette="Set1",labels = c("2010 Rural","2010 Urban","2012 Rural","2012 Urban"))+
+labs(title ="CDF of Predicted Effects in terms of Hemoglobin-for-Age", x = "Effect", y = "Cumulative Probability")
+
+```
+
+Under the narrow specification, the median effect of the crisis on urban-dwellers in 2010 is greater than -.5 standard deviations. Thus, the typical urban dweller of Senegal suffered a -8 g/L shock to hemoglobin. 
+
 
 ## Lead-lag
 As noted in the prices section, it can take several months for world prices to diffuse to cities in Senegal. Thus one might expect the exposure variable to me mis-assigned, as those who were really exposed to the shock were born several months later. Therefore, I take the twice lagged values of exposure, and regress them in the same way as before. Interestingly, the effect of the crisis is now negative for both urban and rural dwellers. This suggests that the price effect takes longer to be transmitted to rural areas.
