@@ -7,3 +7,6 @@ RColorBrewer
 viridisLite
 viridis
 texreg
+ggvoronoi
+SparseM
+quantreg

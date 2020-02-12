@@ -91,3 +91,29 @@ plot(summary(comb10),parm = c(2,6,7,9))
 plot(summary(comb12),parm = c(2,6,7,9))
 
 ```
+
+
+# Appendix 3: More information on the spatial distribution of variables in Senegal
+
+In case the reader is interested in the distribution of agriculture and wealth across Senegal (as I was), I have included some heat-maps which depict variables at the cluster level. Below I report food production, as well as commercial agriculture (sugarcane, palm nuts and cotton).
+
+
+```{r heat maps}
+library("ggvoronoi")
+load("~/Research/Anemia/Anemia/data/heatmap.Rdata")
+x <- map_data("world2","senegal")
+x$long <- x$long - 360
+ggplot(data=filter(env,YEAR!=2005&YEAR!=2014), aes(x=LONGNUM, y=LATNUM)) + 
+  geom_voronoi(aes(fill=food), outline=x)+scale_fill_viridis_c(option="magma", direction=1) +
+  labs(title = "Food Production across Senegal", x = "",y="")
+ggplot(data=filter(env,YEAR!=2005&YEAR!=2014), aes(x=LONGNUM, y=LATNUM)) + 
+  geom_voronoi(aes(fill=export), outline=x)+scale_fill_viridis_c(option="magma", direction=1) +
+  labs(title = "Commercial Agriculture across Senegal", x = "",y="")
+
+ggplot(data=env, aes(x=LONGNUM, y=LATNUM)) + 
+  geom_voronoi(aes(fill=wealth/10), outline=x)+scale_fill_viridis_c(option="magma", direction=1) +
+  labs(title = "Wealth across Senegal", x = "",y="")
+ggplot(data=filter(env,YEAR!=2005&YEAR!=2014), aes(x=LONGNUM, y=LATNUM)) + 
+  geom_voronoi(aes(fill=land), outline=x)+scale_fill_viridis_c(option="magma", direction=-1) +
+  labs(title = "Land Ownership across Senegal", x = "",y="")
+```
