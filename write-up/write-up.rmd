@@ -5,10 +5,12 @@ header-includes:
 - \usepackage{graphicx}
 - \usepackage{calc}
 - \usepackage{float}
+- \floatplacement{figure}{H}
 author: "Jesse McDevitt-Irwin"
 output: pdf_document
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 keep_tex: TRUE
+number_sections: TRUE
 bibliography: ["/home/friend/bibtex/references.bib"]
 biblio-style: "apalike"
 nocite: | 
@@ -75,7 +77,7 @@ Moreover, the increased variation from the fetal origins approach allows me to t
 Senegal is a small, poor economy on the west coast of Africa, with a population of 16 million and a GDP per capita of $3,675 (PPP). The climate is Sahelian, with a rainy season starting in May. Average annual rainfall increases on a southward gradient. Dakar is the port and economic hub. The coastal areas practice horticulture and fishing, while the hinterlands close to Dakar engage in commercial groundnut production for export. The river basins in the north and south are farmed for rice, while millet, sorghum and maize are the staples in drier areas. Population is concentrated around Dakar, with smaller concentrations in the river basins in the north and south. See the FEWS Livelihood Zone Map below:
 
 
-```{r image-ref-for-in-text, echo = FALSE, message=FALSE,fig.height = 12, fig.width = 20, fig.align='center', fig.cap='FEWs Livelihood Maps', out.width='0.75\\linewidth', fig.pos='H'}
+```{r image-ref-for-in-text, echo = FALSE, message=FALSE,fig.height = 12, fig.width = 20, fig.align='center', fig.cap='FEWs Livelihood Maps', out.width='0.75\\linewidth'}
 knitr::include_graphics("/home/friend/Téléchargements/sen_fews-1.png")
 ```
 
@@ -296,7 +298,7 @@ texreg(list(dist,wealth,urb,land), digits = 4,
                      float.pos = "H")
 ```
 
-The fetal origins strategy, which relies on a biological sensitivity to iron intake determined by whether an individual was in-utero, provides a strong argument that any effect I find is due to a change in the nutrition environment of Senegal. I would not, however, claim that my analysis identifies the effect of an increase in world prices. Rather, I am identifying the effect of being in-utero during a specific 8-month window, which included a price increase. Although there is no reverse causation from developments in Senegal to world prices, my results are identified purely on the basis of time. Therefore, temporal coincidence could be responsible for my results. Although the price shock is *external* to Senegal, it is not necessarily *exogenous*, taking the distinction from Heckman (2000). 
+The fetal origins strategy, which relies on a biological sensitivity to iron intake determined by whether an individual was in-utero, provides a strong argument that any effect I find reflects a change maternal health conditions. I would not, however, claim that my analysis identifies the effect of an increase in world prices. Rather, I am identifying the effect of being in-utero during a specific 8-month window, which included a price increase. Although there is no reverse causation from developments in Senegal to world prices, my results are identified purely on the basis of time. Therefore, temporal coincidence could be responsible for my results. Although the price shock is *external* to Senegal, it is not necessarily *exogenous*, taking the distinction from Heckman (2000). 
 
 Identification relies upon an understanding of developments within Senegal, and the argument that there was nothing exceptional during the period, save for the effects of the 2008 price crisis. For example, a drought in 2007-2008 might have caused reduced food-availability during the period. Below I plot the rainfall anomaly for the Sahel region from 1950-2017. We see that 2007-08 was unremarkable. We have already seen in the introduction that domestic food production was relatively high in 2008. I have yet to find any evidence of developments from *within* Senegal which would coincide with the 2008 price spike.
 
@@ -410,7 +412,7 @@ labs(title ="CDF of Predicted Effects in terms of Hemoglobin-for-Age", x = "Effe
 
 ```
 
-The implied effects for the urban 2010 population are large. For the urban-poor, the effect ranges from -.5 to greater than -1 standard deviations in 2010. The standard deviation of hemoglobin by age in Senegal is 14-15 g/L. To understand the magnitude of this shocks, consider a 10 g/L shock to hemoglobin. If every child in Senegal was exposed to such a shock, rates of anemia would be expected to increase from ~60% to ~85%. As a further illustration, consider a typical poor household in Dakar (10th percentile of the wealth distribution within Dakar). The expected effect would be ~-14 g/L of hemoglobin. For a child not to be driven into anemia after such a shock, they would have to have initial hemoglobin of 120 g/L, the 90th percentile of the overall distribution of hemoglobin in Senegal. 
+The implied effects for the urban 2010 population are large. For the urban-poor, the magnitude ranges from 0.5 to greater than 1 standard deviations in 2010. The standard deviation of hemoglobin by age in Senegal is 14-15 g/L. To understand the magnitude of this shocks, consider a 10 g/L shock to hemoglobin. If every child in Senegal was exposed to such a shock, rates of anemia would be expected to increase from ~60% to ~85%. As a further illustration, consider a typical poor household in Dakar (10th percentile of the wealth distribution within Dakar). The expected effect of being in-utero during th 2008 crisis, compared to having been born before, would be negative 14 g/L of hemoglobin. For a child not to be driven into anemia after such a shock, they would have to have initial hemoglobin of 120 g/L, the 90th percentile of the overall distribution of hemoglobin in Senegal. 
 
 Once broken into urban and rural groups, the effect of the crisis is noticeable in the raw data. Below I plot the median hemoglobin by birth quarter, just as I did above, but this time split into rural and urban groups and only including observations from the 2010 survey.
 
@@ -440,30 +442,19 @@ The regression above does not allows for spatial heterogeneity of response, exce
 $$H_i = \alpha_0 + \beta Exp_i + \delta Exp_i*Region + \alpha_1MOB_i + \alpha_2MOB_i^2$$
 I report the predicted effect of exposure in each region. A guide to the regions of Senegal, with names and distribution of variables of interest, can be found in the Appendix.
 
-```{r 2010effectmap}
-load("~/Research/Anemia/Anemia/data/effect_map.Rdata")
+I do not control for urban-rural or for wealth, as I want to capture the regional effects, inclusive of differences in wealth and the proportion who are urban. We see that Dakar and its neighbor Thiès are most strongly affected, although both are relatively wealthy. Outside of these two regions, distance-to-Dakar seems to have no effect, indicating a nonlinear relationship of distance-to-Dakar and effect of the 2008 crisis. I include the results for 2012 in order to compare magnitudes. We see that for many regions the effect is inconsistent across years, suggesting that the crisis had no consistent effect. For Dakar and Thiès, on the other hand, the effect of the crisis is consistent across years and persists into 2012.
 
-ggplot(data = map) + coord_equal()+
-  geom_polygon( aes(x = long, y = lat, group=group, fill =Effect)) +
-  geom_path(aes(x= long, y=lat,group=group), color = "white", size = .1)+
-  scale_fill_viridis(option = "magma", direction = 1) + labs(title = "Effect of 2008 crisis: 2010", x= "Longitude",y = "Latitude", fill = "Effect")
-```
-I do not control for urban-rural or for wealth, as I want to capture the regional effects, inclusive of differences in wealth and the proportion who are urban. We see that Dakar and its neighbor Thiès are most strongly affected, although both are relatively wealthy. Outside of these two regions, distance-to-Dakar seems to have no effect, indicating a nonlinear relationship of distance-to-Dakar and effect of the 2008 crisis.
 
-```{r effect map,fig.height = 18, fig.width = 25, fig.align = "center"}
+```{r effect map, figure.pos = "H"}
 load("~/Research/Anemia/Anemia/data/effect_map.Rdata")
 ggplot(data = map) + coord_equal()+
   geom_polygon( aes(x = long, y = lat, group=group, fill =Effect)) +
   geom_path(aes(x= long, y=lat,group=group), color = "white", size = .1)+
-  scale_fill_viridis(option = "magma", direction = 1) + labs(title = "Effect of 2008 crisis", x= "Longitude",y = "Latitude", fill = "Hemoglobin-for-age")+
-  facet_wrap(Year~.,labeller=labeller(Year = c(beta10 ="2010",beta12="2012")))+
-   theme( plot.title = element_text(size = 60, hjust = 0.5),
-           axis.title = element_text( size = 40),
-           legend.position="none",
-           # The new stuff
-           strip.text = element_text(size = 50))
+  scale_fill_viridis(option = "magma", direction = 1) + labs(title = "Effect of 2008 crisis", x= "Longitude",y = "Latitude", fill = "Effect")+
+  facet_wrap(Year~.,labeller=labeller(Year = c(beta10 ="2010",beta12="2012")))
+
 ```
-Here I plot the same map, but include the results for 2012 in order to compare magnitudes. We see that for many regions the effect is inconsistent across years, suggesting that the crisis had no consistent effect. For Dakar and Thiès, on the other hand, the effect of the crisis is consistent across years and persists into 2012.
+
 
 # Discussion
 
@@ -482,7 +473,7 @@ There is substantial attenuation of the effect of the 2008 crisis between 2010 a
 
 ## Interpretation of Variables
 
-Although exposure was defined with respect to prices, the 2008 crisis is a broad instrument. During the crisis there were protests, unrest and a change in the type of agricultural production, with an increase in staples like millet and sorghum. Thus, we cannot rule out that the estimated effect of the crisis has more to do with the general characteristics of the period than with prices *per se*. For example, the strong effect in Dakar might come from social unrest, as there was rioting in Dakar during the period.
+Although exposure was defined with respect to prices, the 2008 crisis is a broad instrument. During the crisis there were protests, unrest and a change in the type of agricultural production, with an increase in staples like millet and sorghum. Thus, we cannot rule out that the estimated effect of the crisis has more to do with the general characteristics of the period than with prices *per se*. For example, the strong effect in Dakar might come from social unrest, as there was rioting in Dakar during the period. 
 
 Similarly, distance-to-Dakar should be considered as a general proxy for integration to the world market. Distance captures a broad set of socio-economic conditions. Areas further from Dakar are poorer, have less education and have more subsistence agriculture relative to commercial agriculture. Thus, the estimated effect will not be of transportation costs alone, but rather the combination general set of characteristics associated with being further from Dakar. Likewise, "wealth" in the DHS is a synthetic index, rather than an actual measure of household assets. Thus, wealth in this study ought to be thought of as a continuous measure of socio-economic status, which is correlated with household assets and income. 
 
@@ -566,7 +557,7 @@ texreg::texreg(list(simp10,simp12,sv10,sv12),
                                           "Distance to Dakar","Distance to Dakar * Exposure") ,
                      override.pvalues = list(er1[,2],er2[,2],er3[,2],er4[,2]),
                      override.se = list(er1[,1],er2[,1],er3[,1],er4[,1]),
-                     caption = "Test for Lagged Effects",
+                     caption = "Restricted Sample Results",
                      float.pos = "H")
 
 ```
@@ -582,7 +573,7 @@ load("~/Research/Anemia/Anemia/data/narrow_regression_table.Rdata")
                                               "Distance to Dakar * Exposure", "Wealth * Exposure") ,
                          override.pvalues = list(er5[,2],er6[,2],er7[,2],er8[2]),
                          override.se = list(er5[,1],er6[,1], er7[,1],er8[,1]),
-                         caption =	"Test for Lagged Effects",
+                         caption =	"Restricted Sample Results",
                      	float.pos = "H")
 
 
@@ -644,7 +635,7 @@ load("~/Research/Anemia/Anemia/data/lag_regression_table.Rdata")
 Next I test for fetal selection. Female fetuses are more robust than males, so if the 2008 crisis caused selection due to in-utero stress, we should see an increase in the number of girls. I find no such result.
 ```{r selec result,results = "asis",messages = FALSE}
 load("~/Research/Anemia/Anemia/data/test_for_selection.Rdata")
-texreg(girl, digits = 4,custom.model.names = "Girl",custom.coef.names = "Exposure",float.pos = "H")
+texreg(girl, digits = 4,custom.model.names = "Girl",custom.coef.names = "Exposure",float.pos = "H", caption = "Test for Selection")
 
 ```
 
