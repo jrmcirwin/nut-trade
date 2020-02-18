@@ -3,6 +3,7 @@
 title: 'Anemia in Senegal: The Effect of the 2008 World Food Price Crisis'
 header-includes:
 - \usepackage{graphicx}
+- \usepackage[margin=1in]{geometry}
 - \usepackage{calc}
 - \usepackage{float}
 - \floatplacement{figure}{H}
@@ -15,7 +16,7 @@ bibliography: ["/home/friend/bibtex/references.bib"]
 biblio-style: "apalike"
 nocite: | 
   [@hossainMoralEconomyGlobal2014],[@senIngredientsFamineAnalysis1981],[@almond1918InfluenzaPandemic2006],[@heckmanCausalParametersPolicy2000]
-abstract: "I explore the effect of the 2008 world food price crisis on the health of Senegalese children who were in-utero at the time. While previous work has looked at the effect of the 2008 crisis on child health, mine is the first to use a fetal origins approach, which allows data collected several years after the crisis to be used in analysis. I find that the 2008 crisis had a negative impact on maternal health in urban areas, and that its effect was diminishing with distance from Dakar. I also find that the effect of exposure in-utero is apparent in 2010 but not in 2012, suggesting dissipation of the effect over time. Because iron is a critical nutrient in early-life development, this dissipation masks an important negative shock to health."
+abstract: "I explore the effect of the 2008 world food price crisis on the health of Senegalese children who were in-utero at the time. While previous work has looked at the effect of the 2008 crisis on child health, mine is the first to use a fetal origins approach, which allows me to use data collected several years after the crisis. I find that the 2008 crisis had a negative impact on fetal health in urban areas, and that its effect was diminishing with distance from Dakar. I also find that the effect of exposure in-utero is apparent in 2010 but not in 2012, suggesting dissipation over time. Because iron is a critical nutrient in early-life development, this dissipation masks an important negative shock to health."
 ---	
 
 
@@ -23,7 +24,7 @@ abstract: "I explore the effect of the 2008 world food price crisis on the healt
 knitr::opts_chunk$set(echo = FALSE,message=FALSE,cache = TRUE, warning = FALSE, fig.cap = " ")
 ```
 
-```{r cars, include=F}
+```{r cars, include = FALSE}
 rm(list = ls(all.names = TRUE))
 p <-c("ggplot2","dplyr","readr","tidyr","RColorBrewer","viridis")
 lapply(p, library, character.only =T)
@@ -36,13 +37,13 @@ load("~/Research/Anemia/Anemia/data/index.Rdata")
 
 ## Anemia
 
-This project explores the effect of the 2008 world food price crisis on infant anemia in Senegal. Anemia is characterized by low levels of hemoglobin in the blood and can be caused by micro-nutrient deficiencies, disease and genetic factors. The majority of anemia cases are caused by iron-deficiency due to malnutrition [@camaschellaIrondeficiencyAnemia2015]. By World Health Organization (WHO) estimates, 1.62 billion people around the world suffer from anemia. Anemia disproportionately affects women and the poor. In children, anemia impairs cognitive and motor development. In adults, anemia can cause fatigue and blindness.For pregnant women, anemia increases the probability of death during childbirth [@rahmanMaternalAnemiaRisk2016].
+This project explores the effect of the 2008 world food price crisis on infant anemia in Senegal. Anemia is characterized by low levels of hemoglobin in the blood and is most often caused by iron-deficiency due to malnutrition [@camaschellaIrondeficiencyAnemia2015]. By World Health Organization (WHO) estimates, 1.62 billion people around the world suffer from anemia, most of whom are poor women. Anemia can cause fatigue and blindness in adults. The direct effect of anemia on world productivity has been estimated to account for 4% of world GDP per year (World Bank, 2004). For pregnant women, anemia increases the probability of death during childbirth [@rahmanMaternalAnemiaRisk2016]. 
 
-Maternal anemia has a direct effect on fetal and infant anemia. Unless remedied through increased iron consumption, an anemic child may grow into an anemic adult. Iron is a critical micro-nutrient during early childhood, meaning that even if a child recovers from anemia later in life, they will suffer impaired development of motor and cognitive functions. During menarche, iron requirements increase for girls, and many become anemic. Thus an anemic mother begets anemic infant who becomes an anemic woman who begets an anemic child. This inter-generational aspect of anemia is well appreciated by the WHO and is recognized as an important issue at the nexus of public health, nutrition and female empowerment [@camaschellaIrondeficiencyAnemia2015]. Anemia also has a direct, negative effect on productivity which is estimated to cost more than 4% of GDP per year worldwide in lost output (World Bank, 2004).
+Maternal anemia has a direct effect on fetal and infant anemia. In children, iron is a critical nutrient, and anemia may impair cognitive and motor development. An anemic infant is then more likely to develop into an anemic adult. Thus, an anemic mother begets anemic infant who becomes an anemic woman who begets an anemic child. This inter-generational aspect of anemia is well appreciated by the WHO and is recognized as an important issue at the nexus of public health, nutrition and female empowerment [@camaschellaIrondeficiencyAnemia2015].
 
 The economic costs of anemia are well-understood, as are its biological causes and consequences [@zimmermannNutritionalIronDeficiency2007]. While it is known that maternal iron consumption affects fetal hemoglobin, the magnitude of this effect has not been quantified. Moreover, the extent to which any in-utero effects *persist* as the infant ages has not yet been addressed. Previous work has focused on small, controlled trials involving anemia and iron supplementation. 
 
-I use the rapid, unforeseen increase of world food prices in early 2008 as a natural experiment to analyze the intergenerational effects of maternal anemia. Using childhood hemoglobin data in Senegal 2-4 years after the crisis, I am able to both quantify the effect of the 2008 crisis in Senegal and examine the effect of in-utero shocks on anemia in childhood. The causes of anemia and the consequences of the 2008 crisis have been explored separately by researchers. I am, to my knowledge, the first to connect the two. 
+I use the rapid, unforeseen increase of world food prices in early 2008 as a natural experiment to analyze the intergenerational effects of maternal nutrition on infant anemia. Using childhood hemoglobin data in Senegal 2-4 years after the crisis, I am able to both quantify the effect of the 2008 crisis in Senegal and examine the effect of in-utero shocks on anemia in childhood. The causes of anemia and the consequences of the 2008 crisis have been explored separately by researchers. I am, to my knowledge, the first to connect the two. 
 
 ## 2008 World Food Price Crisis
 After an extended period of low and stable food prices, world food prices increased dramatically from February to April 2008. The causes are debated, but include American agriculture policy as well as financial speculation [@rossetFoodSovereigntyContemporary2008]. The prices of both rice and wheat doubled in fewer than 6 months, while the prices of other staples increased as well. This increase lead to riots and unrest in low to medium-income countries around the world, including Senegal.
@@ -328,7 +329,7 @@ Where $H_i$ is hemoglobin-for-age, $Exp_i$ is the number of months in-utero duri
 
 I also estimate a more complex relationship, in order to test the distance hypothesis next to the urban-rural and wealth hypotheses discussed above:
 
-$$H_i = \alpha_0 + \beta Exp_i + \delta Exp_i*Dist_i + \alpha_1MOB_i + \alpha_2MOB_i^2 + \rho Exp_i*Wealth + \alpha_3 Dist_i + \alpha_4 Wealth$$
+$$H_i = \alpha_0 + \beta Exp_i + \delta Exp_i*Dist_i + \alpha_1MOB_i + \alpha_2MOB_i^2 + \rho Exp_i*Wealth_i + \alpha_3 Dist_i + \alpha_4 Wealth_i$$
 
 This regression is run separately for each survey year, and for urban and rural households. My hypotheses are that $\delta > 0$ and $\rho > 0$. In the first regression, I expect that $\beta<0$, because distance-to-Dakar must be non-negative. However, in the second specification, The sign of $\beta$ will depend on the underlying distributions of wealth, which can be negative.[^7]
 
@@ -418,8 +419,10 @@ Once broken into urban and rural groups, the effect of the crisis is noticeable 
 
 ```{r urb-rur birth, fig.align = "center"}
 load("~/Research/Anemia/Anemia/data/urban_birthq_graph.Rdata")
-ggplot(all_sen)+ geom_point(aes(x = birth_q, y=all_sen,color=urban), size = 3)+
-  annotate("rect", xmin = 9, xmax = 10, ymin = -Inf, ymax = Inf,color="Orange",alpha = .2)+  labs(title = "Median hemoglobin by Birth Quarter: Urban-Rural 2010",x = "Birth Quarter: 0 = 2006", y= "Median Hemoglobin")
+ggplot(filter(all_sen,urban==1))+ geom_point(aes(x = birth_q, y=all_sen), size = 3)+
+  annotate("rect", xmin = 9, xmax = 10, ymin = -Inf, ymax = Inf,color="Orange",alpha = .2)+  labs(title = "Median hemoglobin by Birth Quarter: Urban 2010",x = "Birth Quarter: 0 = 2006", y= "Median Hemoglobin")
+ggplot(filter(all_sen,urban==0))+ geom_point(aes(x = birth_q, y=all_sen), size = 3)+
+  annotate("rect", xmin = 9, xmax = 10, ymin = -Inf, ymax = Inf,color="Orange",alpha = .2)+  labs(title = "Median hemoglobin by Birth Quarter: Rural 2010",x = "Birth Quarter: 0 = 2006", y= "Median Hemoglobin")
 
 ```
 
