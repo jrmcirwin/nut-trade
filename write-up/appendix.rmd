@@ -117,3 +117,51 @@ ggplot(data=filter(env,YEAR!=2005&YEAR!=2014), aes(x=LONGNUM, y=LATNUM)) +
   geom_voronoi(aes(fill=land), outline=x)+scale_fill_viridis_c(option="magma", direction=-1) +
   labs(title = "Land Ownership across Senegal", x = "",y="")
 ```
+
+
+
+```{r urb-rur birth, fig.align = "center",fig.cap = "Hemoglobin-for-age by Birth Quarter"}
+load("~/Research/Anemia/Anemia/data/urban_birthq_graph.Rdata")
+ggplot(filter(all_sen, is.na(urban)))+ geom_point(aes(x = birth_q, y=all_sen), size = 3)+
+  geom_vline(xintercept = 8)+  labs(title = "Median hemoglobin by Birth Quarter: All of Senegal",x = "Birth Quarter: 0 = 2006", y= "Median Hemoglobin") 
+ggplot(filter(all_sen,urban==1))+ geom_point(aes(x = birth_q, y=all_sen), size = 3)+
+  geom_vline(xintercept = 8)+  labs(title = "Median hemoglobin by Birth Quarter: Urban 2010",x = "Birth Quarter: 0 = 2006", y= "Median Hemoglobin")
+ggplot(filter(all_sen,urban==0))+ geom_point(aes(x = birth_q, y=all_sen), size = 3)+
+  geom_vline(xintercept = 8)+  labs(title = "Median hemoglobin by Birth Quarter: Rural 2010",x = "Birth Quarter: 0 = 2006", y= "Median Hemoglobin")
+
+```
+
+ As illustration, below I provide a the distribution of hemoglobin for children of age 36 months:
+
+```{r hemo dist,fig.height = 6, fig.width = 10, fig.align = "center", fig.cap = "Example of Hemoglobin distribution for specific age"}
+#load("~/Research/Anemia/Anemia/data/cohort.Rdata")
+ggplot(filter(dhs,age==36)) + geom_density(aes(x=hemoglobin))+ geom_vline(aes(xintercept = 105))+
+labs(title = "PDF of Hemoglobin: Age 36 months", x = "Hemoglobin: g/L", y ="Density")
+
+```
+
+```{r dist_wealth,message=FALSE, fig.height=6, fig.width=10, fig.align = "center", fig.cap = "Relationship of household wealth and distance-to-Dakar"}
+## Interpreation of results: combining the regressions with distribution across senegal. calculate effect by cluster
+load("~/Research/Anemia/Anemia/data/hemforage.Rdata")
+dhs <- dhs %>% filter(survey==2010|survey==2012)
+dhs <- droplevels(dhs)
+dhs <- dhs %>% filter(!is.na(dist_dakar))
+
+ggplot(dhs)+geom_smooth(aes(x=dist_dakar,y=wealth,color = urban))+labs(title= "Wealth Distribution by Distance to Dakar", x= "Distance-to-Dakar", y = "Conditional Mean of Wealth")+scale_fill_discrete(labels = c("Rural","Urban"))
+```
+
+
+
+
+Here I plot the median hemoglobin by birth-quarter. I highlight the two quarters which are exposed to the 2008 crisis *in-utero*. First, I present the data for all of Senegal. If one squints, one may discern a dip. Second, I plot the data for Dakar. According to my predictions, Dakar should show the strongest effect of the 2008 crisis. While certainly not obvious, there is a more apparent dip than for all of Senegal. Third, I present the data for Kolda, a region to the southeast of Dakar, relatively isolated and with significant food production. I would not expect to see much of a dip here, and no dip is evident.
+
+
+This evidence is unclear. The effect of the 2008 crisis could not have been not uniformly large across the country, or else it would be apparent.
+
+Next I turn to regression, in order to test the hypotheses stated above. I use quantile regression evaluated at the median, bootstrapped standard errors, and all regressions include a quadratic time trend.
+
+
+
+
+
+These figures were created after seeing the regression results above. Therefore, they should not be interpreted as *separate* evidence from the regression results above. Rather, it is an illustration of those results using the raw data. 

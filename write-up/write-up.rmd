@@ -74,12 +74,7 @@ Moreover, the increased variation from the fetal origins approach allows me to t
 
 ## The Economy of Senegal: Food and Trade
 
-Senegal is a small, poor economy on the west coast of Africa, with a population of 16 million and a GDP per capita of $3,675 (PPP). The climate is Sahelian, with a rainy season starting in May. Average annual rainfall increases on a southward gradient. Dakar is the port and economic hub. The coastal areas practice horticulture and fishing, while the hinterlands close to Dakar engage in commercial groundnut production for export. The river basins in the north and south are farmed for rice, while millet, sorghum and maize are the staples in drier areas. Population is concentrated around Dakar, with smaller concentrations in the river basins in the north and south. See the FEWS Livelihood Zone Map below for context:
-
-
-```{r image-ref-for-in-text, echo = FALSE, message=FALSE,fig.height = 12, fig.width = 20, fig.align='center', fig.cap='FEWs Livelihood Maps', out.width='0.75\\linewidth'}
-knitr::include_graphics("/home/friend/Téléchargements/sen_fews-1.png")
-```
+Senegal is a small, poor economy on the west coast of Africa, with a population of 16 million and a GDP per capita of $3,675 (PPP). The climate is Sahelian, with a rainy season starting in May. Average annual rainfall increases on a southward gradient. Dakar is the port and economic hub. The coastal areas practice horticulture and fishing, while the hinterlands close to Dakar engage in commercial groundnut production for export. The river basins in the north and south are farmed for rice, while millet, sorghum and maize are the staples in drier areas. Population is concentrated around Dakar, with smaller concentrations in the river basins in the north and south. See the appendix for more information about the regions of Senegal.
 
 Although agriculture employs three-quarters of the population (CIA Factbook), imports make up a large part of the food supply. The main staples are rice, maize, sorghum, wheat and millet. As seen in the graph below, foods which are mainly imported, like wheat and rice, have increased in importance in Senegal over the past thirty years, while locally produced staples millet and sorghum have declined in per-capita consumption.
 
@@ -178,16 +173,7 @@ ggplot(dhs) + geom_smooth(aes(x= as.numeric(age),y=hemoglobin, color = survey))+
  labs(title = "Hemoglobin conditional on Age by DHS Survey", x ="Age of child in Months", y= "Hemoglobin: g/l")
 ```
 
- Anemia is relatively rare in children, compared to in infants or adults. The cutoff for anemia in infants and children, 105 grams per liter of blood is shown as a black, horizontal line. Note that these curves are not a trajectory; rather, they are a single cross-section of children of multiple ages.
-
- Within an age group, hemoglobin follows a uni-modal distribution. As illustration, below I provide a the distribution of hemoglobin for children of age 36 months:
-
-```{r hemo dist,fig.height = 6, fig.width = 10, fig.align = "center", fig.cap = "Example of Hemoglobin distribution for specific age"}
-#load("~/Research/Anemia/Anemia/data/cohort.Rdata")
-ggplot(filter(dhs,age==36)) + geom_density(aes(x=hemoglobin))+ geom_vline(aes(xintercept = 105))+
-labs(title = "PDF of Hemoglobin: Age 36 months", x = "Hemoglobin: g/L", y ="Density")
-
-```
+ Anemia is relatively rare in children, compared to in infants or adults. The cutoff for anemia in infants and children, 105 grams per liter of blood is shown as a black, horizontal line. Note that these curves are not a trajectory; rather, they are a single cross-section of children of multiple ages. Within an age group, hemoglobin follows a uni-modal distribution.
 
 In order to account for age, I will use a z-score approach analogous to how child height and weight is treated by the DHS. We are interested in the 2008 price shock. The only surveys which provide information on the shock are 2010 and 2012, so I use the other 5 surveys (2005, 2014-17) to make z-scores for the surveys of interest. Taking the mean and standard deviation by age, I then normalize hemoglobin by age.
 
@@ -240,22 +226,12 @@ ggplot(dhs)+geom_density(aes(x=wealth,color = urban:survey))+ labs(title= "Wealt
 scale_color_brewer(palette="Set1",labels = c("2010 Rural","2012 Rural","2010 Urban","2012 Urban"))
 ```
 
-Urban areas are wealthier than rural areas. We also see that for both the rural and urban populations, mean wealth is decreases as we move away from Dakar.
-
-```{r dist_wealth,message=FALSE, fig.height=6, fig.width=10, fig.align = "center", fig.cap = "Relationship of household wealth and distance-to-Dakar"}
-## Interpreation of results: combining the regressions with distribution across senegal. calculate effect by cluster
-load("~/Research/Anemia/Anemia/data/hemforage.Rdata")
-dhs <- dhs %>% filter(survey==2010|survey==2012)
-dhs <- droplevels(dhs)
-dhs <- dhs %>% filter(!is.na(dist_dakar))
-
-ggplot(dhs)+geom_smooth(aes(x=dist_dakar,y=wealth,color = urban))+labs(title= "Wealth Distribution by Distance to Dakar", x= "Distance-to-Dakar", y = "Conditional Mean of Wealth")+scale_fill_discrete(labels = c("Rural","Urban"))
-```
+Urban areas are wealthier than rural areas, and urban dwellers are more likely to live near Dakar. For both the rural and urban populations, wealth is negatively correlated with distance to Dakar.
 
 # Methods
 
 
-The 2008 crisis forms a contiguous 8-month period in which the price index is greater than at any other point in the 20 year span. I take all those *in-utero* during this period, February to September 2008, to be exposed. The degree of exposure is the proportion of months of gestation which fall during the crisis period. For anyone born before March 2008, or conceived after September 2008, exposure is zero. For someone born in November 2008, exposure is $\frac{8}{9}$, as they were *in-utero* for the entirety of the 8-month crisis period.[^5]
+The 2008 crisis forms a contiguous 8-month period in which the price index is greater than at any other point in the 20 year span. I take all those *in-utero* during this period, February to September 2008, to be exposed. The degree of exposure is the proportion of months of gestation which fall during the crisis period. For anyone born before March 2008, or conceived after September 2008, exposure is zero. For someone born in November 2008, exposure is $\frac{8}{9}$, as they were *in-utero* for the entirety of the 8-month crisis period.
 
 ```{r exposure,fig.height = 6, fig.width = 10, fig.align = "center", fig.cap = "Definition of Exposure to the 2008 Crisis"}
 load("~/Research/Anemia/Anemia/data/index.Rdata")
@@ -266,7 +242,7 @@ ggplot(prices, aes(x=Time, y= log(real_index)-6.25))+ geom_path()+geom_point() +
   labs(title = "Exposure Assignment", x = "Month: Nov 2003 = 0", y= "Index in log-terms (real)")
 ```
 
-My methodology follows that of Almond (2006) as we both analyze a cohort-level time shock. The effect should be visible in the raw data, and then this visual test is formalized with a regression characterizing deviation from a quadratic time trend. I then include additional interaction terms because I am interested in heterogeneous effects. 
+My methodology follows that of Almond (2006) as we both analyze a cohort-level time shock. The effect should be visible in the raw data, and then this visual test is formalized with a regression characterizing deviation from a quadratic time trend. I then include additional interaction terms because I am interested in heterogeneous effects. I run these regressions separately for the 2010 and 2012 DHS surveys. These surveys identify the same cohorts, but at different points in the cohort life-cycle. 
 
 ## Identification
 
@@ -292,29 +268,20 @@ texreg(list(dist,wealth,urb,land), digits = 4,
 
 The fetal origins strategy, which relies on a biological sensitivity to iron intake determined by whether an individual was *in-utero*, provides a strong argument that any effect I find reflects a change maternal health conditions. I would not, however, claim that my analysis identifies the effect of an increase in world prices. Rather, I am identifying the effect of being *in-utero* during a specific 8-month window, which included a price increase. 
 
-Although there is no reverse causation from developments in Senegal to world prices, my results are identified purely on the basis of time. Therefore, temporal coincidence could be responsible for my results. Although the price shock is *external* to Senegal, it is not necessarily *exogenous*, taking the distinction from Heckman (2000). 
-
-Identification relies upon an understanding of developments within Senegal, and the argument that there was nothing exceptional during the period, save for the effects of the 2008 price crisis. For example, a drought in 2007-2008 might have caused reduced food-availability during the period. Below I plot the rainfall anomaly for the Sahel region from 1950-2017. We see that 2007-08 was unremarkable. We have already seen in the introduction that domestic food production was relatively high in 2008. I have yet to find any evidence of developments from *within* Senegal which would coincide with the 2008 price spike.
-
-```{r rainfall, fig.cap = "Searching for coincidence"}
-x <- read_csv("/home/friend/Research/Data/Physical/sahel_rainfall.csv")
-colnames(x) <- c("Year","Rainfall","d")
-ggplot(x,aes(x= Year,y=Rainfall)) + geom_bar(stat = "identity")+ 
-annotate("rect", xmin = 2006.5, xmax = 2008.5, ymin = -Inf, ymax = Inf,color="Orange",alpha = .2)+xlim(1989,2018)+
-labs(title =  "Sahel Rainfall Anomaly by Year", y = "Rainfall Anomaly") +
-  theme(plot.title = element_text(hjust = 0.5))
-```
+Although there is no reverse causation from developments in Senegal to world prices, my results are identified purely on the basis of time. Therefore, temporal coincidence could be responsible for my results. Although the price shock is *external* to Senegal, it is not necessarily *exogenous*, taking the distinction from Heckman (2000). Identification relies upon an understanding of developments within Senegal, and the argument that there was nothing exceptional during the period, save for the effects of the 2008 price crisis. For example, a drought in 2007-2008 might have caused reduced food-availability during the period. I have found no evidence of developments from *within* Senegal which would coincide with the 2008 price spike. 
 
 ## Specifications
 
 As results, I present two kinds of evidence: 
 
-1. The deviation from a quadratic time trend of the exposed cohorts, estimated separately by survey; and,
+1. The deviation from a quadratic time trend[^5] of the exposed cohorts, estimated separately by survey; and,
 2. The median hemoglobin-for-age by birth-quarter.
 
 I use median-regression, rather than least-squares, as it is less sensitive to heterogeneous response across the hemoglobin distribution.[^6] 
 
-[^5]: We would expect little to no response of hemoglobin to external shocks at the high and low ends of the distribution. At the high end, those in good health are presumably insulated from price shocks by SES. At the low end, a certain level of hemoglobin is required by the body, and it cannot diminish beyond some point without causing death.
+[^5]: The results are stable with cubic and quartic time trends as well.
+
+[^6]: We would expect little to no response of hemoglobin to external shocks at the high and low ends of the distribution. At the high end, those in good health are presumably insulated from price shocks by SES. At the low end, a certain level of hemoglobin is required by the body, and it cannot diminish beyond some point without causing death.
 
 
 $$H_i = \alpha_0 + \beta Exp_i + \delta Exp_i*Dist_i + \alpha_1MOB_i + \alpha_2MOB_i^2 +\alpha_3 Dist_i$$
@@ -327,53 +294,39 @@ $$H_i = \alpha_0 + \beta Exp_i + \delta Exp_i*Dist_i + \alpha_1MOB_i + \alpha_2M
 
 This regression is run separately for each survey year, and for urban and rural households. My hypotheses are that $\delta > 0$ and $\rho > 0$. In the first regression, I expect that $\beta<0$, because distance-to-Dakar must be non-negative. However, in the second specification, The sign of $\beta$ will depend on the underlying distributions of wealth, which can be negative.[^7]
 
+[^7]: I do not include land-ownership in any of my analysis because it is so highly correlated with being from a rural *commune* with wealth. Once accounting for the urban-rural split, land-ownership mostly captures the wealth of a household. In future research, with a larger, more geographically diverse data-set, I would like to include land-ownership.
 
 
 # Results
 
-Here I plot the median hemoglobin by birth-quarter. I highlight the two quarters which are exposed to the 2008 crisis *in-utero*. First, I present the data for all of Senegal. If one squints, one may discern a dip. Second, I plot the data for Dakar. According to my predictions, Dakar should show the strongest effect of the 2008 crisis. While certainly not obvious, there is a more apparent dip than for all of Senegal. Third, I present the data for Kolda, a region to the southeast of Dakar, relatively isolated and with significant food production. I would not expect to see much of a dip here, and no dip is evident.
-
-```{r birth, fig.height = 6, fig.width = 10, fig.align = "center", fig.cap = "Hemoglobin-for-age by Birth Quarter"}
-load("~/Research/Anemia/Anemia/data/birthq_graph.Rdata")
-ggplot(birth)+ geom_point(aes(x = birth_q, y=all_sen), size = 4)+ 
-  annotate("rect", xmin = 9, xmax = 10, ymin = -Inf, ymax = Inf,color="Orange",alpha = .2)+
-  labs(title = "Median hemoglobin by Birth Quarter: All of Senegal",x = "Birth Quarter: 0 = 2006", y= "Median Hemoglobin")
-ggplot(birth)+ geom_point(aes(x = birth_q, y=dakar), size =4)+ 
-  annotate("rect", xmin = 9, xmax =10, ymin = -Inf, ymax = Inf,color="Orange",alpha = .2)+
-  labs(title = "Median hemoglobin by Birth Quarter: Dakar",x = "Birth Quarter: 0 = 2006", y= "Median Hemoglobin")
-ggplot(birth)+ geom_point(aes(x = birth_q, y=kolda), size =4)+ 
-  annotate("rect", xmin = 9, xmax =10, ymin = -Inf, ymax = Inf,color="Orange",alpha = .2)+
-  labs(title = "Median hemoglobin by Birth Quarter: Kolda",x = "Birth Quarter: 0 = 2006", y= "Median Hemoglobin")
-```
-This evidence is unclear. The effect of the 2008 crisis could not have been not uniformly large across the country, or else it would be apparent.
-
-Next I turn to regression, in order to test the hypotheses stated above. I use quantile regression evaluated at the median, bootstrapped standard errors, and all regressions include a quadratic time trend.[^8]
-
-[^6]: The results are stable with cubic and quartic time trends as well.
 
 
-[^7]: I do not include land-ownership in any of my analysis because it is so highly correlated with being from a rural *commune* with wealth. Once accounting for the urban-rural split, land-ownership mostly captures the wealth of a household. In future research, with a larger, more geographically diverse data-set, I would like to include land-ownership.
+Turning to regression, we see a small negative effect of _in-utero_ exposure to the 2008 crisis on hemoglobin for urban-dwellers, and a corresponding small positive effect for rural-dwellers. Both of these effects are attenuated in the 2012 survey. 
 
-[^8]: My assignment of exposure assumes that the effect of exposure in month 1 of gestation is the same as in month 9. As iron requirements increase over the course of gestation, I would expect exposure in the third trimester to have a greater effect than exposure in the first. I hope to explore this question in future research.
-
-
-```{r main result,results = "asis",messages = FALSE}
+```{r main result,results = "asis",messages = FALSE,cache = TRUE}
 load("~/Research/Anemia/Anemia/data/regression_table.Rdata")
 library(quantreg)
-texreg::texreg(list(simp10,simp12,sv10,sv12), 
+texreg::texreg(list(u10,r10,u12,r12), 
                      digits = 4,
-                     custom.model.names = c("2010","2012","2010","2012"),
-                    omit.coef = "poly",
-                     custom.coef.names =c("Intercept","Exposure",
-                                          "Distance to Dakar","Distance to Dakar * Exposure") ,
+                     custom.model.names = c("2010: Urban","2010: Rural","2012: Urban","2012: Rural"),
+                     omit.coef = "poly",
+                     custom.coef.names =c("Intercept","Exposure") ,
                      override.pvalues = list(er1[,2],er2[,2],er3[,2],er4[,2]),
                      override.se = list(er1[,1],er2[,1],er3[,1],er4[,1]),
                      caption = "Parsimonious Regression Results",
                      float.pos = "H")
+```
+
+Following the results of the above regression, I plot the median hemoglobin by birth quarter, split into rural and urban groups and only including observations from the 2010 survey.
+
+```{r, fig.align = "center", fig.height= 9, fig.width = 6,fig.cap = "Hemoglobin-for-age by Birth Quarter"}
+load("~/Research/Anemia/Anemia/data/urban_birthq_graph.Rdata")
+ggplot(all_sen) + geom_point(aes(x = birth_q, y=all_sen), size = 3)+geom_vline(xintercept = 8)+ facet_wrap(~class, dir = "v")+
+labs(title = "Median hemoglobin by Birth Quarter: 2010",x = "Birth Quarter: 0 = 2006", y= "Median Hemoglobin")
 
 ```
 
-As expected from the graphs above, exposure alone has a negligible impact on hemoglobin. However, once we allow the effect to depend on distance-to-Dakar, the 2008 crisis appears to have a negative effect on hemoglobin in 2010 but not in 2012. The result is not significant, but it is suggestive. We see below that once we break up the sample into urban and rural groups, and allow for the effect to differ by wealth, the effect of the crisis on urban-dwellers is large and significant. Thus, the small effect we see above is the average of the large effect on the urban-poor with the small (or even positive) effect on the rich or rural part of the sample. 
+We would expect, however that within urban-dwellers the poor to be more affected by the crisis, and those who live closes to Dakar. Thus, I allow the effect of exposure to depend on these two variables. I find support for both of the predicted hypotheses. Wealth and distance-to-Dakar both attenuate the effect of exposure.
 
 ```{r main2 result,results = "asis",messages = FALSE}
 load("~/Research/Anemia/Anemia/data/regression_table.Rdata")
@@ -409,34 +362,9 @@ labs(title ="CDF of Predicted Effects in terms of Hemoglobin-for-Age", x = "Effe
 
 The implied effects for the urban 2010 population are large. For the urban-poor, the magnitude ranges from 0.5 to greater than 1 standard deviations in 2010. The standard deviation of hemoglobin by age in Senegal is 14-15 g/L. To understand the magnitude of this shocks, consider a 10 g/L shock to hemoglobin. If every child in Senegal was exposed to such a shock, rates of anemia would be expected to increase from ~60% to ~85%. As a further illustration, consider a poor household in Dakar (10th percentile of the wealth distribution within Dakar). The expected effect of being *in-utero* during th 2008 crisis, would be negative 14 g/L of hemoglobin. For a child not to be driven into anemia after such a shock, they would have to have initial hemoglobin of 120 g/L, the 90th percentile of the overall distribution of hemoglobin in Senegal. 
 
-Once broken into urban and rural groups, the effect of the crisis is noticeable in the raw data. Below I plot the median hemoglobin by birth quarter, just as I did above, split into rural and urban groups and only including observations from the 2010 survey.
-
-
-```{r urb-rur birth, fig.align = "center",fig.cap = "Hemoglobin-for-age by Birth Quarter"}
-load("~/Research/Anemia/Anemia/data/urban_birthq_graph.Rdata")
-ggplot(filter(all_sen,urban==1))+ geom_point(aes(x = birth_q, y=all_sen), size = 3)+
-  annotate("rect", xmin = 9, xmax = 10, ymin = -Inf, ymax = Inf,color="Orange",alpha = .2)+  labs(title = "Median hemoglobin by Birth Quarter: Urban 2010",x = "Birth Quarter: 0 = 2006", y= "Median Hemoglobin")
-ggplot(filter(all_sen,urban==0))+ geom_point(aes(x = birth_q, y=all_sen), size = 3)+
-  annotate("rect", xmin = 9, xmax = 10, ymin = -Inf, ymax = Inf,color="Orange",alpha = .2)+  labs(title = "Median hemoglobin by Birth Quarter: Rural 2010",x = "Birth Quarter: 0 = 2006", y= "Median Hemoglobin")
-
-```
-
-I do not include this in the first set of such figures because it was not created until after seeing the regression results above. Therefore, it should not be interpreted as *separate* evidence from the regression results above. Rather, it is an illustration of those results using the raw data. In contrast, the first three birth-quarter graphs I show were created *before* running regressions.
-
 ## Spatial Distribution of Effects
 
-To explore the spatial distribution of effects, I produce maps of the effect of the 2008 crisis across regions of Senegal. First, I use the coefficients from the 2010 regression above to predict the effect of exposure by DHS cluster. Distance-to-Dakar is defined on the cluster level, and then I use the median wealth in each cluster to estimate the effect. I then plot the clusters, colored by the predicted effect of exposure. 
-
-```{r predicted effect map, fig.align = "center", fig.cap = "Effect coefficients evaluated at the cluster-level"}
-load("~/Research/Anemia/Anemia/data/modeled_effect_map.Rdata")
-ggplot(data=cluster, aes(x=LONGNUM, y=LATNUM)) + ggvoronoi::geom_voronoi(aes(fill = effect),outline = x)+
-  scale_fill_viridis_c(option="magma", direction=1) +
-  labs(title = "Model-Predicted effect across Senegal", x= "Longitude",y = "Latitude", fill = "Effect")
-
-```
-We see obvious islands of effect-- these are urban clusters. In general, the urban-rural effect is far greater than the distance-to-Dakar effect, as even rural clusters close to Dakar have relatively small effects. Dakar itself does not exhibit a large effect. This is because the median wealth in Dakar is the relatively great. Moreover, the specification forces the effect of distance-to-Dakar to be linear.
-
-The regression above does not allows for spatial heterogeneity of response, except through distance-to-Dakar. Therefore, I run a more flexible regression, which allows the effect of exposure to vary by region:
+The regressions above do not allow for spatial heterogeneity of response, except through distance-to-Dakar. Therefore, I run a more flexible regression, which allows the effect of exposure to vary by region:
 $$H_i = \alpha_0 + \beta Exp_i + \delta Exp_i*Region + \alpha_1MOB_i + \alpha_2MOB_i^2$$
 I report the predicted effect of exposure in each region. A guide to the regions of Senegal, with names and distribution of variables of interest, can be found in the Appendix.
 
@@ -508,6 +436,10 @@ More ambitiously, I would like to connect my research to the more general questi
 
 # Appendix 1: A guide to Senegal's Regions
 
+```{r image-ref-for-in-text, echo = FALSE, message=FALSE,fig.height = 12, fig.width = 20, fig.align='center', fig.cap='FEWs Livelihood Maps', out.width='0.75\\linewidth'}
+knitr::include_graphics("/home/friend/Téléchargements/sen_fews-1.png")
+```
+
 ```{r guide}
 load("~/Research/Anemia/Anemia/data/effect_map.Rdata")
 CapStr <- function(y) {
@@ -527,6 +459,18 @@ load("~/Research/Anemia/Anemia/data/hemforage.Rdata")
 dhs$region <- sapply(dhs$region, CapStr)
 
 knitr::kable(dhs %>% group_by(region) %>% summarise(Wealth = mean(wealth),Land = mean(land,na.rm=T),Urban = mean(as.numeric(urban)-1),N = n()), digits = 2, label = "Mean variables by Region")
+```
+
+## Identification: Rainfal Anomaly in Senegal
+Below I plot the rainfall anomaly for the Sahel region from 1950-2017. We see that 2007-08 was unremarkable. We have already seen in the introduction that domestic food production was relatively high in 2008. 
+
+```{r rainfall, fig.cap = "Searching for coincidence"}
+x <- read_csv("/home/friend/Research/Data/Physical/sahel_rainfall.csv")
+colnames(x) <- c("Year","Rainfall","d")
+ggplot(x,aes(x= Year,y=Rainfall)) + geom_bar(stat = "identity")+ 
+annotate("rect", xmin = 2006.5, xmax = 2008.5, ymin = -Inf, ymax = Inf,color="Orange",alpha = .2)+xlim(1989,2018)+
+labs(title =  "Sahel Rainfall Anomaly by Year", y = "Rainfall Anomaly") +
+  theme(plot.title = element_text(hjust = 0.5))
 ```
 
 # Appendix 2: Alternate Specifications
@@ -654,4 +598,10 @@ load("~/Research/Anemia/Anemia/data/seasonal_regression_table.Rdata")
                      	float.pos = "H")
 
 
+```
+
+## Hemoglobin by Region by Birth-quarter
+```{r fig.height=10, fig.width=12}
+load("~/Research/Anemia/Anemia/data/birthq_graph.Rdata")
+ggplot(all_sen) + geom_point(aes(x = birth_q, y=all_sen), size = 3)+geom_vline(xintercept = 8)+ facet_wrap(~region)
 ```
