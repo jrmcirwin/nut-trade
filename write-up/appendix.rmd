@@ -165,3 +165,19 @@ Next I turn to regression, in order to test the hypotheses stated above. I use q
 
 
 These figures were created after seeing the regression results above. Therefore, they should not be interpreted as *separate* evidence from the regression results above. Rather, it is an illustration of those results using the raw data. 
+
+```{r wealth,fig.height=6, fig.width=10, fig.align = "center", fig.cap = "DHS Wealth Index across Surveys"}
+## Interpreation of results: combining the regressions with distribution across senegal. calculate effect by cluster
+load("~/Research/Anemia/Anemia/data/hemforage.Rdata")
+dhs <- dhs %>% filter(survey==2010|survey==2012)
+dhs <- droplevels(dhs)
+dhs <- dhs %>% filter(!is.na(dist_dakar))
+
+ggplot(dhs)+geom_density(aes(x=wealth,color = urban:survey))+ labs(title= "Wealth Distribution across Surveys", x= "Wealth", y="Density")+
+scale_color_brewer(palette="Set1",labels = c("2010 Rural","2012 Rural","2010 Urban","2012 Urban"))
+```
+
+As emphasized by Sen (1980), food security depends on the combination of level and volatility of food entitlements. From the simplest model of comparative advantage, we know that opening to trade induces specialization. This specialization will increase average incomes, but the effect of specialization and trade on volatility is unresolved [@giovanniTradeOpennessVolatility2009; @burgessCanOpennessMitigate2010]. The 2008 crisis can be thought of as an extreme case of market volatility. My project then quantifies the effect of this unforeseen shock on maternal health in Senegal.
+
+
+
