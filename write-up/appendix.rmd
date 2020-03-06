@@ -181,3 +181,98 @@ As emphasized by Sen (1980), food security depends on the combination of level a
 
 
 
+
+ying the effect of the crisis is difficult because it affects everyone in the world at a given time. If we are to use the standard measures of nutrition, like weight-for-height, then the data-collection must have been contemporaneous with the crisis. To observe the effect of the crisis, we must compare the same children before and after the crisis occurs. If we observe these children several years after the crisis, there is no control group or exposed group. Everyone was exposed to the crisis, unless they were born too late, in which case they are not comparable.
+
+
+I use the rapid, unforeseen increase of world food prices in early 2008 as a natural experiment to analyze the intergenerational effects of maternal nutrition on infant anemia. Using data from Senegal 2-4 years after the crisis, I am able to both quantify the effect of the 2008 crisis in Senegal and examine the effect of *in-utero* shocks on anemia in childhood. The causes of anemia and the consequences of the 2008 crisis have been explored separately by researchers. I am, to my knowledge, the first to connect the two.
+
+We expect urban populations to be less vulnerable to drought and other natural disasters than the rural populace. There would then seem to be a trade-off where urban, well-connected populations are more vulnerable to the market, while rural, remote populations are vulnerable to nature. Here we must bring in that universal feature of social analysis: class. In either case, it is the poor who are vulnerable and the rich who are not. Any policy which considers mitigating the effect of these shocks, whether they come from the market or from nature, must keep poverty in the foreground. 
+
+## Narrow Window
+
+In the main specification, we are comparing infants exposed to the 2008 crisis *in-utero* to two control groups: 
+
+1. Those who are exposed in childhood; and,
+2. Those who are conceived after the crisis.
+
+For reasons discussed above, including breastfeeding and delayed transmission of shocks, we would expect both of these groups to also experience a negative effect of the crisis. Thus, the ideal control group is to narrow the regression to the window just around those who had just been born and those who were still *in-utero*. I did not do this as my main specification because it would involve throwing out much of the data set, and would reduce my power. Next I report a more narrow specification, where I have thrown out over half the data-set. The data are restricted to those who were born between April 2007 and July 2009. The while the standard errors increase, the point estimates increase in magnitude, as expected if the effect is concentrated in these groups.
+
+
+```{r narrow result,results = "asis",messages = FALSE}
+load("~/Research/Anemia/Anemia/data/narrow_regression_table.Rdata")
+texreg::texreg(list(u10,r10,u12,r12), 
+                     digits = 4,
+                     custom.model.names = c("2010: Urban","2010: Rural","2012: Urban","2012: Rural"),
+                    omit.coef = "poly",
+                     custom.coef.names =c("Intercept","Exposure") ,
+                     override.pvalues = list(er1[,2],er2[,2],er3[,2],er4[,2]),
+                     override.se = list(er1[,1],er2[,1],er3[,1],er4[,1]),
+                     caption = "Restricted Sample Results",
+                     float.pos = "H")
+
+```
+
+```{r narrow2 result,results = "asis",messages = FALSE}
+load("~/Research/Anemia/Anemia/data/narrow_regression_table.Rdata")
+ texreg::texreg(list(urb10,rur10,urb12,rur12), 
+                         digits = 4,
+                         custom.model.names = c("2010: Urban","2010: Rural","2012: Urban","2012: Rural"),
+                         omit.coef = "poly",
+                         custom.coef.names =c("Intercept","Exposure",
+                                              "Distance to Dakar","Wealth",
+                                              "Distance to Dakar * Exposure", "Wealth * Exposure") ,
+                         override.pvalues = list(er5[,2],er6[,2],er7[,2],er8[2]),
+                         override.se = list(er5[,1],er6[,1], er7[,1],er8[,1]),
+                         caption =  "Restricted Sample Results",
+                      float.pos = "H")
+
+
+```
+
+I take this as convincing evidence of the effect of the 2008 crisis. However, it was not the specification to which I pre-committed, so I have included it in the appendix as supporting evidence, rather than as my main specification.
+
+```{r effect narrow distribution, fig.height = 6, fig.width = 10, fig.align = "center", caption = "Distribution of Effects"}
+load("~/Research/Anemia/Anemia/data/narrow_effect_data.Rdata")
+ggplot(eff)+geom_density(aes(x=effect,color=survey:urban))+scale_color_brewer(palette="Set1",labels = c("2010 Rural","2010 Urban","2012 Rural","2012 Urban"))+
+labs(title ="PDF of Predicted Effects in terms of Hemoglobin-for-Age", x = "Effect", y = "Density")
+
+ggplot(eff)+stat_ecdf(aes(x=effect,color=survey:urban))+scale_color_brewer(palette="Set1",labels = c("2010 Rural","2010 Urban","2012 Rural","2012 Urban"))+
+labs(title ="CDF of Predicted Effects in terms of Hemoglobin-for-Age", x = "Effect", y = "Cumulative Probability")
+
+```
+
+Under the narrow specification, the median effect of the crisis on urban-dwellers in 2010 is greater than -.5 standard deviations. Thus, the typical urban dweller of Senegal suffered a -8 g/L shock to hemoglobin. 
+
+```{r guide}
+load("~/Research/Anemia/Anemia/data/effect_map.Rdata")
+CapStr <- function(y) {
+  c <- strsplit(y, " ")[[1]]
+  paste(toupper(substring(c, 1,1)), substring(c, 2),
+      sep="", collapse=" ")
+}
+map$region <- sapply(map$region, CapStr)
+ggplot(data = map) + coord_equal()+
+  geom_polygon( aes(x = long, y = lat, group=group, fill =region)) +
+  geom_path(aes(x= long, y=lat,group=group), color = "white", size = .1)+
+  labs(title = "Region Names: Senegal", x= "Longitude",y = "Latitude", fill = "Region")
+```
+
+```{r region table}
+load("~/Research/Anemia/Anemia/data/hemforage.Rdata")
+dhs$region <- sapply(dhs$region, CapStr)
+
+knitr::kable(dhs %>% group_by(region) %>% summarise(Wealth = mean(wealth),Land = mean(land,na.rm=T),Urban = mean(as.numeric(urban)-1),N = n()), digits = 2, label = "Mean variables by Region")
+```
+
+## Hemoglobin-by-Age
+```{r hemfa,fig.height = 6, fig.width = 10, fig.align = "center", fig.cap = "Hemoglobin Z-Score Transformation" }
+load("~/Research/Anemia/Anemia/data/hem_by_age.Rdata")
+hem_by_age$age <- as.numeric(hem_by_age$age)
+ggplot(hem_by_age, aes(x=age, y=mean_hemo)) + 
+    geom_ribbon(aes(ymin=mean_hemo-sd_hemo, ymax=mean_hemo+sd_hemo), width=.1,linetype=2, alpha=0.1) +
+    geom_line() +
+    geom_point()+ geom_hline(yintercept = 105)+
+    labs(title = "Hemoglobin by Age: Mean and Standard Deviation", x = "Age in Months", y = "Hemoglobin: g/L")
+```
+
