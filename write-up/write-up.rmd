@@ -374,7 +374,7 @@ In this project, I have found the the 2008 crisis had a large, negative impact o
 
 Another, complementary route would be to expand my analysis to include Senegal's neighbors like Burkina Faso, Ghana, Cote D'ivoire, Liberia and Guinea. While I have argued that my results are internally valid for Senegal, it is an open question whether they apply more broadly. Conducting the same test over multiple countries could provide evidence for or against a stable pattern. Given that my dataset is relatively small, expanding coverage to more countries would also improve the power of my tests and allow for a greater number of hypotheses to be tested, such as the effect of land-ownership. 
 
-More ambitiously, I would like to connect my results to data on cognitive development, health and labor-market outcomes. Children _in-utero_ during the 2008 crisis had significantly lower hemoglobin levels in 2010, indicating a general iron-deficiency early in life. Biomedical research has identified iron as a critical nutrient in development, suggesting there may be large, long-term costs to the poor from the 2008 crisis.
+More ambitiously, I would like to connect my results to data on cognitive development, health and labor-market outcomes. Children _in-utero_ during the 2008 crisis had significantly lower hemoglobin levels in 2010, indicating a general iron-deficiency early in life. Biomedical research has identified iron as a critical nutrient in development, suggesting the 2008 crisis may have had large, long-term effects on the urban-poor.
 
 # References
 
