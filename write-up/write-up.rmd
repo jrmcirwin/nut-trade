@@ -16,7 +16,7 @@ bibliography: ["/home/friend/bibtex/references.bib"]
 biblio-style: "apalike"
 nocite: | 
   [@hossainMoralEconomyGlobal2014],[@senIngredientsFamineAnalysis1981],[@almond1918InfluenzaPandemic2006],[@heckmanCausalParametersPolicy2000] ,[@blockMacroShocksMicro2004]
-abstract: "I explore the effect of the 2008 world food price crisis on the health of Senegalese children who were *in-utero* at the time. As predicted by the food-policy literature, I find that the 2008 crisis had a large, negative impact on maternal health in urban areas, but a small, positive effect in rural areas. Observing the same urban cohort over time, I find that the effect of exposure is apparent in 2010 but not in 2012, suggesting catch-up in infant health. As iron is a critical nutrient in early-life development, this catch-up may mask an important negative shock to health. Further research is needed to determine the long-term effects of *in-utero* exposure to the 2008 crisis." 
+abstract: "I explore the effect of the 2008 world food price crisis on the health of Senegalese children who were *in-utero* at the time. As predicted by the food-policy literature, I find that the 2008 crisis had a large, negative impact on maternal health in urban areas, but a small, positive effect in rural areas. Observing the same urban cohort over time, I find that the effect of exposure is apparent in 2010 but not in 2012, suggesting catch-up in observed infant health. As iron is a critical nutrient in early-life development, this catch-up may mask an important negative shock to long-term health. Further research is needed to determine the long-term effects of *in-utero* exposure to the 2008 crisis." 
 ---	
 
 ```{r setup, include=FALSE}
