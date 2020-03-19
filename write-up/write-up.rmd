@@ -340,6 +340,34 @@ labs(title ="CDF of Predicted Effects in terms of Hemoglobin-for-Age", x = "Effe
 
 From this figure, we can see that the median effect size for a child from an urban _commune_ observed in 2010 is around 8 g/L of hemoglobin, which is more than an 8% change in percentage terms. The median effects for the 2010 and 2012 rural and the 2012 urban samples are close to zero, ranging from -2.5 to 2.5.
 
+# Robustness
+
+In the analysis above, exposure is defined by age. Given that child health may also vary with age, we ought to be concerned that my results are generated simply by the exposed group's position in the age distribution. To check for such a result, I run a triple-difference in difference. I compare the exposed group in the 2010 survey with children of the same age in the excluded surveys of 2005, 2014, 2015 and 2017. The first difference is between the exposed group (age-defined for all surveys) and the control. The second difference is between the 2010 survey and the excluded surveys. The third difference is between urban and rural groups. Exposure should only matter for the 2010 survey urban-dwellers, thus the coefficient of interest is the triple interaction term. We see below that it is negative, suggesting that the position of the exposed cohort within the age distribution is not driving my results. Moreover, the magnitude of the coefficient is comparable to that of my results. As I have not included wealth or distance-to-Dakar, the -0.38 coefficient below represents the average of heterogeneous responses across these dimensions.
+
+```{r robustness, results = "asis"}
+## Placebo test for Jeff
+
+## Placebo test for Jeff
+
+## make psuedo-exposed group for 2005 survey
+load( "~/Research/Anemia/Anemia/data/hemforage.Rdata")
+ten <- dhs %>% filter(survey==2010&((Time>1288&Time<1315))) %>% select(c(age,exposure))
+ten <-ten[!duplicated(ten[,"age"]),]
+p <- right_join(dhs,ten,by = "age")
+## Difference-in-Difference
+d <- quantreg::rq(hemfa~(survey==2010)*exposure.y*urban,data = p)
+
+er <- summary.rq(d,"boot",R=500)$coefficients[,c(2,4)]
+
+texreg::texreg(d,
+					digits = 4,
+                    custom.model.names = c("Difference-in-Difference"),
+                    custom.coef.names =c("Intercept","2010","Exposure","Urban","2010*Exposure","2010*Urban","Exposure*Urban","2010*Exposure*Urban") ,
+                    override.pvalues = er[,2],
+                    override.se = er[,1],
+                    caption = "Placebo Test. Median-regression comparing the psuedo-exposed cohorts in the excluded (2005,2014-17) surveys with the truly-exposed cohorts of the 2010 survey.",
+                    float.pos = "H")
+```
 
 # Discussion
 
