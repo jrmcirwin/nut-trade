@@ -16,7 +16,7 @@ bibliography: ["/home/friend/bibtex/references.bib"]
 biblio-style: "apalike"
 nocite: | 
   [@hossainMoralEconomyGlobal2014],[@senIngredientsFamineAnalysis1981],[@almond1918InfluenzaPandemic2006],[@heckmanCausalParametersPolicy2000] ,[@blockMacroShocksMicro2004]
-abstract: "I explore the effect of the 2008 world food price crisis on the health of Senegalese children who were *in-utero* at the time. As predicted by the food-policy literature, I find that the 2008 crisis had a large, negative impact on maternal health in urban areas, but a small, positive effect in rural areas. Observing the same urban cohort over time, I find that the effect of exposure is apparent in 2010 but not in 2012, suggesting catch-up in observed infant health. As iron is a critical nutrient in early-life development, this catch-up may mask an important negative shock to long-term health. Further research is needed to determine the long-term effects of *in-utero* exposure to the 2008 crisis." 
+abstract: "I explore the effect of the 2008 world food price crisis on the health of Senegalese children who were *in-utero* at the time. As predicted by the food-policy literature, I find that the 2008 crisis had a large, negative impact on maternal-infant health in urban areas, but a small, positive effect in rural areas. Observing the same urban cohort over time, I find that the effect of exposure is apparent in 2010 but not in 2012, suggesting catch-up in observed infant health. Further research is needed to determine the long-term effects of *in-utero* exposure to the 2008 crisis." 
 ---	
 
 ```{r setup, include=FALSE}
@@ -350,7 +350,7 @@ From this figure, we can see that the median effect size for a child from an urb
 
 # Robustness
 
-In the analysis above, exposure is defined by age. Given that child health may also vary with age, we ought to be concerned that my results are generated simply by the exposed group's position in the age distribution. To check for such a result, I run a triple-difference in difference. I compare the exposed group in the 2010 survey with children of the same age in the excluded surveys of 2005, 2014, 2015 and 2017. The first difference is between the exposed group (age-defined for all surveys) and the control. The second difference is between the 2010 survey and the excluded surveys. The third difference is between urban and rural groups. Exposure should only matter for the 2010 survey urban-dwellers, thus the coefficient of interest is the triple interaction term. We see below that it is negative, suggesting that the position of the exposed cohort within the age distribution is not driving my results. Moreover, the magnitude of the coefficient is comparable to that of my results. As I have not included wealth or distance-to-Dakar, the -0.38 coefficient below represents the average of heterogeneous responses across these dimensions.
+In the analysis above, exposure is defined by age. Given that child health may also vary with age, we ought to be concerned that my results are generated simply by the exposed group's position in the age distribution. To check for such a result, I run a triple-difference in difference. I compare the exposed group in the 2010 survey with children of the same age in the excluded surveys of 2005, 2014, 2015 and 2017. The first difference is between the exposed group (age-defined for all surveys) and the control. The second difference is between the 2010 survey and the excluded surveys. The third difference is between urban and rural groups. Exposure should only matter for the 2010 survey urban-dwellers, thus the coefficient of interest is the triple interaction term. We see below that it is negative, suggesting that the position of the exposed cohort within the age distribution is not driving my results. Moreover, the magnitude of the coefficient is comparable to that of my results. As I have not included wealth or distance-to-Dakar, the -0.64 coefficient below represents the average of heterogeneous responses across these dimensions.
 
 ```{r robustness, results = "asis"}
 ## Placebo test for Jeff
@@ -363,7 +363,7 @@ ten <- dhs %>% filter(survey==2010&((Time>1288&Time<1315))) %>% select(c(age,exp
 ten <-ten[!duplicated(ten[,"age"]),]
 p <- right_join(dhs,ten,by = "age")
 ## Difference-in-Difference
-d <- quantreg::rq(hemfa~(survey==2010)*exposure.y*urban,data = p)
+d <- quantreg::rq(hemfa~(survey==2010)*exposure.y*urban,data = filter(p,survey==2005|survey==2010))
 
 er <- summary.rq(d,"boot",R=500)$coefficients[,c(2,4)]
 
@@ -557,7 +557,7 @@ load("~/Research/Anemia/Anemia/data/seasonal_regression_table.Rdata")
 
 ```
 
-# Appendix 3 Hemoglobin by Region by Birth-quarter
+# Appendix 3: Hemoglobin by Region by Birth-quarter
 ```{r fig.height=10, fig.width=12}
 load("~/Research/Anemia/Anemia/data/birthq_graph.Rdata")
 ggplot(all_sen) + geom_point(aes(x = birth_q, y=all_sen), size = 3)+geom_vline(xintercept = 7.5)+ facet_wrap(~region)
